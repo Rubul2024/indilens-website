@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import "./Contact.css";
 
@@ -24,49 +22,45 @@ const Contact = () => {
   };
 
   // Handle form submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     setLoading(true);
-    setSuccess(false);
+    setStatus("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
+      const response = await fetch(
+        "https://indilens-website.vercel.app/api/contact",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(formData),
         },
-
-        body: JSON.stringify(formData),
-      });
+      );
 
       const data = await response.json();
 
-      if (response.ok) {
-        setSuccess(true);
-
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
-
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          setSuccess(false);
-        }, 5000);
-      } else {
-        alert(data.message || "Something went wrong. Please try again.");
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
       }
+
+      setStatus("success");
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
     } catch (error) {
       console.error("Contact form error:", error);
 
-      alert(
-        "Unable to send message. Please make sure the backend server is running.",
-      );
+      setStatus("error");
     } finally {
       setLoading(false);
     }
@@ -122,13 +116,13 @@ const Contact = () => {
                 <h3>Website</h3>
 
                 <a
-  href="https://www.indilens.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="contact-website"
->
-  www.indilens.com
-</a>
+                  href="https://www.indilens.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-website"
+                >
+                  www.indilens.com
+                </a>
               </div>
             </div>
 
@@ -160,12 +154,16 @@ const Contact = () => {
 
             {/* SUCCESS MESSAGE */}
 
-            {success && (
-              <div className="success-message">
-                <span className="success-icon">✓</span>
+            {status === "success" && (
+              <p className="form-success">
+                Thank you! Your message has been sent successfully.
+              </p>
+            )}
 
-                <span>Message sent successfully!</span>
-              </div>
+            {status === "error" && (
+              <p className="form-error">
+                Sorry, something went wrong. Please try again.
+              </p>
             )}
 
             <form onSubmit={handleSubmit}>
@@ -282,503 +280,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* =========================
-          CONTACT PAGE CSS
-      ========================== */}
-
-      <style>{`
-
-        /* ===================================
-           CONTACT PAGE
-        =================================== */
-
-        .contact-page {
-          width: 100%;
-          min-height: 100vh;
-          background: #ffffff;
-          color: #0b1f3a;
-        }
-
-
-        /* ===================================
-           MAIN SECTION
-        =================================== */
-
-        .contact-section {
-          width: 100%;
-          padding: 80px 20px;
-          box-sizing: border-box;
-        }
-
-
-        /* ===================================
-           CONTAINER
-        =================================== */
-
-        .contact-container {
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-
-          display: grid;
-          grid-template-columns:
-            minmax(0, 1fr)
-            minmax(0, 1.15fr);
-
-          gap: 70px;
-
-          align-items: start;
-        }
-
-
-        /* ===================================
-           LEFT SIDE
-        =================================== */
-
-        .contact-info {
-          padding-top: 5px;
-        }
-
-
-        .contact-label {
-          display: inline-block;
-
-          margin-bottom: 22px;
-
-          color: #2563eb;
-
-          font-size: 13px;
-          font-weight: 700;
-
-          letter-spacing: 2px;
-        }
-
-
-        .contact-info h1 {
-          margin: 0 0 24px;
-
-          font-size: 48px;
-          line-height: 1.1;
-
-          font-weight: 700;
-
-          color: #0b1f3a;
-        }
-
-
-        .contact-description {
-          max-width: 500px;
-
-          margin-bottom: 45px;
-
-          color: #64748b;
-
-          font-size: 17px;
-          line-height: 1.8;
-        }
-
-
-        /* ===================================
-           CONTACT DETAILS
-        =================================== */
-
-        .contact-detail {
-          display: flex;
-
-          align-items: center;
-
-          gap: 18px;
-
-          margin-bottom: 28px;
-        }
-
-
-        .contact-icon {
-          width: 50px;
-          height: 50px;
-
-          display: flex;
-
-          align-items: center;
-          justify-content: center;
-
-          border-radius: 12px;
-
-          background: #eff6ff;
-
-          font-size: 21px;
-        }
-
-
-        .contact-detail h3 {
-          margin: 0 0 5px;
-
-          font-size: 16px;
-
-          color: #0b1f3a;
-        }
-
-
-        .contact-detail p {
-          margin: 0;
-
-          color: #64748b;
-
-          font-size: 15px;
-        }
-
-
-        /* ===================================
-           FORM CARD
-        =================================== */
-
-        .contact-form-card {
-          padding: 45px;
-
-          background: #ffffff;
-
-          border: 1px solid #e2e8f0;
-
-          border-radius: 24px;
-
-          box-shadow:
-            0 20px 60px
-            rgba(15, 23, 42, 0.08);
-
-          box-sizing: border-box;
-        }
-
-
-        .contact-form-card h2 {
-          margin: 0 0 12px;
-
-          font-size: 32px;
-          line-height: 1.2;
-
-          color: #0b1f3a;
-        }
-
-
-        .form-description {
-          margin: 0 0 35px;
-
-          color: #64748b;
-
-          font-size: 16px;
-        }
-
-
-        /* ===================================
-           SUCCESS MESSAGE
-        =================================== */
-
-        .success-message {
-          display: flex;
-
-          align-items: center;
-
-          gap: 12px;
-
-          margin-bottom: 25px;
-
-          padding: 14px 18px;
-
-          border-radius: 12px;
-
-          background: #ecfdf5;
-
-          border: 1px solid #86efac;
-
-          color: #15803d;
-
-          font-weight: 600;
-
-          animation:
-            successPop
-            0.4s ease;
-        }
-
-
-        .success-icon {
-          width: 26px;
-          height: 26px;
-
-          display: flex;
-
-          align-items: center;
-          justify-content: center;
-
-          border-radius: 50%;
-
-          background: #22c55e;
-
-          color: white;
-
-          font-size: 15px;
-        }
-
-
-        @keyframes successPop {
-
-          0% {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-
-          70% {
-            transform: scale(1.05);
-          }
-
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-
-        }
-
-
-        /* ===================================
-           FORM ROW
-        =================================== */
-
-        .form-row {
-          display: grid;
-
-          grid-template-columns:
-            1fr 1fr;
-
-          gap: 20px;
-
-          margin-bottom: 22px;
-        }
-
-
-        /* ===================================
-           FORM GROUP
-        =================================== */
-
-        .form-group {
-          width: 100%;
-          margin-bottom: 22px;
-        }
-
-
-        .form-row .form-group {
-          margin-bottom: 0;
-        }
-
-
-        .form-group label {
-          display: block;
-
-          margin-bottom: 9px;
-
-          color: #0b1f3a;
-
-          font-size: 14px;
-
-          font-weight: 600;
-        }
-
-
-        .required {
-          margin-left: 3px;
-
-          color: #ef4444;
-
-          font-size: 16px;
-        }
-
-
-        /* ===================================
-           INPUTS
-        =================================== */
-
-        .form-group input,
-        .form-group textarea {
-
-          width: 100%;
-
-          padding: 15px 16px;
-
-          box-sizing: border-box;
-
-          border: 1px solid #cbd5e1;
-
-          border-radius: 10px;
-
-          background: #ffffff;
-
-          color: #0b1f3a;
-
-          font-family: inherit;
-
-          font-size: 15px;
-
-          outline: none;
-
-          transition:
-            border-color 0.2s ease,
-            box-shadow 0.2s ease;
-        }
-
-
-        .form-group input {
-          height: 54px;
-        }
-
-
-        .form-group textarea {
-          min-height: 150px;
-
-          resize: vertical;
-        }
-
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-
-          border-color: #2563eb;
-
-          box-shadow:
-            0 0 0 3px
-            rgba(37, 99, 235, 0.1);
-        }
-
-
-        /* ===================================
-           SUBMIT BUTTON
-        =================================== */
-
-        .contact-submit-btn {
-
-          width: 100%;
-
-          min-height: 56px;
-
-          border: none;
-
-          border-radius: 10px;
-
-          background: #2563eb;
-
-          color: #ffffff;
-
-          font-size: 16px;
-
-          font-weight: 600;
-
-          cursor: pointer;
-
-          transition:
-            transform 0.2s ease,
-            background 0.2s ease,
-            box-shadow 0.2s ease;
-        }
-
-
-        .contact-submit-btn:hover {
-
-          background: #1d4ed8;
-
-          transform:
-            translateY(-2px);
-
-          box-shadow:
-            0 10px 25px
-            rgba(37, 99, 235, 0.25);
-        }
-
-
-        .contact-submit-btn:disabled {
-
-          opacity: 0.7;
-
-          cursor: not-allowed;
-
-          transform: none;
-        }
-
-
-        /* ===================================
-           TABLET
-        =================================== */
-
-        @media (max-width: 900px) {
-
-          .contact-container {
-
-            grid-template-columns: 1fr;
-
-            gap: 50px;
-
-            max-width: 700px;
-          }
-
-          .contact-info h1 {
-
-            font-size: 42px;
-          }
-
-        }
-
-
-        /* ===================================
-           MOBILE
-        =================================== */
-
-        @media (max-width: 600px) {
-
-          .contact-section {
-
-            padding:
-              50px 16px;
-          }
-
-
-          .contact-info h1 {
-
-            font-size: 36px;
-          }
-
-
-          .contact-description {
-
-            font-size: 16px;
-          }
-
-
-          .contact-form-card {
-
-            padding: 25px 20px;
-
-            border-radius: 18px;
-          }
-
-
-          .contact-form-card h2 {
-
-            font-size: 27px;
-          }
-
-
-          .form-row {
-
-            grid-template-columns: 1fr;
-
-            gap: 0;
-          }
-
-
-          .form-row .form-group {
-
-            margin-bottom: 22px;
-          }
-
-        }
-
-      `}</style>
     </main>
   );
 };
