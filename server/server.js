@@ -5,23 +5,23 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 
+// ===============================
+// IMPORT ROUTES
+// ===============================
+
 const contactRoutes = require("./routes/contactRoutes");
-
 const adminRoutes = require("./routes/adminRoutes");
-
 const newsletterRoutes = require("./routes/newsletterRoutes");
-
 const blogRoutes = require("./routes/blogRoutes");
-
 const portfolioRoutes = require("./routes/portfolioRoutes");
-
 const serviceRoutes = require("./routes/serviceRoutes");
-
 const faqRoutes = require("./routes/faqRoutes");
-
 const teamRoutes = require("./routes/teamRoutes");
-
 const dashboardRoutes = require("./routes/dashboardRoutes");
+
+// ===============================
+// CREATE EXPRESS APP
+// ===============================
 
 const app = express();
 
@@ -29,90 +29,83 @@ const app = express();
 // MIDDLEWARE
 // ===============================
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 
 // ===============================
-// DATABASE
+// DATABASE CONNECTION
 // ===============================
 
 connectDB();
 
 // ===============================
-// ROUTES
+// API ROUTES
 // ===============================
 
+// CONTACT
 app.use("/api/contact", contactRoutes);
 
-// ===============================
-// ADMIN ROUTES
-// ===============================
-
+// ADMIN
 app.use("/api/admin", adminRoutes);
 
+// DASHBOARD
+app.use("/api/admin/dashboard", dashboardRoutes);
 
-// ===============================
-// DASHBOARD ROUTES
-// ===============================
-
-app.use("/api/admin", adminRoutes);
-
-// ===============================
-// NEWSLETTER ROUTES
-// ===============================
-
+// NEWSLETTER
 app.use("/api/newsletter", newsletterRoutes);
 
-// ===============================
-// BLOG ROUTES
-// ===============================
-
+// BLOG
 app.use("/api/blog", blogRoutes);
 
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
-
+// PORTFOLIO
 app.use("/api/portfolio", portfolioRoutes);
 
-// ===============================
-// FAQ ROUTES
-// ===============================
-
-app.use("/api/faq", faqRoutes);
-
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
-
+// SERVICES
 app.use("/api/services", serviceRoutes);
 
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
+// FAQ
+app.use("/api/faq", faqRoutes);
 
+// TEAM
 app.use("/api/team", teamRoutes);
-
-
 
 // ===============================
 // ROOT ROUTE
 // ===============================
 
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
     message: "Indilens Backend API is running",
   });
 });
 
 // ===============================
-// SERVER
+// LOCAL DEVELOPMENT
 // ===============================
 
-const PORT = process.env.PORT || 5000;
+// Vercel does not use app.listen()
+// Vercel imports the Express app directly.
 
-app.listen(PORT, () => {
-  console.log(`Indilens Backend Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(
+      `Indilens Backend Server is running on port ${PORT}`
+    );
+  });
+}
+
+// ===============================
+// EXPORT APP FOR VERCEL
+// ===============================
+
+module.exports = app;
