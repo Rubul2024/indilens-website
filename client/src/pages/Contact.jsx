@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "./Contact.css";
 
@@ -10,10 +11,9 @@ const Contact = () => {
     message: "",
   });
 
-  const [success, setSuccess] = useState(false);
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,7 +21,6 @@ const Contact = () => {
     });
   };
 
-  // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -39,7 +38,7 @@ const Contact = () => {
           },
 
           body: JSON.stringify(formData),
-        },
+        }
       );
 
       const data = await response.json();
