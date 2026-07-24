@@ -1,5 +1,4 @@
-
-
+import { submitContact } from "../api";
 import { useState } from "react";
 import "./Contact.css";
 
@@ -31,15 +30,18 @@ const Contact = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
+      const response = await fetch(
+        "https://indilens-website.vercel.app/api/contact",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify(formData),
-      });
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -122,13 +124,13 @@ const Contact = () => {
                 <h3>Website</h3>
 
                 <a
-  href="https://www.indilens.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="contact-website"
->
-  www.indilens.com
-</a>
+                  href="https://www.indilens.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-website"
+                >
+                  www.indilens.com
+                </a>
               </div>
             </div>
 
