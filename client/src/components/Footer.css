@@ -1,0 +1,446 @@
+/* ========================================
+   INDILENS MODERN FOOTER
+======================================== */
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+  position: relative;
+
+  padding: 100px 0 30px;
+
+  background: var(--text-primary);
+
+  color: var(--white);
+
+  overflow: hidden;
+}
+
+/* ========================================
+   FOOTER BRAND SECTION
+======================================== */
+
+.footer-brand-section {
+  padding-bottom: 70px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-brand {
+  max-width: 500px;
+}
+
+.footer-logo {
+  display: inline-block;
+
+  color: var(--white);
+
+  font-size: 36px;
+
+  font-weight: 900;
+
+  letter-spacing: -1px;
+
+  text-decoration: none;
+
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.75;
+}
+
+.footer-description {
+  max-width: 400px;
+
+  margin: 25px 0 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   FOOTER NAVIGATION
+======================================== */
+
+.footer-navigation {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 50px;
+
+  padding: 70px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ========================================
+   FOOTER COLUMN
+======================================== */
+
+.footer-column h3 {
+  margin: 0 0 25px;
+
+  color: var(--white);
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+}
+
+.footer-column ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-column ul li a {
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 15px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: var(--white);
+
+  transform: translateX(4px);
+}
+
+/* ========================================
+   SOCIAL LINKS
+======================================== */
+
+.footer-social-links {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.footer-social-links a {
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 15px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer-social-links a:hover {
+  color: var(--white);
+
+  transform: translateX(4px);
+}
+
+/* ========================================
+   NEWSLETTER
+======================================== */
+
+.footer-newsletter {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+  padding: 60px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-newsletter-content {
+  max-width: 500px;
+}
+
+.footer-newsletter-label {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #7dd3fc;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.footer-newsletter-content h3 {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(24px, 3vw, 36px);
+
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -1px;
+}
+
+/* ========================================
+   NEWSLETTER FORM
+======================================== */
+
+.footer-newsletter-form {
+  display: flex;
+
+  width: 100%;
+overflow: hidden;
+  max-width: 500px;
+
+  padding: 5px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 999px;
+
+  background: var(--white);
+}
+
+.footer-newsletter-form input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 14px 18px;
+
+  border: none;
+
+  outline: none;
+
+  background: var(--white);
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 15px;
+}
+
+.footer-newsletter-form input::placeholder {
+  color: #6b7280;
+}
+
+/* ========================================
+   SUBSCRIBE BUTTON
+======================================== */
+.footer-newsletter-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.footer-newsletter-form button span {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.footer-newsletter-form button:hover {
+  transform: translateY(-2px);
+  background: #1d4ed8;
+  overflow: hidden;
+}
+
+.footer-newsletter-form button:hover span {
+  transform: translateX(4px);
+  overflow: hidden;
+}
+
+/* ========================================
+   FOOTER BOTTOM
+======================================== */
+
+.footer-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding-top: 30px;
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 11px;
+}
+
+/* ========================================
+   LEGAL LINKS
+======================================== */
+
+.footer-legal-links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 25px;
+}
+
+.footer-legal-links a {
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 15px;
+
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+  color: var(--white);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .site-footer {
+    padding: 80px 0 25px;
+  }
+
+  .footer-navigation {
+    grid-template-columns: repeat(2, 1fr);
+
+    row-gap: 50px;
+  }
+
+  .footer-newsletter {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 30px;
+  }
+
+  .footer-newsletter-form {
+    max-width: 600px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding: 70px 0 25px;
+  }
+
+  .footer-brand-section {
+    padding-bottom: 50px;
+  }
+
+  .footer-logo {
+    font-size: 30px;
+  }
+
+  .footer-description {
+    font-size: 16px;
+  }
+
+  .footer-navigation {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 45px 25px;
+
+    padding: 55px 0;
+  }
+
+  .footer-newsletter {
+    padding: 50px 0;
+  }
+
+  .footer-newsletter-content h3 {
+    font-size: 28px;
+  }
+
+  .footer-newsletter-form {
+    flex-direction: column;
+
+    padding: 8px;
+
+    border-radius: 16px;
+  }
+
+  .footer-newsletter-form input {
+    width: 100%;
+
+    padding: 14px;
+  }
+
+  .footer-newsletter-form button {
+    width: 100%;
+
+    padding: 14px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .footer-legal-links {
+    gap: 15px;
+
+    row-gap: 10px;
+  }
+}

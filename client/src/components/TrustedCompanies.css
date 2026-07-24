@@ -1,0 +1,153 @@
+/* ========================================
+   INDILENS TRUSTED COMPANIES SECTION
+======================================== */
+
+/* ========================================
+   SECTION
+======================================== */
+
+.trusted-section {
+  padding: 70px 0;
+
+  background: var(--white);
+
+  border-bottom: 1px solid var(--border);
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.trusted-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding-bottom: 40px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.trusted-label {
+  color: var(--text-primary);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.2px;
+}
+
+.trusted-description {
+  max-width: 400px;
+
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  text-align: right;
+}
+
+/* ========================================
+   COMPANY LOGOS
+======================================== */
+
+.trusted-companies {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding-top: 45px;
+}
+
+.trusted-company {
+  color: #94a3b8;
+
+  font-size: 19px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-align: center;
+
+  transition: all 0.3s ease;
+}
+
+.trusted-company:hover {
+  color: var(--primary);
+
+  transform: translateY(-3px);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+  .trusted-section {
+    padding: 55px 0;
+  }
+
+  .trusted-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .trusted-description {
+    max-width: 550px;
+
+    text-align: left;
+  }
+
+  .trusted-companies {
+    grid-template-columns: repeat(3, 1fr);
+
+    row-gap: 35px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 500px) {
+  .trusted-section {
+    padding: 45px 0;
+  }
+
+  .trusted-label {
+    font-size: 13px;
+  }
+
+  .trusted-description {
+    font-size: 13px;
+  }
+
+  .trusted-companies {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px 15px;
+
+    padding-top: 35px;
+  }
+
+  .trusted-company {
+    font-size: 15px;
+  }
+}

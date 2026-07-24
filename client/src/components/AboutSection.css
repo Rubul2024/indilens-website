@@ -1,0 +1,560 @@
+/* ========================================
+   INDILENS ABOUT HOMEPAGE SECTION
+======================================== */
+
+/* ========================================
+   SECTION
+======================================== */
+
+.about-section {
+  position: relative;
+
+  padding: 120px 0;
+
+  overflow: hidden;
+
+  background: var(--white);
+}
+
+/* ========================================
+   MAIN GRID
+======================================== */
+
+.about-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  align-items: center;
+
+  gap: 100px;
+}
+
+/* ========================================
+   ABOUT CONTENT
+======================================== */
+
+.about-content {
+  max-width: 650px;
+}
+
+.about-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.about-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: clamp(40px, 5vw, 65px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+}
+
+.about-title span {
+  display: block;
+
+  color: var(--primary);
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.about-description {
+  max-width: 600px;
+
+  margin: 28px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.about-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 35px;
+
+  padding: 15px 22px;
+
+  border-radius: 999px;
+
+  background: var(--text-primary);
+
+  color: var(--white);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+}
+
+.about-button span {
+  font-size: 18px;
+
+  transition: transform 0.3s ease;
+}
+
+.about-button:hover {
+  background: var(--primary);
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+}
+
+.about-button:hover span {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   VISUAL AREA
+======================================== */
+
+.about-visual {
+  position: relative;
+
+  min-height: 520px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+/* ========================================
+   MAIN CARD
+======================================== */
+
+.about-main-card {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 520px;
+
+  min-height: 440px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: 35px;
+
+  border-radius: 30px;
+
+  overflow: hidden;
+
+  background: var(--primary);
+
+  color: var(--white);
+
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
+
+  transform: rotate(-3deg);
+
+  transition: transform 0.5s ease;
+}
+
+.about-main-card:hover {
+  transform: rotate(0deg) translateY(-5px);
+}
+
+/* ========================================
+   CARD DECORATION
+======================================== */
+
+.about-main-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+
+  height: 300px;
+
+  top: -120px;
+
+  right: -100px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.about-main-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 200px;
+
+  height: 200px;
+
+  bottom: -100px;
+
+  left: -70px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   CARD TOP
+======================================== */
+
+.about-card-top {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   CARD CENTER
+======================================== */
+
+.about-card-center {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+}
+
+.about-card-circle {
+  width: 80px;
+
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto 25px;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  border-radius: 50%;
+
+  font-size: 32px;
+
+  font-weight: 800;
+}
+
+.about-card-center h3 {
+  margin: 0;
+
+  font-size: 45px;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.about-card-center h3 span {
+  display: block;
+
+  color: #7dd3fc;
+}
+
+/* ========================================
+   CARD BOTTOM
+======================================== */
+
+.about-card-bottom {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+/* ========================================
+   FLOATING BADGE
+======================================== */
+
+.about-floating-badge {
+  position: absolute;
+
+  right: -20px;
+
+  bottom: 50px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 16px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+
+  animation: aboutFloat 4s ease-in-out infinite;
+}
+
+.about-badge-icon {
+  width: 38px;
+
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: var(--bg-light);
+
+  color: var(--primary);
+
+  font-size: 18px;
+}
+
+.about-floating-badge strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text-primary);
+
+  font-size: 12px;
+}
+
+.about-floating-badge div span {
+  display: block;
+
+  color: var(--text-secondary);
+
+  font-size: 10px;
+}
+
+/* ========================================
+   FLOAT ANIMATION
+======================================== */
+
+@keyframes aboutFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   STATISTICS
+======================================== */
+
+.about-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+
+  margin-top: 100px;
+
+  padding-top: 50px;
+
+  border-top: 1px solid var(--border);
+}
+
+.about-stat {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.about-stat strong {
+  color: var(--text-primary);
+
+  font-size: 40px;
+
+  font-weight: 800;
+
+  letter-spacing: -2px;
+}
+
+.about-stat span {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+  }
+
+  .about-content {
+    max-width: 800px;
+  }
+
+  .about-visual {
+    min-height: 500px;
+  }
+
+  .about-main-card {
+    max-width: 600px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 80px 0;
+  }
+
+  .about-title {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .about-description {
+    font-size: 15px;
+  }
+
+  .about-visual {
+    min-height: 400px;
+  }
+
+  .about-main-card {
+    min-height: 360px;
+
+    padding: 25px;
+
+    border-radius: 22px;
+  }
+
+  .about-card-center h3 {
+    font-size: 35px;
+  }
+
+  .about-card-circle {
+    width: 65px;
+
+    height: 65px;
+
+    font-size: 25px;
+  }
+
+  .about-floating-badge {
+    right: 0;
+
+    bottom: 20px;
+
+    padding: 12px 15px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 35px 20px;
+
+    margin-top: 70px;
+  }
+
+  .about-stat strong {
+    font-size: 32px;
+  }
+
+  .about-stat span {
+    font-size: 10px;
+  }
+}

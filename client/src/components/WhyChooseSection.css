@@ -1,0 +1,450 @@
+/* ========================================
+   INDILENS WHY CHOOSE SECTION
+======================================== */
+
+/* ========================================
+   SECTION
+======================================== */
+
+.why-choose-section {
+  padding: 120px 0;
+
+  background: var(--bg-light);
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.why-choose-header {
+  display: grid;
+
+  grid-template-columns:
+    1.3fr
+    0.7fr;
+
+  gap: 80px;
+
+  align-items: end;
+
+  margin-bottom: 70px;
+}
+
+.why-choose-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.why-choose-title {
+  max-width: 750px;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: clamp(42px, 5vw, 68px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+}
+
+.why-choose-title span {
+  display: block;
+
+  color: var(--primary);
+}
+
+/* ========================================
+   INTRO
+======================================== */
+
+.why-choose-intro {
+  max-width: 400px;
+}
+
+.why-choose-intro p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   REASONS LIST
+======================================== */
+
+.why-choose-list {
+  border-top: 1px solid var(--border);
+}
+
+/* ========================================
+   REASON ITEM
+======================================== */
+
+.why-choose-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    100px
+    1fr
+    60px;
+
+  align-items: center;
+
+  gap: 40px;
+
+  min-height: 180px;
+
+  padding: 30px 0;
+
+  border-bottom: 1px solid var(--border);
+
+  transition:
+    padding 0.4s ease,
+    background 0.4s ease;
+}
+
+.why-choose-item:hover {
+  padding-left: 20px;
+
+  padding-right: 20px;
+
+  background: var(--white);
+}
+
+/* ========================================
+   NUMBER
+======================================== */
+
+.why-choose-number {
+  color: var(--primary);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.why-choose-content {
+  max-width: 750px;
+}
+
+.why-choose-content h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 28px;
+
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -1px;
+
+  transition: color 0.3s ease;
+}
+
+.why-choose-item:hover .why-choose-content h3 {
+  color: var(--primary);
+}
+
+.why-choose-content p {
+  max-width: 650px;
+
+  margin: 12px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   ARROW
+======================================== */
+
+.why-choose-arrow {
+  width: 50px;
+
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  color: var(--text-primary);
+
+  font-size: 20px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.why-choose-item:hover .why-choose-arrow {
+  border-color: var(--primary);
+
+  background: var(--primary);
+
+  color: var(--white);
+
+  transform: rotate(45deg);
+}
+
+/* ========================================
+   CTA
+======================================== */
+
+.why-choose-cta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-top: 80px;
+
+  padding: 50px;
+
+  border-radius: 20px;
+
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+/* ========================================
+   CTA LABEL
+======================================== */
+
+.why-choose-cta-label {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   CTA TITLE
+======================================== */
+
+.why-choose-cta h3 {
+  max-width: 600px;
+
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(28px, 4vw, 44px);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: -1.5px;
+}
+
+/* ========================================
+   CTA BUTTON
+======================================== */
+
+.why-choose-cta-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+
+  padding: 16px 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 999px;
+
+  background: var(--white);
+
+  color: var(--text-primary);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.why-choose-cta-button span {
+  font-size: 18px;
+
+  transition: transform 0.3s ease;
+}
+
+.why-choose-cta-button:hover {
+  transform: translateY(-3px);
+
+  background: #e0f2fe;
+}
+
+.why-choose-cta-button:hover span {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .why-choose-section {
+    padding: 90px 0;
+  }
+
+  .why-choose-header {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    align-items: start;
+  }
+
+  .why-choose-intro {
+    max-width: 600px;
+  }
+
+  .why-choose-item {
+    grid-template-columns:
+      70px
+      1fr
+      55px;
+
+    gap: 25px;
+  }
+
+  .why-choose-cta {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .why-choose-section {
+    padding: 75px 0;
+  }
+
+  .why-choose-title {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .why-choose-intro p {
+    font-size: 14px;
+  }
+
+  .why-choose-item {
+    grid-template-columns:
+      45px
+      1fr
+      45px;
+
+    gap: 15px;
+
+    min-height: 150px;
+
+    padding: 25px 0;
+  }
+
+  .why-choose-item:hover {
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+  .why-choose-content h3 {
+    font-size: 21px;
+  }
+
+  .why-choose-content p {
+    font-size: 12px;
+
+    line-height: 1.7;
+  }
+
+  .why-choose-arrow {
+    width: 40px;
+
+    height: 40px;
+
+    font-size: 16px;
+  }
+
+  .why-choose-cta {
+    margin-top: 60px;
+
+    padding: 35px 25px;
+
+    border-radius: 16px;
+  }
+
+  .why-choose-cta h3 {
+    font-size: 30px;
+
+    letter-spacing: -1px;
+  }
+
+  .why-choose-cta-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,392 @@
+/* ========================================
+   INDILENS SERVICES HOMEPAGE SECTION
+======================================== */
+
+/* ========================================
+   SECTION
+======================================== */
+
+.services-section {
+  padding: 120px 0;
+
+  background: var(--bg-light);
+}
+
+/* ========================================
+   SECTION HEADER
+======================================== */
+
+.services-header {
+  display: grid;
+
+  grid-template-columns:
+    1.3fr
+    0.7fr;
+
+  gap: 80px;
+
+  align-items: end;
+
+  margin-bottom: 70px;
+}
+
+.services-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.services-title {
+  max-width: 750px;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: clamp(42px, 5vw, 68px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+}
+
+.services-title span {
+  display: block;
+
+  color: var(--primary);
+}
+
+/* ========================================
+   INTRO
+======================================== */
+
+.services-intro {
+  max-width: 400px;
+}
+
+.services-intro p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   VIEW ALL LINK
+======================================== */
+
+.services-view-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+}
+
+.services-view-link span {
+  font-size: 18px;
+
+  transition: transform 0.3s ease;
+}
+
+.services-view-link:hover {
+  color: var(--primary);
+}
+
+.services-view-link:hover span {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   SERVICES GRID
+======================================== */
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+/* ========================================
+   SERVICE CARD
+======================================== */
+
+.service-card {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: 30px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  background: var(--white);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(37, 99, 235, 0.3);
+
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.08);
+}
+
+/* ========================================
+   CARD TOP
+======================================== */
+
+.service-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.service-number {
+  color: var(--primary);
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.service-tag {
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: var(--bg-light);
+
+  color: var(--text-secondary);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   SERVICE ICON
+======================================== */
+
+.service-icon {
+  width: 55px;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 35px;
+
+  border-radius: 14px;
+
+  background: var(--text-primary);
+
+  color: var(--white);
+
+  font-size: 24px;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  background: var(--primary);
+
+  transform: rotate(8deg);
+}
+
+/* ========================================
+   CARD CONTENT
+======================================== */
+
+.service-card-content {
+  margin-top: 30px;
+}
+
+.service-card-content h3 {
+  max-width: 300px;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 24px;
+
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.8px;
+}
+
+.service-card-content p {
+  margin: 18px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* ========================================
+   CARD FOOTER
+======================================== */
+
+.service-card-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: 30px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.service-arrow {
+  color: var(--text-primary);
+
+  font-size: 20px;
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+  color: var(--primary);
+
+  transform: translateX(6px);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .services-section {
+    padding: 90px 0;
+  }
+
+  .services-header {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    align-items: start;
+  }
+
+  .services-intro {
+    max-width: 600px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .services-section {
+    padding: 75px 0;
+  }
+
+  .services-header {
+    margin-bottom: 50px;
+  }
+
+  .services-title {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .services-intro p {
+    font-size: 14px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .service-card {
+    min-height: 390px;
+
+    padding: 25px;
+  }
+
+  .service-card-content h3 {
+    font-size: 22px;
+  }
+}

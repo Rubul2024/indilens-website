@@ -1,0 +1,40 @@
+/* ========================================
+   INDILENS GROUP COMPANIES PAGE
+======================================== */
+
+.group-companies-page {
+  min-height:
+    100vh;
+
+  background:
+    var(--white);
+}
+
+
+/* ========================================
+   PAGE TOP SPACING
+======================================== */
+
+.group-companies-page
+.group-companies-section {
+  padding-top:
+    160px;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width:
+  600px
+) {
+
+  .group-companies-page
+  .group-companies-section {
+    padding-top:
+      120px;
+  }
+
+}

@@ -1,0 +1,401 @@
+/* ========================================
+   INDILENS INDUSTRIES HOMEPAGE SECTION
+======================================== */
+
+/* ========================================
+   SECTION
+======================================== */
+
+.industries-section {
+  padding: 120px 0;
+
+  background: var(--text-primary);
+
+  color: var(--white);
+
+  overflow: hidden;
+}
+
+/* ========================================
+   SECTION HEADER
+======================================== */
+
+.industries-header {
+  display: grid;
+
+  grid-template-columns:
+    1.3fr
+    0.7fr;
+
+  gap: 80px;
+
+  align-items: end;
+
+  margin-bottom: 70px;
+}
+
+.industries-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  color: #7dd3fc;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.industries-title {
+  max-width: 750px;
+
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(42px, 5vw, 68px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+}
+
+.industries-title span {
+  display: block;
+
+  color: #7dd3fc;
+}
+
+/* ========================================
+   INTRO
+======================================== */
+
+.industries-intro {
+  max-width: 400px;
+}
+
+.industries-intro p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   CTA LINK
+======================================== */
+
+.industries-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  color: var(--white);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+}
+
+.industries-link span {
+  font-size: 18px;
+
+  transition: transform 0.3s ease;
+}
+
+.industries-link:hover {
+  color: #7dd3fc;
+}
+
+.industries-link:hover span {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   INDUSTRIES LIST
+======================================== */
+
+.industries-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   INDUSTRY ITEM
+======================================== */
+
+.industry-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    100px
+    1fr
+    60px;
+
+  align-items: center;
+
+  gap: 40px;
+
+  min-height: 150px;
+
+  padding: 25px 0;
+
+  overflow: hidden;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  cursor: pointer;
+
+  transition: padding 0.4s ease;
+}
+
+.industry-item:hover {
+  padding-left: 20px;
+
+  padding-right: 20px;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ========================================
+   BACKGROUND NUMBER
+======================================== */
+
+.industry-bg-number {
+  position: absolute;
+
+  right: 80px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: rgba(255, 255, 255, 0.025);
+
+  font-size: 180px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  pointer-events: none;
+
+  transition: color 0.4s ease;
+}
+
+.industry-item:hover .industry-bg-number {
+  color: rgba(125, 211, 252, 0.06);
+}
+
+/* ========================================
+   NUMBER
+======================================== */
+
+.industry-number {
+  position: relative;
+
+  z-index: 2;
+
+  color: #7dd3fc;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.industry-content {
+  position: relative;
+
+  z-index: 2;
+}
+
+.industry-content h3 {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: 30px;
+
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -1px;
+
+  transition: color 0.3s ease;
+}
+
+.industry-item:hover .industry-content h3 {
+  color: #7dd3fc;
+}
+
+.industry-content p {
+  max-width: 600px;
+
+  margin: 10px 0 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* ========================================
+   ARROW
+======================================== */
+
+.industry-arrow {
+  position: relative;
+
+  z-index: 2;
+
+  width: 50px;
+
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 50%;
+
+  color: var(--white);
+
+  font-size: 20px;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.industry-item:hover .industry-arrow {
+  border-color: #7dd3fc;
+
+  background: #7dd3fc;
+
+  color: var(--text-primary);
+
+  transform: rotate(45deg);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .industries-section {
+    padding: 90px 0;
+  }
+
+  .industries-header {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    align-items: start;
+  }
+
+  .industries-intro {
+    max-width: 600px;
+  }
+
+  .industry-item {
+    grid-template-columns:
+      70px
+      1fr
+      55px;
+
+    gap: 25px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .industries-section {
+    padding: 75px 0;
+  }
+
+  .industries-title {
+    font-size: 42px;
+
+    letter-spacing: -2px;
+  }
+
+  .industries-intro p {
+    font-size: 14px;
+  }
+
+  .industry-item {
+    grid-template-columns:
+      45px
+      1fr
+      45px;
+
+    gap: 15px;
+
+    min-height: 130px;
+
+    padding: 20px 0;
+  }
+
+  .industry-item:hover {
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+  .industry-content h3 {
+    font-size: 21px;
+  }
+
+  .industry-content p {
+    font-size: 12px;
+
+    line-height: 1.6;
+  }
+
+  .industry-arrow {
+    width: 40px;
+
+    height: 40px;
+
+    font-size: 16px;
+  }
+
+  .industry-bg-number {
+    right: 30px;
+
+    font-size: 100px;
+  }
+}
