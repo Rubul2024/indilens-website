@@ -17,9 +17,9 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
-// ===============================
-// MIDDLEWARE
-// ===============================
+// ========================================
+// CORS
+// ========================================
 
 app.use(
   cors({
@@ -32,43 +32,38 @@ app.use(
   })
 );
 
+// ========================================
+// BODY PARSER
+// ========================================
+
 app.use(express.json());
 
-// ===============================
+// ========================================
 // DATABASE
-// ===============================
+// ========================================
 
 connectDB();
 
-// ===============================
-// ROUTES
-// ===============================
+// ========================================
+// API ROUTES
+// ========================================
 
-// Contact
 app.use("/api/contact", contactRoutes);
 
-// Admin
 app.use("/api/admin", adminRoutes);
 
-// Admin Dashboard
 app.use("/api/admin/dashboard", dashboardRoutes);
 
-// Newsletter
 app.use("/api/newsletter", newsletterRoutes);
 
-// Blog
 app.use("/api/blog", blogRoutes);
 
-// Portfolio
 app.use("/api/portfolio", portfolioRoutes);
 
-// Services
 app.use("/api/services", serviceRoutes);
 
-// FAQ
 app.use("/api/faq", faqRoutes);
 
-// Team
 app.use("/api/team", teamRoutes);
 
 // ===============================
@@ -83,7 +78,17 @@ app.get("/", (req, res) => {
 });
 
 // ===============================
-// EXPORT APP FOR VERCEL
+// SERVER
+// ===============================
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// ===============================
+// EXPORT APP
 // ===============================
 
 module.exports = app;

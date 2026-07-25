@@ -1,24 +1,12 @@
 const mongoose = require("mongoose");
 
-// ==================================================
-// CONTACT SCHEMA
-// ==================================================
-
 const contactSchema = new mongoose.Schema(
   {
-    // ==============================================
-    // NAME
-    // ==============================================
-
     name: {
       type: String,
       required: true,
       trim: true,
     },
-
-    // ==============================================
-    // EMAIL
-    // ==============================================
 
     email: {
       type: String,
@@ -27,19 +15,11 @@ const contactSchema = new mongoose.Schema(
       lowercase: true,
     },
 
-    // ==============================================
-    // PHONE
-    // ==============================================
-
     phone: {
       type: String,
       required: true,
       trim: true,
     },
-
-    // ==============================================
-    // SUBJECT
-    // ==============================================
 
     subject: {
       type: String,
@@ -47,33 +27,21 @@ const contactSchema = new mongoose.Schema(
       default: "",
     },
 
-    // ==============================================
-    // MESSAGE
-    // ==============================================
-
     message: {
       type: String,
-      required: true,
       trim: true,
+      default: "",
     },
 
-    // ==============================================
-    // READ STATUS
-    // ==============================================
-
-    isRead: {
-      type: Boolean,
-      default: false,
+    status: {
+      type: String,
+      enum: ["new", "read", "replied"],
+      default: "new",
     },
   },
-
   {
     timestamps: true,
   }
 );
-
-// ==================================================
-// EXPORT MODEL
-// ==================================================
 
 module.exports = mongoose.model("Contact", contactSchema);
