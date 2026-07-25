@@ -46,13 +46,25 @@ const handleSubmit = async (event) => {
 
     console.log("Response Status:", response.status);
 
-    const data = await response.json();
+    const contentType = response.headers.get("content-type");
 
-    console.log("Backend Response:", data);
+let data = {};
 
-    if (!response.ok) {
-      throw new Error(data.message || "Something went wrong");
-    }
+if (contentType && contentType.includes("application/json")) {
+  data = await response.json();
+} else {
+  const text = await response.text();
+
+  throw new Error(
+    `Server returned ${response.status}: ${text}`
+  );
+}
+
+if (!response.ok) {
+  throw new Error(
+    data.message || "Something went wrong"
+  );
+}
 
     // SUCCESS
     setStatus("success");
