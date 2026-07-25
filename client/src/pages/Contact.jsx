@@ -21,49 +21,57 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    setLoading(true);
-    setStatus("");
+  console.log("FORM SUBMITTED");
+  console.log("FORM DATA:", formData);
 
-    try {
-      const response = await fetch(
-        "https://indilens-website.vercel.app/api/contact",
-        {
-          method: "POST",
+  setLoading(true);
+  setStatus("");
 
-          headers: {
-            "Content-Type": "application/json",
-          },
+  try {
+    const response = await fetch(
+      "https://indilens-website.vercel.app/api/contact",
+      {
+        method: "POST",
 
-          body: JSON.stringify(formData),
-        }
-      );
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
+        body: JSON.stringify(formData),
       }
+    );
 
-      setStatus("success");
+    console.log("Response Status:", response.status);
 
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Contact form error:", error);
+    const data = await response.json();
 
-      setStatus("error");
-    } finally {
-      setLoading(false);
+    console.log("Backend Response:", data);
+
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong");
     }
-  };
+
+    // SUCCESS
+    setStatus("success");
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("Contact form error:", error);
+
+    setStatus("error");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <main className="contact-page">
