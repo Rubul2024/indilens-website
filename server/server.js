@@ -6,21 +6,13 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const contactRoutes = require("./routes/contactRoutes");
-
 const adminRoutes = require("./routes/adminRoutes");
-
 const newsletterRoutes = require("./routes/newsletterRoutes");
-
 const blogRoutes = require("./routes/blogRoutes");
-
 const portfolioRoutes = require("./routes/portfolioRoutes");
-
 const serviceRoutes = require("./routes/serviceRoutes");
-
 const faqRoutes = require("./routes/faqRoutes");
-
 const teamRoutes = require("./routes/teamRoutes");
-
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
@@ -52,58 +44,32 @@ connectDB();
 // ROUTES
 // ===============================
 
+// Contact
 app.use("/api/contact", contactRoutes);
 
-// ===============================
-// ADMIN ROUTES
-// ===============================
-
+// Admin
 app.use("/api/admin", adminRoutes);
 
-
-// ===============================
-// DASHBOARD ROUTES
-// ===============================
-
+// Admin Dashboard
 app.use("/api/admin/dashboard", dashboardRoutes);
 
-// ===============================
-// NEWSLETTER ROUTES
-// ===============================
-
+// Newsletter
 app.use("/api/newsletter", newsletterRoutes);
 
-// ===============================
-// BLOG ROUTES
-// ===============================
-
+// Blog
 app.use("/api/blog", blogRoutes);
 
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
-
+// Portfolio
 app.use("/api/portfolio", portfolioRoutes);
 
-// ===============================
-// FAQ ROUTES
-// ===============================
-
-app.use("/api/faq", faqRoutes);
-
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
-
+// Services
 app.use("/api/services", serviceRoutes);
 
-// ===============================
-// PORTFOLIO ROUTES
-// ===============================
+// FAQ
+app.use("/api/faq", faqRoutes);
 
+// Team
 app.use("/api/team", teamRoutes);
-
-
 
 // ===============================
 // ROOT ROUTE
@@ -117,11 +83,7 @@ app.get("/", (req, res) => {
 });
 
 // ===============================
-// SERVER
+// EXPORT APP FOR VERCEL
 // ===============================
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Indilens Backend Server is running on port ${PORT}`);
-});
+module.exports = app;
