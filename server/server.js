@@ -24,7 +24,7 @@ const app = express();
 // CORS
 // ========================================
 
-const cors = require("cors");
+
 
 app.use(
   cors({
