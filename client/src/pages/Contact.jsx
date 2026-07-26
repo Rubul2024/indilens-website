@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./Contact.css";
 
@@ -21,67 +20,62 @@ const Contact = () => {
     });
   };
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  console.log("FORM SUBMITTED");
-  console.log("FORM DATA:", formData);
+    console.log("FORM SUBMITTED");
+    console.log("FORM DATA:", formData);
 
-  setLoading(true);
-  setStatus("");
+    setLoading(true);
+    setStatus("");
 
-  try {
-    const response = await fetch(
-  `${import.meta.env.VITE_API_URL}/api/contact`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  }
-);
+    try {
+      const API_URL = import.meta.env.VITE_API_URL;
 
-    console.log("Response Status:", response.status);
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const contentType = response.headers.get("content-type");
+      console.log("Response Status:", response.status);
 
-let data = {};
+      const contentType = response.headers.get("content-type");
 
-if (contentType && contentType.includes("application/json")) {
-  data = await response.json();
-} else {
-  const text = await response.text();
+      let data = {};
 
-  throw new Error(
-    `Server returned ${response.status}: ${text}`
-  );
-}
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
 
-if (!response.ok) {
-  throw new Error(
-    data.message || "Something went wrong"
-  );
-}
+        throw new Error(`Server returned ${response.status}: ${text}`);
+      }
 
-    // SUCCESS
-    setStatus("success");
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-  } catch (error) {
-    console.error("Contact form error:", error);
+      // SUCCESS
+      setStatus("success");
 
-    setStatus("error");
-  } finally {
-    setLoading(false);
-  }
-};
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <main className="contact-page">
