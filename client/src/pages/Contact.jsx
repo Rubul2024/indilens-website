@@ -31,8 +31,7 @@ const handleSubmit = async (event) => {
   setStatus("");
 
   try {
-    const response = await fetch(
-      "https://indilens-website.vercel.app/api/contact",
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`,
       {
         method: "POST",
 
