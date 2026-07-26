@@ -24,7 +24,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://indilens-website-jyij.vercel.app/",
+      "http://localhost:5173",
       "https://indilens-website.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
