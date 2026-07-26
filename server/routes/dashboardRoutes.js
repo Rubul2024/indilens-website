@@ -1,39 +1,22 @@
 const express = require("express");
 
-
 // ==================================================
 // IMPORT DASHBOARD CONTROLLER
 // ==================================================
 
-const {
-
-  getDashboardOverview,
-
-} = require(
-  "../controllers/dashboardController"
-);
-
+const { getDashboardOverview } = require("../controllers/dashboardController");
 
 // ==================================================
 // IMPORT ADMIN AUTH MIDDLEWARE
 // ==================================================
 
-const {
-
-  protect,
-
-} = require(
-  "../middleware/authMiddleware"
-);
-
+const { protect } = require("../middleware/authMiddleware");
 
 // ==================================================
 // CREATE ROUTER
 // ==================================================
 
-const router =
-  express.Router();
-
+const router = express.Router();
 
 // ==================================================
 // ADMIN DASHBOARD OVERVIEW
@@ -44,15 +27,12 @@ const router =
 // ==================================================
 
 router.get(
-
   "/dashboard",
 
   protect,
 
-  getDashboardOverview
-
+  getDashboardOverview,
 );
-
 
 // ==================================================
 // EXPORT ROUTER

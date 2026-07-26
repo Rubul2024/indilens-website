@@ -1,12 +1,10 @@
 const express = require("express");
 
-
 // ==================================================
 // IMPORT TEAM CONTROLLER
 // ==================================================
 
 const {
-
   getPublishedTeam,
 
   createTeamMember,
@@ -14,30 +12,19 @@ const {
   updateTeamMember,
 
   deleteTeamMember,
-
-} = require(
-  "../controllers/teamController"
-);
-
+} = require("../controllers/teamController");
 
 // ==================================================
 // IMPORT ADMIN AUTH MIDDLEWARE
 // ==================================================
 
-const {
-  protect,
-} = require(
-  "../middleware/authMiddleware"
-);
-
+const { protect } = require("../middleware/authMiddleware");
 
 // ==================================================
 // CREATE ROUTER
 // ==================================================
 
-const router =
-  express.Router();
-
+const router = express.Router();
 
 // ==================================================
 // PUBLIC
@@ -46,13 +33,10 @@ const router =
 // ==================================================
 
 router.get(
-
   "/",
 
-  getPublishedTeam
-
+  getPublishedTeam,
 );
-
 
 // ==================================================
 // ADMIN
@@ -61,15 +45,12 @@ router.get(
 // ==================================================
 
 router.post(
-
   "/",
 
   protect,
 
-  createTeamMember
-
+  createTeamMember,
 );
-
 
 // ==================================================
 // ADMIN
@@ -78,15 +59,12 @@ router.post(
 // ==================================================
 
 router.put(
-
   "/:id",
 
   protect,
 
-  updateTeamMember
-
+  updateTeamMember,
 );
-
 
 // ==================================================
 // ADMIN
@@ -95,15 +73,12 @@ router.put(
 // ==================================================
 
 router.delete(
-
   "/:id",
 
   protect,
 
-  deleteTeamMember
-
+  deleteTeamMember,
 );
-
 
 // ==================================================
 // EXPORT ROUTER

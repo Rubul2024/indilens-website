@@ -1,13 +1,10 @@
-
 const express = require("express");
-
 
 // ==================================================
 // IMPORT PORTFOLIO CONTROLLER
 // ==================================================
 
 const {
-
   getPublishedPortfolios,
 
   getPortfolioBySlug,
@@ -17,30 +14,19 @@ const {
   updatePortfolio,
 
   deletePortfolio,
-
-} = require(
-  "../controllers/portfolioController"
-);
-
+} = require("../controllers/portfolioController");
 
 // ==================================================
 // IMPORT ADMIN AUTH MIDDLEWARE
 // ==================================================
 
-const {
-  protect,
-} = require(
-  "../middleware/authMiddleware"
-);
-
+const { protect } = require("../middleware/authMiddleware");
 
 // ==================================================
 // CREATE ROUTER
 // ==================================================
 
-const router =
-  express.Router();
-
+const router = express.Router();
 
 // ==================================================
 // PUBLIC
@@ -49,13 +35,10 @@ const router =
 // ==================================================
 
 router.get(
-
   "/",
 
-  getPublishedPortfolios
-
+  getPublishedPortfolios,
 );
-
 
 // ==================================================
 // PUBLIC
@@ -64,13 +47,10 @@ router.get(
 // ==================================================
 
 router.get(
-
   "/:slug",
 
-  getPortfolioBySlug
-
+  getPortfolioBySlug,
 );
-
 
 // ==================================================
 // ADMIN
@@ -79,15 +59,12 @@ router.get(
 // ==================================================
 
 router.post(
-
   "/",
 
   protect,
 
-  createPortfolio
-
+  createPortfolio,
 );
-
 
 // ==================================================
 // ADMIN
@@ -96,15 +73,12 @@ router.post(
 // ==================================================
 
 router.put(
-
   "/:id",
 
   protect,
 
-  updatePortfolio
-
+  updatePortfolio,
 );
-
 
 // ==================================================
 // ADMIN
@@ -113,15 +87,12 @@ router.put(
 // ==================================================
 
 router.delete(
-
   "/:id",
 
   protect,
 
-  deletePortfolio
-
+  deletePortfolio,
 );
-
 
 // ==================================================
 // EXPORT ROUTER

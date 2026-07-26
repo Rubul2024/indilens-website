@@ -1,12 +1,10 @@
 const express = require("express");
 
-
 // ==================================================
 // IMPORT SERVICE CONTROLLER
 // ==================================================
 
 const {
-
   getPublishedServices,
 
   getServiceBySlug,
@@ -16,30 +14,19 @@ const {
   updateService,
 
   deleteService,
-
-} = require(
-  "../controllers/serviceController"
-);
-
+} = require("../controllers/serviceController");
 
 // ==================================================
 // IMPORT ADMIN AUTH MIDDLEWARE
 // ==================================================
 
-const {
-  protect,
-} = require(
-  "../middleware/authMiddleware"
-);
-
+const { protect } = require("../middleware/authMiddleware");
 
 // ==================================================
 // CREATE ROUTER
 // ==================================================
 
-const router =
-  express.Router();
-
+const router = express.Router();
 
 // ==================================================
 // PUBLIC
@@ -48,13 +35,10 @@ const router =
 // ==================================================
 
 router.get(
-
   "/",
 
-  getPublishedServices
-
+  getPublishedServices,
 );
-
 
 // ==================================================
 // PUBLIC
@@ -63,13 +47,10 @@ router.get(
 // ==================================================
 
 router.get(
-
   "/:slug",
 
-  getServiceBySlug
-
+  getServiceBySlug,
 );
-
 
 // ==================================================
 // ADMIN
@@ -78,15 +59,12 @@ router.get(
 // ==================================================
 
 router.post(
-
   "/",
 
   protect,
 
-  createService
-
+  createService,
 );
-
 
 // ==================================================
 // ADMIN
@@ -95,15 +73,12 @@ router.post(
 // ==================================================
 
 router.put(
-
   "/:id",
 
   protect,
 
-  updateService
-
+  updateService,
 );
-
 
 // ==================================================
 // ADMIN
@@ -112,15 +87,12 @@ router.put(
 // ==================================================
 
 router.delete(
-
   "/:id",
 
   protect,
 
-  deleteService
-
+  deleteService,
 );
-
 
 // ==================================================
 // EXPORT ROUTER

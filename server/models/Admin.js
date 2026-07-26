@@ -1,5 +1,3 @@
-
-
 const mongoose = require("mongoose");
 
 const adminSchema = new mongoose.Schema(
@@ -21,7 +19,6 @@ const adminSchema = new mongoose.Schema(
     },
 
     // Admin's password
-    // We will hash this password in the next steps
     password: {
       type: String,
       required: true,
@@ -31,6 +28,12 @@ const adminSchema = new mongoose.Schema(
     role: {
       type: String,
       default: "admin",
+    },
+
+    // Admin active status
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {

@@ -1,12 +1,10 @@
 const express = require("express");
 
-
 // ==================================================
 // IMPORT FAQ CONTROLLER
 // ==================================================
 
 const {
-
   getPublishedFAQs,
 
   createFAQ,
@@ -14,30 +12,19 @@ const {
   updateFAQ,
 
   deleteFAQ,
-
-} = require(
-  "../controllers/faqController"
-);
-
+} = require("../controllers/faqController");
 
 // ==================================================
 // IMPORT ADMIN AUTH MIDDLEWARE
 // ==================================================
 
-const {
-  protect,
-} = require(
-  "../middleware/authMiddleware"
-);
-
+const { protect } = require("../middleware/authMiddleware");
 
 // ==================================================
 // CREATE ROUTER
 // ==================================================
 
-const router =
-  express.Router();
-
+const router = express.Router();
 
 // ==================================================
 // PUBLIC
@@ -46,13 +33,10 @@ const router =
 // ==================================================
 
 router.get(
-
   "/",
 
-  getPublishedFAQs
-
+  getPublishedFAQs,
 );
-
 
 // ==================================================
 // ADMIN
@@ -61,15 +45,12 @@ router.get(
 // ==================================================
 
 router.post(
-
   "/",
 
   protect,
 
-  createFAQ
-
+  createFAQ,
 );
-
 
 // ==================================================
 // ADMIN
@@ -78,15 +59,12 @@ router.post(
 // ==================================================
 
 router.put(
-
   "/:id",
 
   protect,
 
-  updateFAQ
-
+  updateFAQ,
 );
-
 
 // ==================================================
 // ADMIN
@@ -95,15 +73,12 @@ router.put(
 // ==================================================
 
 router.delete(
-
   "/:id",
 
   protect,
 
-  deleteFAQ
-
+  deleteFAQ,
 );
-
 
 // ==================================================
 // EXPORT ROUTER

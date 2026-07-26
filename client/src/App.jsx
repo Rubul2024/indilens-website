@@ -1,5 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import AdminLogin from "./admin/pages/AdminLogin";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+
+import ProtectedAdminRoute from "./admin/components/ProtectedAdminRoute";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -46,6 +51,14 @@ const App = () => {
 
         <Route path="/terms" element={<Terms />} />
         <Route path="/disclaimer" element={<Disclaimer />} />
+
+        {/* ADMIN */}
+
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route element={<ProtectedAdminRoute />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Route>
       </Routes>
 
       <Footer />

@@ -1,72 +1,34 @@
 const express = require("express");
 
 const {
-
   registerAdmin,
-
   loginAdmin,
-
   getAdminProfile,
-
 } = require("../controllers/adminController");
 
+const protectAdmin = require("../middleware/adminAuthMiddleware");
 
-const {
-  protect,
-} = require("../middleware/authMiddleware");
+const router = express.Router();
 
-
-const router =
-  express.Router();
-
-
-
-// ==========================================
-// REGISTER ADMIN
+// ========================================
+// ADMIN REGISTRATION
 // POST /api/admin/register
-// ==========================================
+// ========================================
 
-router.post(
+router.post("/register", registerAdmin);
 
-  "/register",
-
-  registerAdmin
-
-);
-
-
-
-// ==========================================
+// ========================================
 // ADMIN LOGIN
 // POST /api/admin/login
-// ==========================================
+// ========================================
 
-router.post(
+router.post("/login", loginAdmin);
 
-  "/login",
-
-  loginAdmin
-
-);
-
-
-
-// ==========================================
-// GET ADMIN PROFILE
+// ========================================
+// PROTECTED ADMIN PROFILE
 // GET /api/admin/profile
-// PROTECTED
-// ==========================================
+// ========================================
 
-router.get(
-
-  "/profile",
-
-  protect,
-
-  getAdminProfile
-
-);
-
-
+router.get("/profile", protectAdmin, getAdminProfile);
 
 module.exports = router;
