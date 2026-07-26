@@ -21,11 +21,13 @@ const app = express();
 // CORS
 // ========================================
 
+const cors = require("cors");
+
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://indilens-website.vercel.app",
+      "https://indilens-website-jyij.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

@@ -32,17 +32,15 @@ const handleSubmit = async (event) => {
 
   try {
     const response = await fetch(
-      "https://indilens-website.vercel.app/api/contact",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(formData),
-      }
-    );
+  `${import.meta.env.VITE_API_URL}/api/contact`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  }
+);
 
     console.log("Response Status:", response.status);
 
