@@ -34,60 +34,56 @@ const AdminLogin = () => {
   // ========================================
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const apiUrl = import.meta.env.VITE_API_URL;
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
 
-    console.log("API URL:", apiUrl);
+      console.log("API URL:", apiUrl);
 
-    const loginUrl = `${apiUrl}/api/admin/login`;
+      const loginUrl = `${apiUrl}/api/admin/login`;
 
-    console.log("LOGIN URL:", loginUrl);
+      console.log("LOGIN URL:", loginUrl);
 
-    const response = await fetch(loginUrl, {
-      method: "POST",
+      const response = await fetch(loginUrl, {
+        method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-      },
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    console.log("STATUS:", response.status);
+      console.log("STATUS:", response.status);
 
-    const data = await response.json();
+      const data = await response.json();
 
-    console.log("LOGIN RESPONSE:", data);
+      console.log("LOGIN RESPONSE:", data);
 
-    if (!response.ok) {
-      throw new Error(data.message || "Login failed");
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      console.log("Login successful");
+
+      // Save JWT token
+      localStorage.setItem("adminToken", data.token);
+
+      // Save admin information
+      localStorage.setItem("admin", JSON.stringify(data.admin));
+
+      // Redirect to dashboard
+      window.location.href = "/admin/dashboard";
+    } catch (error) {
+      console.error("Admin Login Error:", error);
+
+      setError(error.message || "Unable to login");
     }
-
-    console.log("Login successful");
-
-    // Save JWT token
-    localStorage.setItem("adminToken", data.token);
-
-    // Save admin information
-    localStorage.setItem(
-      "admin",
-      JSON.stringify(data.admin)
-    );
-
-    // Redirect to dashboard
-    window.location.href = "/admin/dashboard";
-
-  } catch (error) {
-    console.error("Admin Login Error:", error);
-
-    setError(error.message || "Unable to login");
-  }
-};
+  };
 
   return (
     <main className="admin-login-page">
