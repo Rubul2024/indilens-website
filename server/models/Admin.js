@@ -2,14 +2,20 @@ const mongoose = require("mongoose");
 
 const adminSchema = new mongoose.Schema(
   {
-    // Admin's name
+    // ==========================================
+    // ADMIN NAME
+    // ==========================================
+
     name: {
       type: String,
       required: true,
       trim: true,
     },
 
-    // Admin's email address
+    // ==========================================
+    // ADMIN EMAIL
+    // ==========================================
+
     email: {
       type: String,
       required: true,
@@ -18,27 +24,42 @@ const adminSchema = new mongoose.Schema(
       trim: true,
     },
 
-    // Admin's password
+    // ==========================================
+    // ADMIN PASSWORD
+    // ==========================================
+
     password: {
       type: String,
       required: true,
     },
 
-    // Admin role
+    // ==========================================
+    // ADMIN ROLE
+    // ==========================================
+
     role: {
       type: String,
+      enum: ["admin"],
       default: "admin",
     },
 
-    // Admin active status
+    // ==========================================
+    // ADMIN ACTIVE STATUS
+    // ==========================================
+
     isActive: {
       type: Boolean,
       default: true,
     },
   },
+
   {
     timestamps: true,
   }
 );
+
+// ==========================================
+// EXPORT ADMIN MODEL
+// ==========================================
 
 module.exports = mongoose.model("Admin", adminSchema);

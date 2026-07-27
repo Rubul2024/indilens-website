@@ -1,13 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// ========================================
+// ADMIN PAGES
+// ========================================
+
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
-
 import ProtectedAdminRoute from "./admin/components/ProtectedAdminRoute";
+
+// ========================================
+// PUBLIC COMPONENTS
+// ========================================
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+
+// ========================================
+// PUBLIC PAGES
+// ========================================
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -59,6 +71,7 @@ const App = () => {
         <Route element={<ProtectedAdminRoute />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Route>
+        
       </Routes>
 
       <Footer />

@@ -1,4 +1,3 @@
-
 const Contact = require("../models/Contact");
 
 const Newsletter = require("../models/Newsletter");
@@ -13,135 +12,95 @@ const FAQ = require("../models/FAQ");
 
 const Team = require("../models/Team");
 
-
 // ==================================================
 // ADMIN DASHBOARD OVERVIEW
 // GET /api/admin/dashboard
 // ADMIN ONLY
 // ==================================================
 
-const getDashboardOverview = async (
-  req,
-  res
-) => {
-
+const getDashboardOverview = async (req, res) => {
   try {
-
     // ==================================================
     // GET TOTAL CONTACT MESSAGES
     // ==================================================
 
-    const totalContacts =
-      await Contact.countDocuments();
-
+    const totalContacts = await Contact.countDocuments();
 
     // ==================================================
     // GET TOTAL NEWSLETTER SUBSCRIBERS
     // ==================================================
 
-    const totalNewsletterSubscribers =
-      await Newsletter.countDocuments();
-
+    const totalNewsletterSubscribers = await Newsletter.countDocuments();
 
     // ==================================================
     // GET TOTAL BLOG POSTS
     // ==================================================
 
-    const totalBlogs =
-      await Blog.countDocuments();
-
+    const totalBlogs = await Blog.countDocuments();
 
     // ==================================================
     // GET TOTAL PORTFOLIO PROJECTS
     // ==================================================
 
-    const totalPortfolioProjects =
-      await Portfolio.countDocuments();
-
+    const totalPortfolioProjects = await Portfolio.countDocuments();
 
     // ==================================================
     // GET TOTAL SERVICES
     // ==================================================
 
-    const totalServices =
-      await Service.countDocuments();
-
+    const totalServices = await Service.countDocuments();
 
     // ==================================================
     // GET TOTAL FAQS
     // ==================================================
 
-    const totalFAQs =
-      await FAQ.countDocuments();
-
+    const totalFAQs = await FAQ.countDocuments();
 
     // ==================================================
     // GET TOTAL TEAM MEMBERS
     // ==================================================
 
-    const totalTeamMembers =
-      await Team.countDocuments();
-
+    const totalTeamMembers = await Team.countDocuments();
 
     // ==================================================
     // GET PUBLISHED BLOGS
     // ==================================================
 
-    const publishedBlogs =
-      await Blog.countDocuments({
-
-        isPublished: true,
-
-      });
-
+    const publishedBlogs = await Blog.countDocuments({
+      isPublished: true,
+    });
 
     // ==================================================
     // GET PUBLISHED PORTFOLIO PROJECTS
     // ==================================================
 
-    const publishedPortfolioProjects =
-      await Portfolio.countDocuments({
-
-        isPublished: true,
-
-      });
-
+    const publishedPortfolioProjects = await Portfolio.countDocuments({
+      isPublished: true,
+    });
 
     // ==================================================
     // GET PUBLISHED SERVICES
     // ==================================================
 
-    const publishedServices =
-      await Service.countDocuments({
-
-        isPublished: true,
-
-      });
-
+    const publishedServices = await Service.countDocuments({
+      isPublished: true,
+    });
 
     // ==================================================
     // GET PUBLISHED FAQS
     // ==================================================
 
-    const publishedFAQs =
-      await FAQ.countDocuments({
-
-        isPublished: true,
-
-      });
-
+    const publishedFAQs = await FAQ.countDocuments({
+      isPublished: true,
+    });
 
     // ==================================================
     // GET PUBLISHED TEAM MEMBERS
     // ==================================================
 
-    const publishedTeamMembers =
-      await Team.countDocuments({
-
-        isPublished: true,
-
-      });
-
+    const publishedTeamMembers = await Team.countDocuments({
+      isPublished: true,
+    });
 
     // ==================================================
     // GET RECENT CONTACT MESSAGES
@@ -149,13 +108,11 @@ const getDashboardOverview = async (
     // Latest 5 messages
     // ==================================================
 
-    const recentContacts =
-      await Contact.find()
-        .sort({
-          createdAt: -1,
-        })
-        .limit(5);
-
+    const recentContacts = await Contact.find()
+      .sort({
+        createdAt: -1,
+      })
+      .limit(5);
 
     // ==================================================
     // GET RECENT BLOG POSTS
@@ -163,13 +120,11 @@ const getDashboardOverview = async (
     // Latest 5 blog posts
     // ==================================================
 
-    const recentBlogs =
-      await Blog.find()
-        .sort({
-          createdAt: -1,
-        })
-        .limit(5);
-
+    const recentBlogs = await Blog.find()
+      .sort({
+        createdAt: -1,
+      })
+      .limit(5);
 
     // ==================================================
     // GET RECENT NEWSLETTER SUBSCRIBERS
@@ -177,32 +132,26 @@ const getDashboardOverview = async (
     // Latest 5 subscribers
     // ==================================================
 
-    const recentSubscribers =
-      await Newsletter.find()
-        .sort({
-          createdAt: -1,
-        })
-        .limit(5);
-
+    const recentSubscribers = await Newsletter.find()
+      .sort({
+        createdAt: -1,
+      })
+      .limit(5);
 
     // ==================================================
     // SEND DASHBOARD DATA
     // ==================================================
 
     res.status(200).json({
-
       success: true,
 
-      message:
-        "Dashboard data fetched successfully.",
-
+      message: "Dashboard data fetched successfully.",
 
       // ==================================================
       // SUMMARY
       // ==================================================
 
       summary: {
-
         totalContacts,
 
         totalNewsletterSubscribers,
@@ -216,16 +165,13 @@ const getDashboardOverview = async (
         totalFAQs,
 
         totalTeamMembers,
-
       },
-
 
       // ==================================================
       // PUBLISHED CONTENT SUMMARY
       // ==================================================
 
       published: {
-
         publishedBlogs,
 
         publishedPortfolioProjects,
@@ -235,62 +181,40 @@ const getDashboardOverview = async (
         publishedFAQs,
 
         publishedTeamMembers,
-
       },
-
 
       // ==================================================
       // RECENT DATA
       // ==================================================
 
       recent: {
+        contacts: recentContacts,
 
-        contacts:
-          recentContacts,
+        blogs: recentBlogs,
 
-        blogs:
-          recentBlogs,
-
-        subscribers:
-          recentSubscribers,
-
+        subscribers: recentSubscribers,
       },
-
     });
-
-
+    
   } catch (error) {
-
     // ==================================================
     // SERVER ERROR
     // ==================================================
 
-    console.error(
-      "Dashboard Overview Error:",
-      error
-    );
-
+    console.error("Dashboard Overview Error:", error);
 
     res.status(500).json({
-
       success: false,
 
-      message:
-        "Unable to load dashboard data.",
-
+      message: "Unable to load dashboard data.",
     });
-
   }
-
 };
-
 
 // ==================================================
 // EXPORT CONTROLLER
 // ==================================================
 
 module.exports = {
-
   getDashboardOverview,
-
 };

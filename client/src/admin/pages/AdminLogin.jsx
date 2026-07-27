@@ -1,158 +1,200 @@
 import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
+
+import "./AdminLogin.css";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  // ========================================
+  // FORM STATE
+  // ========================================
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  // ========================================
+  // LOADING STATE
+  // ========================================
 
   const [loading, setLoading] = useState(false);
+
+  // ========================================
+  // ERROR STATE
+  // ========================================
 
   const [error, setError] = useState("");
 
   // ========================================
-  // HANDLE INPUT CHANGE
-  // ========================================
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // ========================================
-  // HANDLE LOGIN
+  // LOGIN FUNCTION
   // ========================================
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setLoading(true);
+  try {
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-    setError("");
+    console.log("API URL:", apiUrl);
 
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/admin/login`,
-        {
-          method: "POST",
+    const loginUrl = `${apiUrl}/api/admin/login`;
 
-          headers: {
-            "Content-Type": "application/json",
-          },
+    console.log("LOGIN URL:", loginUrl);
 
-          body: JSON.stringify(formData),
-        }
-      );
+    const response = await fetch(loginUrl, {
+      method: "POST",
 
-      const data = await response.json();
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-      // ========================================
-      // CHECK API ERROR
-      // ========================================
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error(
-          data.message || "Admin login failed."
-        );
-      }
+    console.log("STATUS:", response.status);
 
-      // ========================================
-      // SAVE JWT TOKEN
-      // ========================================
+    const data = await response.json();
 
-      localStorage.setItem(
-        "adminToken",
-        data.token
-      );
+    console.log("LOGIN RESPONSE:", data);
 
-      // ========================================
-      // SAVE ADMIN INFORMATION
-      // ========================================
-
-      localStorage.setItem(
-        "adminData",
-        JSON.stringify(data.admin)
-      );
-
-      // ========================================
-      // REDIRECT TO DASHBOARD
-      // ========================================
-
-      navigate("/admin/dashboard");
-
-    } catch (error) {
-      console.error(
-        "Admin Login Error:",
-        error
-      );
-
-      setError(
-        error.message ||
-        "Unable to login."
-      );
-
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.message || "Login failed");
     }
-  };
+
+    console.log("Login successful");
+
+    // Save JWT token
+    localStorage.setItem("adminToken", data.token);
+
+    // Save admin information
+    localStorage.setItem(
+      "admin",
+      JSON.stringify(data.admin)
+    );
+
+    // Redirect to dashboard
+    window.location.href = "/admin/dashboard";
+
+  } catch (error) {
+    console.error("Admin Login Error:", error);
+
+    setError(error.message || "Unable to login");
+  }
+};
 
   return (
-    <main>
-      <h1>Admin Login</h1>
+    <main className="admin-login-page">
+      {/* ========================================
+          LEFT SIDE
+      ======================================== */}
 
-      {error && (
-        <p>
-          {error}
-        </p>
-      )}
+      <section className="admin-login-brand">
+        <div className="admin-brand-content">
+          <div className="admin-brand-logo">I</div>
 
-      <form onSubmit={handleSubmit}>
+          <h1>INDILENS</h1>
 
-        <div>
-          <label>
-            Email Address
-          </label>
+          <p>Admin Management Portal</p>
 
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter admin email"
-            required
-          />
+          <span>Manage your digital business from one secure workspace.</span>
         </div>
+      </section>
 
-        <div>
-          <label>
-            Password
-          </label>
+      {/* ========================================
+          RIGHT SIDE
+      ======================================== */}
 
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter password"
-            required
-          />
+      <section className="admin-login-section">
+        <div className="admin-login-card">
+          {/* ========================================
+              HEADER
+          ======================================== */}
+
+          <div className="admin-login-header">
+            <span className="admin-login-label">ADMIN PORTAL</span>
+
+            <h2>Welcome Back</h2>
+
+            <p>Sign in to access your Indilens dashboard.</p>
+          </div>
+
+          {/* ========================================
+              ERROR
+          ======================================== */}
+
+          {error && <div className="admin-login-error">{error}</div>}
+
+          {/* ========================================
+              LOGIN FORM
+          ======================================== */}
+
+          <form onSubmit={handleSubmit} className="admin-login-form">
+            {/* EMAIL */}
+
+            <div className="admin-form-group">
+              <label>Email Address</label>
+
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@indilens.com"
+                required
+              />
+            </div>
+
+            {/* PASSWORD */}
+
+            <div className="admin-form-group">
+              <label>Password</label>
+
+              <div className="admin-password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  className="admin-password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
+              </div>
+            </div>
+
+            {/* LOGIN BUTTON */}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="admin-login-button"
+            >
+              {loading ? "Signing In..." : "Sign In"}
+            </button>
+          </form>
+
+          {/* ========================================
+              FOOTER
+          ======================================== */}
+
+          <div className="admin-login-footer">
+            <span>© {new Date().getFullYear()} Indilens Web Solutions</span>
+          </div>
         </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-        >
-          {loading
-            ? "Logging in..."
-            : "Login"}
-        </button>
-
-      </form>
+      </section>
     </main>
   );
 };
