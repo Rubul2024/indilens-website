@@ -1,0 +1,1224 @@
+/* =========================================================
+   INDILENS ADMIN PORTFOLIO MANAGEMENT
+   Modern Clean Production-Ready CSS
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL PORTFOLIO PAGE
+========================================================= */
+
+.admin-portfolio-page,
+.admin-portfolio-form-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #101828;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
+
+.admin-portfolio-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.admin-portfolio-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.admin-portfolio-header-content {
+  max-width: 700px;
+}
+
+.admin-portfolio-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.admin-portfolio-header h1 {
+  margin: 0 0 10px;
+
+  color: #101828;
+
+  font-size: 38px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.admin-portfolio-header p {
+  margin: 0;
+
+  color: #667085;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.admin-portfolio-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   DASHBOARD BUTTON
+========================================================= */
+
+.admin-portfolio-dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 48px;
+  padding: 0 20px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #344054;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-portfolio-dashboard-btn:hover {
+  background: #f8fafc;
+  border-color: #2563eb;
+  color: #2563eb;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CREATE PORTFOLIO BUTTON
+========================================================= */
+
+.admin-portfolio-create-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-portfolio-create-btn:hover {
+  background: #1d4ed8;
+
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PORTFOLIO CARD
+========================================================= */
+
+.admin-portfolio-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 12px rgba(16, 24, 40, 0.04);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.admin-portfolio-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 28px 30px;
+
+  border-bottom: 1px solid #eaecf0;
+}
+
+.admin-portfolio-card-header h2 {
+  margin: 0;
+
+  color: #101828;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.admin-portfolio-count {
+  color: #667085;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.admin-portfolio-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   PORTFOLIO TABLE
+========================================================= */
+
+.admin-portfolio-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 950px;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.admin-portfolio-table thead {
+  background: #f8fafc;
+}
+
+.admin-portfolio-table th {
+  padding: 16px 20px;
+
+  color: #667085;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+  text-align: left;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid #eaecf0;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.admin-portfolio-table td {
+  padding: 20px;
+
+  color: #475467;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid #f0f2f5;
+
+  vertical-align: middle;
+}
+
+.admin-portfolio-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.admin-portfolio-table tbody tr:hover {
+  background: #fafcff;
+}
+
+.admin-portfolio-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   SERIAL NUMBER
+========================================================= */
+
+.portfolio-serial-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 9px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   PORTFOLIO PROJECT CELL
+========================================================= */
+
+.portfolio-project-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 250px;
+}
+
+
+/* =========================================================
+   PORTFOLIO IMAGE
+========================================================= */
+
+.portfolio-project-image {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #f2f4f7;
+
+  border: 1px solid #eaecf0;
+}
+
+.portfolio-project-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =========================================================
+   PROJECT IMAGE PLACEHOLDER
+========================================================= */
+
+.portfolio-project-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: #98a2b3;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   PROJECT INFORMATION
+========================================================= */
+
+.portfolio-project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.portfolio-project-title {
+  color: #101828;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.portfolio-project-slug {
+  color: #98a2b3;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.portfolio-category {
+  color: #475467;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.portfolio-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 80px;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.portfolio-status.published {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.portfolio-status.draft {
+  background: #f2f4f7;
+  color: #667085;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.portfolio-date {
+  color: #475467;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.portfolio-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-action-btn {
+  min-height: 36px;
+  padding: 0 13px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+========================================================= */
+
+.portfolio-view-btn {
+  background: #eff6ff;
+  color: #2563eb;
+
+  border: 1px solid #dbeafe;
+}
+
+.portfolio-view-btn:hover {
+  background: #dbeafe;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.portfolio-edit-btn {
+  background: #ffffff;
+  color: #344054;
+
+  border: 1px solid #d0d5dd;
+}
+
+.portfolio-edit-btn:hover {
+  background: #f9fafb;
+
+  border-color: #98a2b3;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.portfolio-delete-btn {
+  background: #ffffff;
+  color: #d92d20;
+
+  border: 1px solid #fecdca;
+}
+
+.portfolio-delete-btn:hover {
+  background: #fef3f2;
+
+  border-color: #f97066;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.portfolio-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 280px;
+
+  padding: 50px 30px;
+
+  text-align: center;
+}
+
+.portfolio-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin-bottom: 18px;
+
+  border-radius: 16px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 26px;
+}
+
+.portfolio-empty-state h3 {
+  margin: 0 0 8px;
+
+  color: #101828;
+
+  font-size: 18px;
+}
+
+.portfolio-empty-state p {
+  margin: 0;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+.portfolio-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 300px;
+
+  color: #667085;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.portfolio-error {
+  margin-bottom: 25px;
+
+  padding: 14px 18px;
+
+  border: 1px solid #fecdca;
+  border-radius: 10px;
+
+  background: #fef3f2;
+  color: #b42318;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   =========================================================
+   CREATE / EDIT PORTFOLIO FORM
+   =========================================================
+========================================================= */
+
+.admin-portfolio-form-wrapper {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.admin-portfolio-form-card {
+  padding: 35px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 12px rgba(16, 24, 40, 0.04);
+}
+
+
+/* =========================================================
+   FORM HEADER
+========================================================= */
+
+.admin-portfolio-form-header {
+  margin-bottom: 30px;
+}
+
+.admin-portfolio-form-header h2 {
+  margin: 0 0 8px;
+
+  color: #101828;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.admin-portfolio-form-header p {
+  margin: 0;
+
+  color: #667085;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.portfolio-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   FULL WIDTH FIELD
+========================================================= */
+
+.portfolio-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.portfolio-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+/* =========================================================
+   FORM LABEL
+========================================================= */
+
+.portfolio-form-group label {
+  color: #344054;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.portfolio-form-group label span {
+  color: #d92d20;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.portfolio-form-group input,
+.portfolio-form-group textarea,
+.portfolio-form-group select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #101828;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.portfolio-form-group input {
+  min-height: 48px;
+}
+
+.portfolio-form-group textarea {
+  min-height: 140px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.portfolio-form-group select {
+  min-height: 48px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.portfolio-form-group input:focus,
+.portfolio-form-group textarea:focus,
+.portfolio-form-group select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   INPUT PLACEHOLDER
+========================================================= */
+
+.portfolio-form-group input::placeholder,
+.portfolio-form-group textarea::placeholder {
+  color: #98a2b3;
+}
+
+
+/* =========================================================
+   HELP TEXT
+========================================================= */
+
+.portfolio-form-help {
+  margin: 0;
+
+  color: #98a2b3;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD AREA
+========================================================= */
+
+.portfolio-image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.portfolio-image-upload input[type="file"] {
+  padding: 12px;
+
+  background: #f8fafc;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.portfolio-image-preview {
+  width: 100%;
+  max-width: 420px;
+
+  overflow: hidden;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+
+  background: #f8fafc;
+}
+
+.portfolio-image-preview img {
+  display: block;
+
+  width: 100%;
+  height: 240px;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   PUBLISH CHECKBOX
+========================================================= */
+
+.portfolio-publish-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 16px;
+
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+
+  background: #f8fafc;
+}
+
+.portfolio-publish-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #2563eb;
+
+  cursor: pointer;
+}
+
+.portfolio-publish-option label {
+  color: #344054;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.portfolio-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 35px;
+  padding-top: 25px;
+
+  border-top: 1px solid #eaecf0;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.portfolio-cancel-btn {
+  min-height: 46px;
+
+  padding: 0 20px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #344054;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.portfolio-cancel-btn:hover {
+  background: #f9fafb;
+
+  border-color: #98a2b3;
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.portfolio-save-btn {
+  min-height: 46px;
+
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+
+  transition: all 0.2s ease;
+}
+
+.portfolio-save-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+}
+
+.portfolio-save-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   VIEW PORTFOLIO PAGE
+========================================================= */
+
+.admin-portfolio-view-card {
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 12px rgba(16, 24, 40, 0.04);
+}
+
+.admin-portfolio-view-image {
+  width: 100%;
+  height: 420px;
+
+  background: #f2f4f7;
+}
+
+.admin-portfolio-view-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.admin-portfolio-view-content {
+  padding: 35px;
+}
+
+.admin-portfolio-view-content h1 {
+  margin: 0 0 12px;
+
+  color: #101828;
+
+  font-size: 32px;
+}
+
+.admin-portfolio-view-category {
+  display: inline-flex;
+
+  margin-bottom: 20px;
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-portfolio-view-content p {
+  color: #667085;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .admin-portfolio-page,
+  .admin-portfolio-form-page {
+    padding: 30px 24px;
+  }
+
+  .admin-portfolio-header h1 {
+    font-size: 32px;
+  }
+
+  .portfolio-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-form-group.full-width {
+    grid-column: auto;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .admin-portfolio-page,
+  .admin-portfolio-form-page {
+    padding: 24px 16px;
+  }
+
+  .admin-portfolio-header {
+    flex-direction: column;
+  }
+
+  .admin-portfolio-header-actions {
+    width: 100%;
+  }
+
+  .admin-portfolio-dashboard-btn,
+  .admin-portfolio-create-btn {
+    flex: 1;
+  }
+
+  .admin-portfolio-card-header {
+    padding: 22px 20px;
+  }
+
+  .admin-portfolio-form-card {
+    padding: 24px 20px;
+  }
+
+  .admin-portfolio-view-image {
+    height: 300px;
+  }
+
+  .admin-portfolio-view-content {
+    padding: 25px 20px;
+  }
+
+  .portfolio-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .portfolio-cancel-btn,
+  .portfolio-save-btn {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .admin-portfolio-page,
+  .admin-portfolio-form-page {
+    padding: 20px 12px;
+  }
+
+  .admin-portfolio-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-portfolio-header p {
+    font-size: 14px;
+  }
+
+  .admin-portfolio-header-actions {
+    flex-direction: column;
+  }
+
+  .admin-portfolio-dashboard-btn,
+  .admin-portfolio-create-btn {
+    width: 100%;
+  }
+
+  .admin-portfolio-card {
+    border-radius: 14px;
+  }
+
+  .admin-portfolio-card-header {
+    padding: 20px 16px;
+  }
+
+  .admin-portfolio-card-header h2 {
+    font-size: 18px;
+  }
+
+  .admin-portfolio-form-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .admin-portfolio-form-header h2 {
+    font-size: 21px;
+  }
+
+  .portfolio-project-cell {
+    min-width: 220px;
+  }
+
+  .portfolio-actions {
+    flex-wrap: wrap;
+  }
+
+  .portfolio-action-btn {
+    padding: 0 10px;
+  }
+
+  .admin-portfolio-view-image {
+    height: 220px;
+  }
+
+  .admin-portfolio-view-content h1 {
+    font-size: 25px;
+  }
+
+}

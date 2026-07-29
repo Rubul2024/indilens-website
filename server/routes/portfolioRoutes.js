@@ -58,13 +58,7 @@ router.get(
 // POST /api/portfolio
 // ==================================================
 
-router.post(
-  "/",
-
-  protect,
-
-  createPortfolio,
-);
+router.post("/create", protect, createPortfolio);
 
 // ==================================================
 // ADMIN

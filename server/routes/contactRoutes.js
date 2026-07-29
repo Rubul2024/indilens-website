@@ -20,12 +20,6 @@ const router = express.Router();
 
 router.post("/", createContact);
 
-// ==========================================
-// PROTECTED CONTACT APIs
-// ==========================================
-
-// Only authenticated Admin can access these
-
 router.get("/", protect, getAllContacts);
 
 router.get("/:id", protect, getContactById);

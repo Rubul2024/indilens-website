@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { getAdminProfile } from "../../api/adminApi";
 
-
-
 import { useNavigate } from "react-router-dom";
 
 import "./AdminDashboard.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // ========================================
 // DASHBOARD STATISTICS
 // ========================================
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     contacts: 0,
     subscribers: 0,
@@ -21,6 +22,12 @@ const AdminDashboard = () => {
     faqs: 0,
     team: 0,
   });
+
+  // ========================================
+  // ADMIN PROFILE
+  // ========================================
+
+  const [admin, setAdmin] = useState(null);
 
   // ========================================
   // LOADING
@@ -34,41 +41,27 @@ const AdminDashboard = () => {
 
   const [error, setError] = useState("");
 
- // ========================================
+  // ========================================
   // ADMIN PROFILE
   // ========================================
 
   useEffect(() => {
+    const loadAdminProfile = async () => {
+      try {
+        const data = await getAdminProfile();
 
-  const loadAdminProfile = async () => {
+        setAdmin(data.data);
+      } catch (error) {
+        console.error("Admin Profile Error:", error);
 
-    try {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      const data = await getAdminProfile();
-
-      setAdmin(data.data);
-
-    } catch (error) {
-
-      console.error(
-        "Admin Profile Error:",
-        error
-      );
-
-      setError(
-        error.message
-      );
-
-    } finally {
-
-      setLoading(false);
-
-    }
-  };
-
-  loadAdminProfile();
-
-}, []);
+    loadAdminProfile();
+  }, []);
 
   // ========================================
   // GET DASHBOARD DATA
@@ -83,20 +76,22 @@ const AdminDashboard = () => {
 
         const token = localStorage.getItem("adminToken");
 
+        if (!token) {
+          navigate("/admin/login");
+          return;
+        }
+
         // ========================================
         // SEND API REQUEST
         // ========================================
 
-        const response = await fetch(
-          "http://localhost:5000/api/admin/dashboard",
-          {
-            method: "GET",
+        const response = await fetch(`${API_URL}/api/admin/dashboard`, {
+          method: "GET",
 
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
 
         // ========================================
         // GET RESPONSE DATA
@@ -116,18 +111,28 @@ const AdminDashboard = () => {
         // SAVE DATA
         // ========================================
 
-        setStats(data.data);
+        setStats({
+  contacts: data.summary.totalContacts,
+  subscribers: data.summary.totalNewsletterSubscribers,
+  blogs: data.summary.totalBlogs,
+  services: data.summary.totalServices,
+  portfolio: data.summary.totalPortfolioProjects,
+  faqs: data.summary.totalFAQs,
+  team: data.summary.totalTeamMembers,
+});
+
       } catch (error) {
         console.error("Dashboard Error:", error);
 
         setError(error.message);
+        
       } finally {
         setLoading(false);
       }
     };
 
     fetchDashboardStats();
-  }, []);
+  }, [navigate]);
 
   // ========================================
   // GET ADMIN DATA
@@ -317,14 +322,8 @@ const AdminDashboard = () => {
           ======================================== */}
 
           <section className="dashboard-stats">
+            {error && <div className="dashboard-error">{error}</div>}
 
-            {error && (
-  <div className="dashboard-error">
-    {error}
-  </div>
-)}
-
-            
             {/* CONTACTS */}
 
             <div className="stat-card">

@@ -14,8 +14,6 @@ const Team = require("../models/Team");
 
 // ==================================================
 // ADMIN DASHBOARD OVERVIEW
-// GET /api/admin/dashboard
-// ADMIN ONLY
 // ==================================================
 
 const getDashboardOverview = async (req, res) => {
@@ -195,7 +193,6 @@ const getDashboardOverview = async (req, res) => {
         subscribers: recentSubscribers,
       },
     });
-    
   } catch (error) {
     // ==================================================
     // SERVER ERROR
@@ -207,6 +204,7 @@ const getDashboardOverview = async (req, res) => {
       success: false,
 
       message: "Unable to load dashboard data.",
+      error: error.message,
     });
   }
 };

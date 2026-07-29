@@ -1,41 +1,22 @@
 const express = require("express");
 
-// ==================================================
-// IMPORT DASHBOARD CONTROLLER
-// ==================================================
+const {
+  getDashboardOverview,
+} = require("../controllers/dashboardController");
 
-const { getDashboardOverview } = require("../controllers/dashboardController");
-
-// ==================================================
-// IMPORT ADMIN AUTH MIDDLEWARE
-// ==================================================
-
-const { protect } = require("../middleware/authMiddleware");
-
-// ==================================================
-// CREATE ROUTER
-// ==================================================
+const {
+  protect,
+} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// ==================================================
+// ==========================================
 // ADMIN DASHBOARD OVERVIEW
-//
+// ==========================================
 // GET /api/admin/dashboard
-//
-// ADMIN ONLY
-// ==================================================
+// Protected Admin Route
+// ==========================================
 
-router.get(
-  "/dashboard",
-
-  protect,
-
-  getDashboardOverview,
-);
-
-// ==================================================
-// EXPORT ROUTER
-// ==================================================
+router.get("/", protect, getDashboardOverview);
 
 module.exports = router;

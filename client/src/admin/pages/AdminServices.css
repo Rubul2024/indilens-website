@@ -1,0 +1,421 @@
+/* ========================================
+   ADMIN SERVICES PAGE
+======================================== */
+
+.admin-services-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+  margin-top: 70px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.admin-services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.admin-services-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.admin-services-header h1 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 36px;
+}
+
+.admin-services-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+
+/* ========================================
+   CREATE BUTTON
+======================================== */
+
+.admin-create-service-btn {
+  padding: 13px 22px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-create-service-btn:hover {
+  opacity: 0.9;
+}
+
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.admin-services-error {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+
+/* ========================================
+   CARD
+======================================== */
+
+.admin-services-card {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 30px
+    rgba(15, 23, 42, 0.05);
+}
+
+
+/* ========================================
+   CARD HEADER
+======================================== */
+
+.admin-services-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 28px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-services-card-header span {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.admin-services-card-header h2 {
+  margin: 7px 0 0;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.admin-services-card-header strong {
+  color: #64748b;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.admin-services-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-services-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.admin-services-table th {
+  padding: 16px 20px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-services-table td {
+  padding: 18px 20px;
+  border-top: 1px solid #eef2f7;
+  color: #475569;
+  font-size: 14px;
+}
+
+.admin-services-table tbody tr {
+  transition: 0.2s ease;
+}
+
+.admin-services-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* ========================================
+   SERIAL NUMBER
+======================================== */
+
+.service-serial {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ========================================
+   SERVICE TITLE
+======================================== */
+
+.service-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.service-title strong {
+  color: #0f172a;
+}
+
+.service-title small {
+  color: #94a3b8;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.service-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.service-status.published {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.service-status.draft {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.service-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.service-actions button {
+  padding: 7px 11px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   VIEW
+======================================== */
+
+.service-view-btn {
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+
+/* ========================================
+   EDIT
+======================================== */
+
+.service-edit-btn {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+}
+
+
+/* ========================================
+   DELETE
+======================================== */
+
+.service-delete-btn {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.service-delete-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.admin-services-empty {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.admin-empty-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 16px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 28px;
+}
+
+.admin-services-empty h3 {
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.admin-services-empty p {
+  margin-bottom: 24px;
+  color: #64748b;
+}
+
+.admin-services-empty button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.admin-services-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  color: #64748b;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+  .admin-services-page {
+    padding: 24px 16px;
+  }
+
+  .admin-services-header {
+    flex-direction: column;
+  }
+
+  .admin-services-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-create-service-btn {
+    width: 100%;
+  }
+
+  .admin-services-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+}
+
+/* ========================================
+   ADMIN PAGE ACTIONS
+======================================== */
+
+.admin-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ========================================
+   DASHBOARD BUTTON
+======================================== */
+
+.dashboard-btn {
+  border: 1px solid #dbe3ef;
+  background: #037e4d;
+  color: #fdfeff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-btn:hover {
+  background: #149037;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   CREATE SERVICE BUTTON
+======================================== */
+
+.create-service-btn {
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-service-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+

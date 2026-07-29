@@ -1,0 +1,549 @@
+/* ========================================
+   PORTFOLIO FORM PAGE
+======================================== */
+
+.portfolio-form-page {
+  min-height: 100vh;
+  padding: 48px;
+  background: #f5f7fb;
+  margin-top: 70px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.portfolio-form-header {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+
+.portfolio-form-header h1 {
+  margin: 10px 0;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  color: #111827;
+}
+
+
+.portfolio-form-header p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 16px;
+}
+
+
+.admin-eyebrow {
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* ========================================
+   HEADER BUTTONS
+======================================== */
+
+.portfolio-form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+
+.dashboard-btn,
+.back-btn {
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.dashboard-btn {
+  background: #0f172a;
+  color: white;
+}
+
+
+.back-btn {
+  background: white;
+  color: #1e293b;
+
+  border: 1px solid #dbe3ef;
+}
+
+
+.dashboard-btn:hover,
+.back-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(15, 23, 42, 0.1);
+}
+
+
+/* ========================================
+   FORM CARD
+======================================== */
+
+.portfolio-form-card {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(15, 23, 42, 0.06);
+
+  overflow: hidden;
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.form-error {
+  margin: 24px 32px 0;
+
+  padding: 16px 18px;
+
+  border-radius: 10px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #dc2626;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   SUCCESS
+======================================== */
+
+.form-success {
+  margin: 24px 32px 0;
+
+  padding: 16px 18px;
+
+  border-radius: 10px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #bbf7d0;
+
+  color: #15803d;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.portfolio-form {
+  padding: 36px;
+}
+
+
+/* ========================================
+   FORM SECTION
+======================================== */
+
+.form-section {
+  padding: 32px 0;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.form-section:first-child {
+  padding-top: 0;
+}
+
+
+.form-section-heading {
+  display: flex;
+
+  gap: 18px;
+
+  margin-bottom: 28px;
+}
+
+
+.form-section-heading > span {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.form-section-heading h2 {
+  margin: 0 0 6px;
+
+  font-size: 21px;
+
+  color: #111827;
+}
+
+
+.form-section-heading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+
+/* ========================================
+   FORM GRID
+======================================== */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* ========================================
+   FORM GROUP
+======================================== */
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.form-group label {
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border: 1px solid #dbe3ef;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 100px;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(37, 99, 235, 0.1);
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+.form-group small {
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+
+/* ========================================
+   FULL WIDTH DESCRIPTION
+======================================== */
+
+.form-section
+.form-group + .form-group {
+  margin-top: 24px;
+}
+
+
+/* ========================================
+   PUBLISH TOGGLE
+======================================== */
+
+.publish-toggle {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  cursor: pointer;
+
+  color: #334155;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+
+.publish-toggle input {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #2563eb;
+
+  cursor: pointer;
+}
+
+
+/* ========================================
+   FORM FOOTER
+======================================== */
+
+.portfolio-form-footer {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding-top: 32px;
+}
+
+
+.cancel-btn,
+.submit-btn {
+  padding: 14px 24px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.cancel-btn {
+  background: white;
+
+  color: #475569;
+
+  border: 1px solid #dbe3ef;
+}
+
+
+.submit-btn {
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+}
+
+
+.cancel-btn:hover,
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(15, 23, 42, 0.12);
+}
+
+
+.submit-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.portfolio-form-loading {
+  max-width: 1200px;
+
+  margin: 100px auto;
+
+  padding: 60px;
+
+  text-align: center;
+
+  background: white;
+
+  border-radius: 20px;
+
+  color: #64748b;
+
+  font-size: 16px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+  .portfolio-form-page {
+    padding: 30px 20px;
+  }
+
+
+  .portfolio-form-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .portfolio-form-page {
+    padding: 20px 14px;
+  }
+
+
+  .portfolio-form-header h1 {
+    font-size: 32px;
+  }
+
+
+  .portfolio-form-actions {
+    width: 100%;
+  }
+
+
+  .dashboard-btn,
+  .back-btn {
+    flex: 1;
+  }
+
+
+  .portfolio-form {
+    padding: 24px 18px;
+  }
+
+
+  .form-section-heading {
+    gap: 12px;
+  }
+
+
+  .form-section-heading h2 {
+    font-size: 18px;
+  }
+
+
+  .portfolio-form-footer {
+    flex-direction: column-reverse;
+  }
+
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+  }
+
+}

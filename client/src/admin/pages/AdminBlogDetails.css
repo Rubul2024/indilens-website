@@ -1,0 +1,337 @@
+/* ========================================
+   ADMIN BLOG DETAILS PAGE
+======================================== */
+
+.admin-blog-details-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.admin-blog-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.admin-blog-details-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.admin-blog-details-header h1 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 36px;
+}
+
+.admin-blog-details-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+
+/* ========================================
+   BACK BUTTON
+======================================== */
+
+.admin-blog-back-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   PREVIEW CARD
+======================================== */
+
+.admin-blog-preview {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 30px
+    rgba(15, 23, 42, 0.05);
+}
+
+
+/* ========================================
+   FEATURED IMAGE
+======================================== */
+
+.admin-blog-preview-image {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.admin-blog-preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.admin-blog-preview-content {
+  padding: 40px;
+}
+
+
+/* ========================================
+   CATEGORY
+======================================== */
+
+.admin-blog-category {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.admin-blog-preview-content h2 {
+  margin: 0 0 20px;
+  color: #0f172a;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+
+/* ========================================
+   META
+======================================== */
+
+.admin-blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.admin-blog-meta .published {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.admin-blog-meta .draft {
+  color: #d97706;
+  font-weight: 700;
+}
+
+
+/* ========================================
+   EXCERPT
+======================================== */
+
+.admin-blog-excerpt {
+  margin-top: 28px;
+  padding: 20px;
+  border-left: 4px solid #2563eb;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.admin-blog-excerpt p {
+  margin: 0;
+  color: #475569;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   BLOG CONTENT
+======================================== */
+
+.admin-blog-content {
+  margin-top: 32px;
+}
+
+.admin-blog-content p {
+  margin-bottom: 20px;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.admin-blog-details-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  max-width: 1000px;
+  margin: 28px auto 0;
+}
+
+
+/* ========================================
+   EDIT BUTTON
+======================================== */
+
+.admin-blog-edit-btn {
+  padding: 13px 24px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   LIST BUTTON
+======================================== */
+
+.admin-blog-list-btn {
+  padding: 13px 24px;
+  border: 1px solid #dbe2ea;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.admin-blog-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  color: #64748b;
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.admin-blog-error {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  border: 1px solid #fecaca;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.admin-blog-error h2 {
+  margin-bottom: 10px;
+  color: #dc2626;
+}
+
+.admin-blog-error p {
+  margin-bottom: 24px;
+  color: #64748b;
+}
+
+.admin-blog-error button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+  .admin-blog-details-page {
+    padding: 24px 16px;
+  }
+
+  .admin-blog-details-header {
+    flex-direction: column;
+  }
+
+  .admin-blog-details-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-blog-back-btn {
+    width: 100%;
+  }
+
+  .admin-blog-preview-image {
+    height: 250px;
+  }
+
+  .admin-blog-preview-content {
+    padding: 24px;
+  }
+
+  .admin-blog-preview-content h2 {
+    font-size: 28px;
+  }
+
+  .admin-blog-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .admin-blog-details-actions {
+    flex-direction: column;
+  }
+
+  .admin-blog-edit-btn,
+  .admin-blog-list-btn {
+    width: 100%;
+  }
+
+}

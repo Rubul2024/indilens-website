@@ -1,0 +1,310 @@
+/* ========================================
+   ADMIN SERVICE FORM PAGE
+======================================== */
+
+.admin-service-form-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f5f7fb;
+  margin-top: 70px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.admin-service-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.admin-service-form-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.admin-service-form-header h1 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 36px;
+}
+
+.admin-service-form-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+
+/* ========================================
+   BACK BUTTON
+======================================== */
+
+.admin-service-back-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   FORM CARD
+======================================== */
+
+.admin-service-form-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 36px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 30px
+    rgba(15, 23, 42, 0.05);
+}
+
+
+/* ========================================
+   FORM ROW
+======================================== */
+
+.admin-service-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+
+/* ========================================
+   FORM GROUP
+======================================== */
+
+.admin-service-form-group {
+  margin-bottom: 24px;
+}
+
+.admin-service-form-group label {
+  display: block;
+  margin-bottom: 9px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-service-form-group label span {
+  margin-left: 4px;
+  color: #dc2626;
+}
+
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.admin-service-form-group input,
+.admin-service-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #dbe2ea;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.admin-service-form-group input:focus,
+.admin-service-form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow:
+    0 0 0 3px
+    rgba(37, 99, 235, 0.1);
+}
+
+.admin-service-form-group textarea {
+  resize: vertical;
+}
+
+
+/* ========================================
+   PUBLISH SECTION
+======================================== */
+
+.admin-service-publish {
+  margin-top: 8px;
+  margin-bottom: 28px;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.admin-service-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-service-checkbox input {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.admin-service-publish small {
+  display: block;
+  margin-top: 8px;
+  margin-left: 27px;
+  color: #64748b;
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.admin-service-form-error {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   SUCCESS
+======================================== */
+
+.admin-service-form-success {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border: 1px solid #bbf7d0;
+  border-radius: 9px;
+  background: #f0fdf4;
+  color: #15803d;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.admin-service-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+
+/* ========================================
+   CANCEL
+======================================== */
+
+.admin-service-cancel-btn {
+  padding: 12px 22px;
+  border: 1px solid #dbe2ea;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ========================================
+   SUBMIT
+======================================== */
+
+.admin-service-submit-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-service-submit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.admin-service-form-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  color: #64748b;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+  .admin-service-form-page {
+    padding: 24px 16px;
+  }
+
+  .admin-service-form-header {
+    flex-direction: column;
+  }
+
+  .admin-service-form-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-service-back-btn {
+    width: 100%;
+  }
+
+  .admin-service-form-card {
+    padding: 24px 18px;
+  }
+
+  .admin-service-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .admin-service-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .admin-service-cancel-btn,
+  .admin-service-submit-btn {
+    width: 100%;
+  }
+
+}

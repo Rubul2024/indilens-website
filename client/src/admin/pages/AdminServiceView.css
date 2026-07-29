@@ -1,0 +1,132 @@
+.admin-service-view-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40px;
+}
+
+.service-view-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.service-view-label {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.service-view-header h1 {
+  margin: 10px 0;
+  font-size: 42px;
+  color: #0f172a;
+}
+
+.service-view-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.back-dashboard-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.3s ease;
+}
+
+.back-dashboard-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.service-details-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+.service-details-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  border-radius: 16px;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.service-details-section {
+  padding: 22px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.service-details-section:last-child {
+  border-bottom: none;
+}
+
+.service-details-section span {
+  display: block;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.service-details-section h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.service-details-section p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.8;
+}
+
+.service-view-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .admin-service-view-page {
+    padding: 20px;
+  }
+
+  .service-view-header {
+    flex-direction: column;
+  }
+
+  .service-view-header h1 {
+    font-size: 32px;
+  }
+
+  .service-details-card {
+    padding: 25px;
+  }
+
+  .back-dashboard-btn {
+    width: 100%;
+  }
+}
