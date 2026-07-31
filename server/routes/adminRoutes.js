@@ -4,6 +4,7 @@ const {
   registerAdmin,
   loginAdmin,
   getAdminProfile,
+  updatePassword,
 } = require("../controllers/adminController");
 
 const protectAdmin = require("../middleware/adminAuthMiddleware");
@@ -11,24 +12,35 @@ const protectAdmin = require("../middleware/adminAuthMiddleware");
 const router = express.Router();
 
 // ========================================
-// ADMIN REGISTRATION
-// POST /api/admin/register
+// ADMIN REGISTER
 // ========================================
 
 router.post("/register", registerAdmin);
 
 // ========================================
 // ADMIN LOGIN
-// POST /api/admin/login
 // ========================================
 
 router.post("/login", loginAdmin);
 
 // ========================================
-// PROTECTED ADMIN PROFILE
-// GET /api/admin/profile
+// ADMIN PROFILE
 // ========================================
 
-router.get("/profile", protectAdmin, getAdminProfile);
+router.get(
+  "/profile",
+  protectAdmin,
+  getAdminProfile
+);
+
+// ========================================
+// CHANGE PASSWORD
+// ========================================
+
+router.put(
+  "/password",
+  protectAdmin,
+  updatePassword
+);
 
 module.exports = router;

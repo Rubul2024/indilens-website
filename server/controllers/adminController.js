@@ -3,298 +3,225 @@ const jwt = require("jsonwebtoken");
 
 const Admin = require("../models/Admin");
 
-// ==========================================
+// ======================================================
 // REGISTER ADMIN
-// POST /api/admin/register
-// ==========================================
+// ======================================================
 
 const registerAdmin = async (req, res) => {
-
   try {
-    // ========================================
-    // CHECK ADMIN REGISTRATION STATUS
-    // ========================================
-
     if (process.env.ALLOW_ADMIN_REGISTRATION !== "true") {
       return res.status(403).json({
         success: false,
-        message: "Admin registration is currently disabled.",
+        message: "Admin registration is disabled.",
       });
     }
 
-    // ========================================
-    // GET REQUEST DATA
-    // ========================================
-
     const { name, email, password } = req.body;
-
-    // ========================================
-    // VALIDATE REQUIRED FIELDS
-    // ========================================
 
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
-
-        message: "Name, email and password are required.",
+        message: "All fields are required.",
       });
     }
 
-    // ========================================
-    // CHECK PASSWORD LENGTH
-    // ========================================
-
-    if (password.length < 6) {
-      return res.status(400).json({
-        success: false,
-
-        message: "Password must be at least 6 characters long.",
-      });
-    }
-
-    // ========================================
-    // CHECK EXISTING ADMIN
-    // ========================================
-
-    const existingAdmin = await Admin.findOne({
-      email,
-    });
+    const existingAdmin = await Admin.findOne({ email });
 
     if (existingAdmin) {
-      return res.status(409).json({
+      return res.status(400).json({
         success: false,
-
-        message: "An admin with this email already exists.",
+        message: "Admin already exists.",
       });
     }
-
-    // ========================================
-    // HASH PASSWORD
-    // ========================================
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // ========================================
-    // CREATE ADMIN
-    // ========================================
-
     const admin = await Admin.create({
       name,
-
       email,
-
       password: hashedPassword,
     });
 
-    // ========================================
-    // RESPONSE
-    // ========================================
-
     res.status(201).json({
       success: true,
-
-      message: "Admin account created successfully.",
-
-      data: {
-        id: admin._id,
-
-        name: admin.name,
-
-        email: admin.email,
-
-        role: admin.role,
-
-        isActive: admin.isActive,
-      },
+      message: "Admin created successfully.",
+      data: admin,
     });
+
   } catch (error) {
-    console.error("Admin Registration Error:", error);
+
+    console.error(error);
 
     res.status(500).json({
       success: false,
-
-      message: "Unable to create admin account.",
+      message: "Server Error",
     });
+
   }
 };
 
-// ==========================================
-// ADMIN LOGIN
-// POST /api/admin/login
-// ==========================================
+// ======================================================
+// LOGIN ADMIN
+// ======================================================
 
 const loginAdmin = async (req, res) => {
+
   try {
+
     const { email, password } = req.body;
 
-    // ========================================
-    // VALIDATE REQUIRED FIELDS
-    // ========================================
-
-    if (!email || !password) {
-      return res.status(400).json({
-        success: false,
-
-        message: "Email and password are required.",
-      });
-    }
-
-    // ========================================
-    // FIND ADMIN
-    // ========================================
-
-    const admin = await Admin.findOne({
-      email,
-    });
-
-    // ========================================
-    // CHECK ADMIN EXISTS
-    // ========================================
+    const admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(401).json({
         success: false,
-
-        message: "Invalid email or password.",
+        message: "Invalid Email or Password",
       });
     }
 
-    // ========================================
-    // CHECK ADMIN ACTIVE STATUS
-    // ========================================
+    const match = await bcrypt.compare(password, admin.password);
 
-    if (!admin.isActive) {
-      return res.status(403).json({
-        success: false,
-
-        message: "This admin account is inactive.",
-      });
-    }
-
-    // ========================================
-    // COMPARE PASSWORD
-    // ========================================
-
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-
-      admin.password,
-    );
-
-    // ========================================
-    // CHECK PASSWORD
-    // ========================================
-
-    if (!isPasswordCorrect) {
+    if (!match) {
       return res.status(401).json({
         success: false,
-
-        message: "Invalid email or password.",
+        message: "Invalid Email or Password",
       });
     }
-
-    // ========================================
-    // CREATE JWT TOKEN
-    // ========================================
 
     const token = jwt.sign(
       {
         id: admin._id,
-
-        email: admin.email,
-
-        role: admin.role,
+        role: "admin",
       },
-
       process.env.JWT_SECRET,
-
       {
-        expiresIn: "1d",
-      },
+        expiresIn: "7d",
+      }
     );
 
-    // ========================================
-    // LOGIN SUCCESS RESPONSE
-    // ========================================
-
-    res.status(200).json({
+    res.json({
       success: true,
-
-      message: "Admin login successful.",
-
       token,
-
-      admin: {
-        id: admin._id,
-
-        name: admin.name,
-
-        email: admin.email,
-
-        role: admin.role,
-      },
+      admin,
     });
+
   } catch (error) {
-    console.error("Admin Login Error:", error);
+
+    console.error(error);
 
     res.status(500).json({
       success: false,
-
-      message: "Unable to login admin.",
+      message: "Server Error",
     });
+
   }
+
 };
 
-// ==========================================
-// GET ADMIN PROFILE
-// GET /api/admin/profile
-// PROTECTED ROUTE
-// ==========================================
+// ======================================================
+// GET PROFILE
+// ======================================================
 
 const getAdminProfile = async (req, res) => {
+
   try {
-    // ========================================
-    // ADMIN COMES FROM AUTH MIDDLEWARE
-    // ========================================
 
-    const admin = req.admin;
+    const admin = await Admin.findById(req.admin._id).select("-password");
 
-    // ========================================
-    // RETURN ADMIN PROFILE
-    // ========================================
-
-    res.status(200).json({
+    res.json({
       success: true,
-
-      data: {
-        id: admin._id,
-
-        name: admin.name,
-
-        email: admin.email,
-
-        role: admin.role,
-
-        isActive: admin.isActive,
-
-        createdAt: admin.createdAt,
-      },
+      data: admin,
     });
+
   } catch (error) {
-    console.error("Get Admin Profile Error:", error);
+
+    console.error(error);
 
     res.status(500).json({
       success: false,
-
-      message: "Unable to get admin profile.",
+      message: "Server Error",
     });
+
   }
+
 };
 
+// ======================================================
+// UPDATE PASSWORD
+// ======================================================
+
+const updatePassword = async (req, res) => {
+
+  try {
+
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+
+      return res.status(400).json({
+        success: false,
+        message: "Both passwords are required.",
+      });
+
+    }
+
+    const admin = await Admin.findById(req.admin._id);
+
+    if (!admin) {
+
+      return res.status(404).json({
+        success: false,
+        message: "Admin not found.",
+      });
+
+    }
+
+    const match = await bcrypt.compare(
+      currentPassword,
+      admin.password
+    );
+
+    if (!match) {
+
+      return res.status(400).json({
+        success: false,
+        message: "Current password is incorrect.",
+      });
+
+    }
+
+    admin.password = await bcrypt.hash(newPassword, 10);
+
+    await admin.save();
+
+    res.json({
+      success: true,
+      message: "Password updated successfully.",
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+
+  }
+
+};
+
+// ======================================================
+
 module.exports = {
+
   registerAdmin,
 
   loginAdmin,
 
   getAdminProfile,
+
+  updatePassword,
+
 };

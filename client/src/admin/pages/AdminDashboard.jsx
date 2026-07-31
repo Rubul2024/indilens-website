@@ -430,6 +430,22 @@ const AdminDashboard = () => {
 
                 <b>→</b>
               </button>
+<button
+  onClick={() =>
+    navigate("/admin/change-password")
+  }
+>
+  <span>🔒</span>
+
+  <div>
+    <strong>Change Password</strong>
+
+    <small>Update your admin password</small>
+  </div>
+
+  <b>→</b>
+</button>
+
             </div>
           </section>
 

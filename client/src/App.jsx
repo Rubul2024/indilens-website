@@ -14,7 +14,10 @@ import AdminServiceView from "./admin/pages/AdminServiceView";
 import AdminPortfolio from "./admin/pages/AdminPortfolio";
 import AdminPortfolioForm from "./admin/pages/AdminPortfolioForm";
 import AdminFAQ from "./admin/pages/AdminFAQ";
+import AdminFAQForm from "./admin/pages/AdminFAQForm";
+import AdminFAQView from "./admin/pages/AdminFAQView";
 import AdminTeam from "./admin/pages/AdminTeam";
+import AdminChangePassword from "./admin/pages/AdminChangePassword";
 
 // ========================================
 // ADMIN PAGES
@@ -113,7 +116,16 @@ const App = () => {
 
         <Route path="/admin/faq" element={<AdminFAQ />} />
 
+        <Route path="/admin/faq/create" element={<AdminFAQForm />} />
+
+        <Route path="/admin/faq/edit/:id" element={<AdminFAQForm />} />
+        <Route path="/admin/faq/view/:id" element={<AdminFAQView />} />
+
         <Route path="/admin/team" element={<AdminTeam />} />
+        <Route
+          path="/admin/change-password"
+          element={<AdminChangePassword />}
+        />
       </Routes>
 
       <Footer />

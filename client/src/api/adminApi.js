@@ -37,3 +37,32 @@ export const getAdminProfile = async () => {
 
   return data;
 };
+
+export const updatePassword = async (passwordData) => {
+  const token = localStorage.getItem("adminToken");
+
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/admin/password`,
+    {
+      method: "PUT",
+
+      headers: {
+        "Content-Type": "application/json",
+
+        Authorization: `Bearer ${token}`,
+      },
+
+      body: JSON.stringify(passwordData),
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Password update failed."
+    );
+  }
+
+  return data;
+};

@@ -1,7 +1,7 @@
 import "./TrustedCompanies.css";
 
 const TrustedCompanies = () => {
-  const companies = ["NEXORA", "TECHVISTA", "BRIGHTLAB", "ORBITAL", "VERTEX"];
+  const companies = ["RIDEINGO", "SIKDER POWER", "PBW FOUNDATION", "UFREECARE COMMODITIES", "GLOBAL INSTITUTE"];
 
   return (
     <section className="trusted-section">
