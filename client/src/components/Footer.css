@@ -7,15 +7,14 @@
 ======================================== */
 
 .site-footer {
-  position: relative;
+  position:relative;
 
-  padding: 100px 0 30px;
+    overflow:hidden;
 
-  background: var(--text-primary);
+    background:#071120;
 
-  color: var(--white);
-
-  overflow: hidden;
+    color:#fff;
+    
 }
 
 /* ========================================
@@ -23,7 +22,7 @@
 ======================================== */
 
 .footer-brand-section {
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -46,6 +45,7 @@
   text-decoration: none;
 
   transition: opacity 0.3s ease;
+  margin-top: 50px;
 }
 
 .footer-logo:hover {
@@ -73,7 +73,7 @@
 
   grid-template-columns: repeat(4, 1fr);
 
-  gap: 50px;
+  gap: 30px;
 
   padding: 70px 0;
 
@@ -171,9 +171,9 @@
 
   justify-content: space-between;
 
-  gap: 50px;
+  gap: 30px;
 
-  padding: 60px 0;
+  padding: 40px 0;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -223,7 +223,7 @@ overflow: hidden;
 
   padding: 5px;
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(243, 239, 239, 0.963);
 
   border-radius: 999px;
 
@@ -308,7 +308,8 @@ overflow: hidden;
 
   gap: 30px;
 
-  padding-top: 30px;
+  padding-top: 20px;
+  margin-bottom: 50px;
 }
 
 .footer-bottom p {
@@ -316,7 +317,8 @@ overflow: hidden;
 
   color: rgba(255, 255, 255, 0.4);
 
-  font-size: 11px;
+  font-size: 14px;
+  
 }
 
 /* ========================================
@@ -443,4 +445,161 @@ overflow: hidden;
 
     row-gap: 10px;
   }
+}
+
+
+/* ========================================
+   FUTURE GRID BACKGROUND
+======================================== */
+
+.footer-grid-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+/* ========================================
+   MOVING GRID
+======================================== */
+
+.grid-overlay{
+
+    position:absolute;
+
+    inset:-200%;
+
+    background-image:
+
+        linear-gradient(
+            rgba(37,99,235,.18) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(37,99,235,.18) 1px,
+            transparent 1px
+        );
+
+    background-size:60px 60px;
+
+    transform:perspective(900px)
+    rotateX(75deg);
+
+    animation:gridMove 14s linear infinite;
+
+}
+
+/* ========================================
+   GLOW
+======================================== */
+
+.grid-glow{
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    background:radial-gradient(
+
+        circle,
+
+        rgba(37,99,235,.28),
+
+        transparent 70%
+
+    );
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    animation:glowPulse 7s ease infinite;
+
+}
+
+/* ========================================
+   CONTENT ABOVE GRID
+======================================== */
+
+.footer .container{
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+/* ========================================
+   GRID ANIMATION
+======================================== */
+
+@keyframes gridMove{
+
+    0%{
+
+        transform:
+        perspective(900px)
+        rotateX(75deg)
+        translateY(0);
+
+    }
+
+    100%{
+
+        transform:
+        perspective(900px)
+        rotateX(75deg)
+        translateY(60px);
+
+    }
+
+}
+
+/* ========================================
+   GLOW
+======================================== */
+
+@keyframes glowPulse{
+
+    0%{
+
+        opacity:.45;
+
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    }
+
+    50%{
+
+        opacity:.8;
+
+        transform:
+        translate(-50%,-50%)
+        scale(1.15);
+
+    }
+
+    100%{
+
+        opacity:.45;
+
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    }
+
 }

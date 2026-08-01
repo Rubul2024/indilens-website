@@ -7,7 +7,21 @@ const Footer = () => {
 
   return (
     <footer className="site-footer">
+
+{/* ========================================
+    TECH GRID BACKGROUND
+======================================== */}
+
+<div className="footer-grid-bg">
+
+  <div className="grid-overlay"></div>
+
+  <div className="grid-glow"></div>
+
+</div>
+      
       <div className="container">
+
         {/* ========================================
             FOOTER BRAND
         ======================================== */}
@@ -238,7 +252,7 @@ const Footer = () => {
         ======================================== */}
 
         <div className="footer-bottom">
-          <p>© {currentYear} Indilens. All rights reserved.</p>
+          <p>© 2010-{currentYear} Indilens Web Solutions Pvt. Ltd. All rights reserved.</p>
 
           <div className="footer-legal-links">
             <Link to="/privacy-policy">Privacy Policy</Link>
