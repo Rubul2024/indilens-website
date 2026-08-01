@@ -1,433 +1,874 @@
-/* ========================================
-   CONTACT PAGE
-======================================== */
+/* =======================================================
+   INDILENS CONTACT PAGE
+   MODERN SOFTWARE COMPANY DESIGN
+   PART 2A
+======================================================= */
 
-.contact-page {
-  width: 100%;
-  min-height: 100vh;
-  background: #ffffff;
-  padding-top: 80px;
+
+/* =======================================================
+   PAGE
+======================================================= */
+
+.contact-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#f8fafc;
+
+    padding-top:80px;
+
 }
 
 
-/* ========================================
-   CONTACT SECTION
-======================================== */
+/* =======================================================
+   SECTION
+======================================================= */
 
-.contact-section {
-  width: 100%;
-  padding: 100px 20px;
+.contact-section{
+
+    padding:90px 20px;
+
 }
 
 
-/* ========================================
+/* =======================================================
    MAIN CONTAINER
-======================================== */
+======================================================= */
 
-.contact-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+.contact-container{
 
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
+    width:100%;
 
-  gap: 80px;
+    max-width:1280px;
 
-  align-items: start;
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1.05fr;
+
+    gap:70px;
+
+    align-items:start;
+
 }
 
 
-/* ========================================
+/* =======================================================
    LEFT SIDE
-======================================== */
+======================================================= */
 
-.contact-info {
-  padding-top: 20px;
+.contact-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
 }
 
 
-/* ========================================
+/* =======================================================
    SMALL LABEL
-======================================== */
+======================================================= */
 
-.contact-label {
-  display: inline-block;
+.contact-label{
 
-  margin-bottom: 20px;
+    display:inline-flex;
 
-  font-size: 15px;
-  font-weight: 700;
+    width:max-content;
 
-  letter-spacing: 3px;
+    padding:8px 18px;
 
-  color: #2563eb;
+    border-radius:50px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:22px;
+
 }
 
 
-/* ========================================
-   MAIN HEADING
-======================================== */
+/* =======================================================
+   HEADING
+======================================================= */
 
-.contact-info h1 {
-  margin: 0 0 25px;
+.contact-info h1{
 
-  font-size: 52px;
-  line-height: 1.1;
+    margin:0;
 
-  font-weight: 700;
+    font-size:56px;
 
-  color: #0b1f3a;
+    line-height:1.12;
+
+    font-weight:800;
+
+    color:#0f172a;
+
 }
 
 
-/* ========================================
+/* =======================================================
    DESCRIPTION
-======================================== */
+======================================================= */
 
-.contact-description {
-  max-width: 520px;
+.contact-description{
 
-  margin-bottom: 45px;
+    margin-top:28px;
 
-  font-size: 17px;
-  line-height: 1.8;
+    margin-bottom:45px;
 
-  color: #64748b;
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#64748b;
+
+    max-width:560px;
+
 }
 
 
-/* ========================================
-   CONTACT INFO ITEM
-======================================== */
+/* =======================================================
+   CONTACT CARD
+======================================================= */
 
-.contact-info-item {
-  display: flex;
-  align-items: center;
+.contact-info-item{
 
-  gap: 18px;
+    display:flex;
 
-  margin-bottom: 28px;
+    align-items:flex-start;
+
+    gap:22px;
+
+    background:#ffffff;
+
+    padding:26px;
+
+    margin-bottom:22px;
+
+    border-radius:20px;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow:
+
+        0 15px 40px rgba(15,23,42,.05);
+
+    transition:.35s;
+
 }
 
 
-/* ========================================
+.contact-info-item:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#2563eb;
+
+    box-shadow:
+
+        0 25px 60px rgba(37,99,235,.15);
+
+}
+
+
+/* =======================================================
    ICON
-======================================== */
+======================================================= */
 
-.contact-icon {
-  width: 52px;
-  height: 52px;
+.contact-icon{
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width:68px;
 
-  flex-shrink: 0;
+    height:68px;
 
-  border-radius: 12px;
+    flex-shrink:0;
 
-  background: #eff6ff;
+    display:flex;
 
-  font-size: 22px;
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #3b82f6
+
+        );
+
+    color:#ffffff;
+
+    font-size:28px;
+
+    box-shadow:
+
+        0 15px 35px rgba(37,99,235,.25);
+
 }
 
 
-/* ========================================
-   INFO TITLE
-======================================== */
+/* =======================================================
+   CARD TITLE
+======================================================= */
 
-.contact-info-item h3 {
-  margin: 0 0 5px;
+.contact-info-item h3{
 
-  font-size: 16px;
-  font-weight: 700;
+    margin:0 0 10px;
 
-  color: #0b1f3a;
+    color:#0f172a;
+
+    font-size:20px;
+
+    font-weight:700;
+
 }
 
 
-/* ========================================
-   INFO TEXT
-======================================== */
+/* =======================================================
+   CARD TEXT
+======================================================= */
 
-.contact-info-item p {
-  margin: 0;
+.contact-info-item p{
 
-  font-size: 15px;
+    margin:0;
 
-  color: #64748b;
+    color:#64748b;
+
+    line-height:1.8;
+
+    font-size:15px;
+
 }
 
 
-/* ========================================
+/* =======================================================
+   LINKS
+======================================================= */
+
+.contact-email,
+
+.contact-website{
+
+    color:#64748b;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+
+.contact-email:hover,
+
+.contact-website:hover{
+
+    color:#2563eb;
+
+}
+
+
+/* =======================================================
    FORM CARD
-======================================== */
+======================================================= */
 
-.contact-form-card {
-  width: 100%;
+.contact-form-card{
 
-  padding: 48px;
+    background:
 
-  background: #ffffff;
+        rgba(255,255,255,.95);
 
-  border: 1px solid #e2e8f0;
+    backdrop-filter:blur(18px);
 
-  border-radius: 24px;
+    border-radius:28px;
 
-  box-shadow:
-    0 20px 60px rgba(15, 23, 42, 0.08);
+    padding:50px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    box-shadow:
+
+        0 30px 80px rgba(15,23,42,.08);
+
 }
 
 
-/* ========================================
-   FORM HEADING
-======================================== */
+/* =======================================================
+   FORM TITLE
+======================================================= */
 
-.contact-form-card h2 {
-  margin: 0 0 12px;
+.contact-form-card h2{
 
-  font-size: 34px;
-  line-height: 1.2;
+    margin:0;
 
-  color: #0b1f3a;
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
 }
 
 
-/* ========================================
-   FORM DESCRIPTION
-======================================== */
+.form-description{
 
-.form-description {
-  margin: 0 0 35px;
+    margin-top:16px;
 
-  font-size: 16px;
-  line-height: 1.7;
+    margin-bottom:40px;
 
-  color: #64748b;
+    color:#64748b;
+
+    line-height:1.8;
+
 }
 
 
-/* ========================================
+/* =======================================================
+   FORM ROW
+======================================================= */
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+}
+
+
+/* =======================================================
    FORM GROUP
-======================================== */
+======================================================= */
 
-.form-group {
-  margin-bottom: 22px;
+.form-group{
+
+    margin-bottom:24px;
+
 }
 
 
-/* ========================================
-   LABEL
-======================================== */
+.form-group label{
 
-.form-group label {
-  display: block;
+    display:block;
 
-  margin-bottom: 9px;
+    margin-bottom:10px;
 
-  font-size: 15px;
-  font-weight: 600;
+    color:#0f172a;
 
-  color: #0b1f3a;
+    font-weight:600;
+
+    font-size:15px;
+
 }
 
 
-/* ========================================
-   REQUIRED STAR
-======================================== */
+/* =======================================================
+   REQUIRED
+======================================================= */
 
-.required {
-  margin-left: 4px;
+.required{
 
-  color: #dc2626;
+    color:#ef4444;
 
-  font-size: 16px;
+    margin-left:5px;
+
 }
 
 
-/* ========================================
-   INPUT + TEXTAREA
-======================================== */
+/* =======================================================
+   INPUTS
+======================================================= */
 
 .form-group input,
-.form-group textarea {
-  width: 100%;
 
-  padding: 15px 16px;
+.form-group textarea{
 
-  box-sizing: border-box;
+    width:100%;
 
-  border: 1px solid #cbd5e1;
+    box-sizing:border-box;
 
-  border-radius: 10px;
+    padding:17px 18px;
 
-  background: #ffffff;
+    border-radius:14px;
 
-  color: #111827;
+    border:1px solid #dbe4ee;
 
-  font-family: inherit;
+    background:#ffffff;
 
-  font-size: 15px;
+    outline:none;
 
-  outline: none;
+    font-size:15px;
 
-  transition: all 0.2s ease;
+    font-family:inherit;
+
+    transition:.3s;
+
 }
 
 
-/* ========================================
-   INPUT FOCUS
-======================================== */
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #2563eb;
-
-  box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-
-/* ========================================
+/* =======================================================
    PLACEHOLDER
-======================================== */
+======================================================= */
 
 .form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #94a3b8;
+
+.form-group textarea::placeholder{
+
+    color:#94a3b8;
+
 }
 
 
-/* ========================================
+/* =======================================================
+   INPUT FOCUS
+======================================================= */
+
+.form-group input:focus,
+
+.form-group textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+
+        0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+
+/* =======================================================
    TEXTAREA
-======================================== */
+======================================================= */
 
-.form-group textarea {
-  min-height: 150px;
+.form-group textarea{
 
-  resize: vertical;
+    resize:vertical;
+
+    min-height:180px;
+
 }
 
-
-/* ========================================
+/* =======================================================
    SUBMIT BUTTON
-======================================== */
+======================================================= */
 
-.contact-submit-btn {
-  width: 100%;
+.contact-submit-btn{
 
-  padding: 16px 24px;
+    width:100%;
 
-  border: none;
+    padding:18px 24px;
 
-  border-radius: 10px;
+    border:none;
 
-  background: #2563eb;
+    border-radius:14px;
 
-  color: #ffffff;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
 
-  font-size: 16px;
+    color:#ffffff;
 
-  font-weight: 600;
+    font-size:16px;
 
-  cursor: pointer;
+    font-weight:700;
 
-  transition: all 0.3s ease;
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    transition:all .35s ease;
+
+    box-shadow:
+        0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.contact-submit-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 22px 45px rgba(37,99,235,.35);
+
+}
+
+.contact-submit-btn:active{
+
+    transform:translateY(-1px);
+
+}
+
+.contact-submit-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
 }
 
 
-/* ========================================
-   BUTTON HOVER
-======================================== */
+/* =======================================================
+   SUCCESS MESSAGE
+======================================================= */
 
-.contact-submit-btn:hover {
-  background: #1d4ed8;
+.form-success{
 
-  transform: translateY(-2px);
+    margin-bottom:25px;
 
-  box-shadow:
-    0 10px 25px rgba(37, 99, 235, 0.25);
+    padding:16px 20px;
+
+    border-radius:14px;
+
+    background:#ecfdf5;
+
+    border:1px solid #bbf7d0;
+
+    color:#15803d;
+
+    font-weight:600;
+
 }
 
 
-/* ========================================
-   STATUS MESSAGE
-======================================== */
+/* =======================================================
+   ERROR MESSAGE
+======================================================= */
 
-.contact-status {
-  margin-top: 20px;
+.form-error{
 
-  text-align: center;
+    margin-bottom:25px;
 
-  font-size: 15px;
-  font-weight: 600;
+    padding:16px 20px;
 
-  color: #2563eb;
-}
+    border-radius:14px;
 
-.contact-email {
-  color: #64748b;
-  font-size: 15px;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+    background:#fef2f2;
 
-.contact-email:hover {
-  color: #2563eb;
-  text-decoration: none;
+    border:1px solid #fecaca;
+
+    color:#dc2626;
+
+    font-weight:600;
+
 }
 
 
-/* ========================================
+/* =======================================================
+   INPUT HOVER
+======================================================= */
+
+.form-group input:hover,
+.form-group textarea:hover{
+
+    border-color:#93c5fd;
+
+}
+
+
+/* =======================================================
+   INPUT ANIMATION
+======================================================= */
+
+.form-group input,
+.form-group textarea,
+.contact-submit-btn,
+.contact-info-item{
+
+    transition:
+        all .35s ease;
+
+}
+
+
+/* =======================================================
+   CUSTOM SCROLLBAR
+======================================================= */
+
+.form-group textarea::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.form-group textarea::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+.form-group textarea::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* =======================================================
    TABLET
-======================================== */
+======================================================= */
 
-@media (max-width: 900px) {
+@media(max-width:992px){
 
-  .contact-container {
-    grid-template-columns: 1fr;
+    .contact-container{
 
-    gap: 50px;
-  }
+        grid-template-columns:1fr;
 
-  .contact-info {
-    padding-top: 0;
-  }
+        gap:60px;
 
-  .contact-info h1 {
-    font-size: 44px;
-  }
+    }
+
+    .contact-info{
+
+        order:1;
+
+    }
+
+    .contact-form-card{
+
+        order:2;
+
+    }
+
+    .contact-info h1{
+
+        font-size:46px;
+
+    }
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+        gap:0;
+
+    }
 
 }
 
 
-/* ========================================
+/* =======================================================
    MOBILE
-======================================== */
+======================================================= */
 
-@media (max-width: 600px) {
+@media(max-width:768px){
 
-  .contact-section {
-    padding: 70px 16px;
-  }
+    .contact-section{
 
-  .contact-info h1 {
-    font-size: 38px;
-  }
+        padding:70px 18px;
 
-  .contact-description {
-    font-size: 16px;
-  }
+    }
 
-  .contact-form-card {
-    padding: 30px 22px;
+    .contact-form-card{
 
-    border-radius: 18px;
-  }
+        padding:32px 24px;
 
-  .contact-form-card h2 {
-    font-size: 28px;
-  }
+        border-radius:22px;
+
+    }
+
+    .contact-info h1{
+
+        font-size:38px;
+
+    }
+
+    .contact-description{
+
+        font-size:16px;
+
+    }
+
+    .contact-info-item{
+
+        padding:20px;
+
+        gap:18px;
+
+    }
+
+    .contact-icon{
+
+        width:58px;
+
+        height:58px;
+
+        font-size:24px;
+
+    }
+
+    .contact-form-card h2{
+
+        font-size:30px;
+
+    }
 
 }
+
+
+/* =======================================================
+   SMALL MOBILE
+======================================================= */
+
+@media(max-width:480px){
+
+    .contact-section{
+
+        padding:60px 15px;
+
+    }
+
+    .contact-label{
+
+        font-size:12px;
+
+        letter-spacing:1.5px;
+
+    }
+
+    .contact-info h1{
+
+        font-size:32px;
+
+        line-height:1.2;
+
+    }
+
+    .contact-description{
+
+        margin-bottom:35px;
+
+    }
+
+    .contact-info-item{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .contact-icon{
+
+        width:54px;
+
+        height:54px;
+
+        font-size:22px;
+
+        border-radius:16px;
+
+    }
+
+    .contact-form-card{
+
+        padding:24px 20px;
+
+    }
+
+    .contact-form-card h2{
+
+        font-size:26px;
+
+    }
+
+    .form-group input,
+
+    .form-group textarea{
+
+        padding:15px;
+
+    }
+
+    .contact-submit-btn{
+
+        padding:16px;
+
+    }
+
+}
+
+
+/* =======================================================
+   FADE-IN ANIMATION
+======================================================= */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* =======================================================
+   APPLY ANIMATION
+======================================================= */
+
+.contact-info{
+
+    animation:fadeUp .8s ease;
+
+}
+
+.contact-form-card{
+
+    animation:fadeUp 1s ease;
+
+}
+
+
+/* =======================================================
+   HOVER EFFECT
+======================================================= */
+
+.contact-form-card:hover{
+
+    box-shadow:
+        0 40px 90px rgba(15,23,42,.10);
+
+}
+
+
+/* =======================================================
+   END OF FILE
+======================================================= */

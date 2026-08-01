@@ -1,153 +1,330 @@
-/* ========================================
-   INDILENS TRUSTED COMPANIES SECTION
-======================================== */
+/* ==========================================
+   TRUSTED COMPANIES
+========================================== */
 
-/* ========================================
-   SECTION
-======================================== */
+.trusted-section{
 
-.trusted-section {
-  padding: 70px 0;
+    position:relative;
 
-  background: var(--white);
+    overflow:hidden;
 
-  border-bottom: 1px solid var(--border);
+    padding:100px 0;
+
+    background:#ffffff;
+
 }
 
-/* ========================================
+/* ==========================================
    HEADER
-======================================== */
+========================================== */
 
-.trusted-header {
-  display: flex;
+.trusted-header{
 
-  align-items: center;
+    max-width:760px;
 
-  justify-content: space-between;
+    margin:0 auto 70px;
 
-  gap: 30px;
+    text-align:center;
 
-  padding-bottom: 40px;
+    padding:0 20px;
 
-  border-bottom: 1px solid var(--border);
 }
 
-.trusted-label {
-  color: var(--text-primary);
+.trusted-badge{
 
-  font-size: 14px;
+    display:inline-block;
 
-  font-weight: 700;
+    padding:10px 20px;
 
-  letter-spacing: -0.2px;
+    border-radius:50px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
 }
 
-.trusted-description {
-  max-width: 400px;
+.trusted-header h2{
 
-  margin: 0;
+    font-size:48px;
 
-  color: var(--text-secondary);
+    color:#0f172a;
 
-  font-size: 14px;
+    margin-bottom:20px;
 
-  line-height: 1.7;
+    font-weight:800;
 
-  text-align: right;
 }
 
-/* ========================================
-   COMPANY LOGOS
-======================================== */
+.trusted-header p{
 
-.trusted-companies {
-  display: grid;
+    color:#64748b;
 
-  grid-template-columns: repeat(5, 1fr);
+    font-size:18px;
 
-  align-items: center;
+    line-height:1.8;
 
-  gap: 30px;
-
-  padding-top: 45px;
 }
 
-.trusted-company {
-  color: #94a3b8;
+/* ==========================================
+   SLIDER
+========================================== */
 
-  font-size: 19px;
+.trusted-slider{
 
-  font-weight: 800;
+    position:relative;
 
-  letter-spacing: 1.5px;
+    overflow:hidden;
 
-  text-align: center;
+    margin:25px 0;
+    margin-top: 40px;
 
-  transition: all 0.3s ease;
 }
 
-.trusted-company:hover {
-  color: var(--primary);
+/* Gradient Fade */
 
-  transform: translateY(-3px);
+.trusted-slider::before,
+
+.trusted-slider::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    width:160px;
+
+    height:100%;
+
+    z-index:5;
+
+    pointer-events:none;
+
 }
 
-/* ========================================
-   TABLET
-======================================== */
+.trusted-slider::before{
 
-@media (max-width: 800px) {
-  .trusted-section {
-    padding: 55px 0;
-  }
+    left:0;
 
-  .trusted-header {
-    align-items: flex-start;
+    background:linear-gradient(
+        to right,
+        #ffffff,
+        transparent
+    );
 
-    flex-direction: column;
-
-    gap: 15px;
-  }
-
-  .trusted-description {
-    max-width: 550px;
-
-    text-align: left;
-  }
-
-  .trusted-companies {
-    grid-template-columns: repeat(3, 1fr);
-
-    row-gap: 35px;
-  }
 }
 
-/* ========================================
-   MOBILE
-======================================== */
+.trusted-slider::after{
 
-@media (max-width: 500px) {
-  .trusted-section {
-    padding: 45px 0;
-  }
+    right:0;
 
-  .trusted-label {
-    font-size: 13px;
-  }
+    background:linear-gradient(
+        to left,
+        #ffffff,
+        transparent
+    );
 
-  .trusted-description {
-    font-size: 13px;
-  }
+}
 
-  .trusted-companies {
-    grid-template-columns: repeat(2, 1fr);
+/* ==========================================
+   TRACK
+========================================== */
 
-    gap: 25px 15px;
+.trusted-track{
 
-    padding-top: 35px;
-  }
+    display:flex;
 
-  .trusted-company {
-    font-size: 15px;
-  }
+    width:max-content;
+
+    gap:25px;
+
+}
+
+.left{
+
+    animation:scrollLeft 35s linear infinite;
+
+}
+
+.right{
+
+    animation:scrollRight 40s linear infinite;
+
+}
+
+/* Pause */
+
+.trusted-slider:hover .trusted-track{
+
+    animation-play-state:paused;
+
+}
+
+/* ==========================================
+   COMPANY CARD
+========================================== */
+
+.company-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:220px;
+
+    height:80px;
+
+    padding:0 35px;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#334155;
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 12px 35px rgba(0,0,0,.06);
+
+}
+
+.company-card:hover{
+
+    transform:translateY(-8px);
+
+    color:#2563eb;
+
+    border-color:#2563eb;
+
+    box-shadow:
+
+        0 20px 45px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes scrollLeft{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(-50%);
+
+    }
+
+}
+
+@keyframes scrollRight{
+
+    from{
+
+        transform:translateX(-50%);
+
+    }
+
+    to{
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .trusted-header h2{
+
+        font-size:38px;
+
+    }
+
+    .company-card{
+
+        min-width:180px;
+
+        height:72px;
+
+        font-size:18px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .trusted-section{
+
+        padding:80px 0;
+
+    }
+
+    .trusted-header{
+
+        margin-bottom:50px;
+
+    }
+
+    .trusted-header h2{
+
+        font-size:32px;
+
+    }
+
+    .trusted-header p{
+
+        font-size:16px;
+
+    }
+
+    .company-card{
+
+        min-width:160px;
+
+        height:64px;
+
+        font-size:16px;
+
+        padding:0 20px;
+
+    }
+
+    .trusted-slider::before,
+
+    .trusted-slider::after{
+
+        width:60px;
+
+    }
+
 }

@@ -19,6 +19,7 @@ import AdminFAQView from "./admin/pages/AdminFAQView";
 import AdminTeam from "./admin/pages/AdminTeam";
 import AdminChangePassword from "./admin/pages/AdminChangePassword";
 
+
 // ========================================
 // ADMIN PAGES
 // ========================================
@@ -34,6 +35,7 @@ import ProtectedAdminRoute from "./admin/components/ProtectedAdminRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 // ========================================
 // PUBLIC PAGES
@@ -129,6 +131,7 @@ const App = () => {
       </Routes>
 
       <Footer />
+      <ScrollToTopButton />
     </BrowserRouter>
   );
 };
