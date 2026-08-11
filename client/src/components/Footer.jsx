@@ -27,9 +27,10 @@ const Footer = () => {
         ======================================== */}
 
         <div className="footer-brand-section">
+          
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              INDILENS
+              Indilens Web Solutions
             </Link>
 
             <p className="footer-description">

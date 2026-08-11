@@ -60,9 +60,11 @@ const Navbar = () => {
         ======================================== */}
 
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-mark">I</span>
-
-          <span className="logo-text">Indilens</span>
+          <img
+            src="/images/indilens-logo.png"
+            alt="Indilens"
+            className="navbar-logo-image"
+          />
         </Link>
 
         {/* ========================================
