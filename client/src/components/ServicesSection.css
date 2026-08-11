@@ -45,13 +45,13 @@
 }
 
 .services-title {
-  max-width: 750px;
+  max-width: 1400px;
 
   margin: 0;
 
   color: var(--text-primary);
 
-  font-size: clamp(42px, 5vw, 68px);
+  font-size: clamp(32px, 5vw, 58px);
 
   font-weight: 800;
 

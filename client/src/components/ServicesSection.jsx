@@ -14,14 +14,6 @@ const ServicesSection = () => {
 
     {
       number: "02",
-      title: "MERN Stack Development",
-      description:
-        "Scalable full-stack web applications built with modern JavaScript technologies and clean architecture.",
-      tag: "Development",
-    },
-
-    {
-      number: "03",
       title: "UI/UX Design",
       description:
         "User-focused interfaces and thoughtful experiences that make digital products simple and enjoyable.",
@@ -29,27 +21,35 @@ const ServicesSection = () => {
     },
 
     {
-      number: "04",
-      title: "Digital Strategy",
+      number: "03",
+      title: "E-Commerce Development",
       description:
-        "Practical digital strategies that connect business goals, technology and customer expectations.",
-      tag: "Strategy",
+        "Custom E-commerce solutions that drive sales and enhance the customer shopping experience.",
+      tag: "Development",
+    },
+
+    {
+      number: "04",
+      title: "Digital Marketing & Strategy",
+      description:
+        "Proven marketing strategies and campaigns that help businesses grow and reach their target audience.",
+      tag: "Marketing",
     },
 
     {
       number: "05",
-      title: "Business Solutions",
+      title: "Custom Software Development",
       description:
-        "Custom digital solutions that help businesses improve workflows, efficiency and online operations.",
-      tag: "Solutions",
+        "Tailored software solutions that address unique business challenges and improve operational efficiency.",
+      tag: "Development",
     },
 
     {
       number: "06",
-      title: "Maintenance & Support",
+      title: "Mobile App Development",
       description:
-        "Reliable ongoing support, updates and improvements to keep your digital products secure and effective.",
-      tag: "Support",
+        "Cross-platform mobile applications that deliver seamless experiences across iOS and Android devices.",
+      tag: "Development",
     },
   ];
 
