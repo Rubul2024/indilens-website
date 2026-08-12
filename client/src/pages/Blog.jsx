@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
 
@@ -127,6 +127,13 @@ const Blog = () => {
 
   return (
     <main className="blog-page">
+      
+<SEO
+  title="Indilens Blog | Technology, Web Development & Digital Marketing"
+  description="Read the latest Indilens articles about web development, software, technology, SEO, digital marketing and practical digital business strategies."
+  canonical="/blog"
+/>
+
       {/* ========================================
           BLOG HERO
       ======================================== */}

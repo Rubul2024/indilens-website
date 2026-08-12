@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
 
@@ -172,6 +172,12 @@ const FAQ = () => {
 
   return (
     <main className="faq-page">
+<SEO
+  title="Frequently Asked Questions | Indilens"
+  description="Find answers to frequently asked questions about Indilens services, web development, software solutions, digital marketing and project processes."
+  canonical="/faq"
+/>
+
       {/* ========================================
           FAQ HERO
       ======================================== */}

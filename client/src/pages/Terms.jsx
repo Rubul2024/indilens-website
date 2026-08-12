@@ -1,8 +1,14 @@
 import "./Terms.css";
-
+import SEO from "../components/SEO";
 const Terms = () => {
   return (
     <main className="legal-page">
+
+      <SEO
+  title="Terms & Conditions | Indilens"
+  description="Read the Terms and Conditions governing the use of the Indilens website, services and digital platforms."
+  canonical="/terms"
+/>
       {/* ========================================
           LEGAL HERO
       ======================================== */}

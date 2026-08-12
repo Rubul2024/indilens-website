@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
 
@@ -119,6 +119,12 @@ const Services = () => {
 
   return (
     <main className="services-page">
+<SEO
+  title="Web Development & Digital Services | Indilens"
+  description="Explore Indilens web development, custom software, digital marketing, SEO and technology services designed to help businesses grow online."
+  canonical="/services"
+/>
+      
       {/* ========================================
           SERVICES HERO
       ======================================== */}

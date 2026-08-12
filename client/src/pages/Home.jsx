@@ -1,35 +1,33 @@
-import Hero
-  from "../components/Hero";
+import SEO from "../components/SEO";
 
-import TrustedCompanies
-  from "../components/TrustedCompanies";
+import Hero from "../components/Hero";
 
-import AboutSection
-  from "../components/AboutSection";
+import TrustedCompanies from "../components/TrustedCompanies";
 
-import ServicesSection
-  from "../components/ServicesSection";
+import AboutSection from "../components/AboutSection";
 
-import IndustriesSection
-  from "../components/IndustriesSection";
+import ServicesSection from "../components/ServicesSection";
 
-import PortfolioSection
-  from "../components/PortfolioSection";
+import IndustriesSection from "../components/IndustriesSection";
 
-import WhyChooseSection
-  from "../components/WhyChooseSection";
+import PortfolioSection from "../components/PortfolioSection";
 
-import GroupCompaniesSection
-  from "../components/GroupCompaniesSection";
+import WhyChooseSection from "../components/WhyChooseSection";
+
+import GroupCompaniesSection from "../components/GroupCompaniesSection";
 
 import "./Home.css";
 
-
 const Home = () => {
-
   return (
-
     <main className="home-page">
+
+    
+      <SEO
+        title="Indilens | Web Development, Software & Digital Solutions"
+        description="Indilens provides modern web development, custom software, digital solutions, SEO and digital marketing services for ambitious businesses."
+        canonical="/"
+      />
 
 
       {/* ========================================
@@ -38,15 +36,11 @@ const Home = () => {
 
       <Hero />
 
-
-
       {/* ========================================
           TRUSTED COMPANIES
       ======================================== */}
 
       <TrustedCompanies />
-
-
 
       {/* ========================================
           ABOUT INDILENS
@@ -54,15 +48,11 @@ const Home = () => {
 
       <AboutSection />
 
-
-
       {/* ========================================
           SERVICES
       ======================================== */}
 
       <ServicesSection />
-
-
 
       {/* ========================================
           INDUSTRIES
@@ -70,15 +60,11 @@ const Home = () => {
 
       <IndustriesSection />
 
-
-
       {/* ========================================
           FEATURED WORK
       ======================================== */}
 
       <PortfolioSection />
-
-
 
       {/* ========================================
           WHY CHOOSE INDILENS
@@ -86,20 +72,13 @@ const Home = () => {
 
       <WhyChooseSection />
 
-
-
       {/* ========================================
           INDILENS GROUP COMPANIES
       ======================================== */}
 
       <GroupCompaniesSection />
-
-
     </main>
-
   );
-
 };
-
 
 export default Home;

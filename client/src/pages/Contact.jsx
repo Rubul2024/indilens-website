@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Contact.css";
-
+import SEO from "../components/SEO";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Contact = () => {
@@ -79,6 +79,11 @@ const Contact = () => {
 
   return (
     <main className="contact-page">
+      <SEO
+  title="Contact Indilens | Start Your Digital Project"
+  description="Contact Indilens to discuss your website, software, digital marketing or technology project. Let's build a modern digital solution for your business."
+  canonical="/contact"
+/>
       {/* ========================================
           CONTACT SECTION
       ======================================== */}

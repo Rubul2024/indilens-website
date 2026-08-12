@@ -1,8 +1,14 @@
 import "./PrivacyPolicy.css";
-
+import SEO from "../components/SEO";
 const PrivacyPolicy = () => {
   return (
     <main className="legal-page">
+<SEO
+  title="Privacy Policy | Indilens"
+  description="Read the Indilens Privacy Policy to understand how we collect, use, protect and manage information when you use our website and services."
+  canonical="/privacy-policy"
+/>
+
       {/* ========================================
           LEGAL HERO
       ======================================== */}

@@ -1,8 +1,14 @@
 import "./Disclaimer.css";
-
+import SEO from "../components/SEO";
 const Disclaimer = () => {
   return (
     <main className="legal-page">
+<SEO
+  title="Disclaimer | Indilens"
+  description="Read the Indilens website disclaimer covering information, services, third-party content and limitations of liability."
+  canonical="/disclaimer"
+/>
+
       {/* ========================================
           DISCLAIMER HERO
       ======================================== */}
