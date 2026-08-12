@@ -197,7 +197,7 @@ const Contact = () => {
                 <h3>Office Address</h3>
 
                 <p>
-                  Assam, India
+                  Barpeta Road, Shakti Nagar, Azad Nagar, Barpeta Road, Assam 781315
                 </p>
 
               </div>
