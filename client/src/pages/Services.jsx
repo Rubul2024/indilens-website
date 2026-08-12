@@ -120,7 +120,7 @@ const Services = () => {
   return (
     <main className="services-page">
 <SEO
-  title="Web Development & Digital Services | Indilens"
+  title="Web Development & Digital Services | Indilens Web Group"
   description="Explore Indilens web development, custom software, digital marketing, SEO and technology services designed to help businesses grow online."
   canonical="/services"
 />

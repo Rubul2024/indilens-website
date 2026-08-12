@@ -65,7 +65,7 @@ const About = () => {
     <main className="about-page">
 
       <SEO
-  title="About Indilens | Web & Software Development Company"
+  title="About Indilens Web Group | Web & Software Development Company"
   description="Learn about Indilens, a technology and digital solutions company helping businesses grow through web development, software, SEO and digital services."
   canonical="/about"
 />

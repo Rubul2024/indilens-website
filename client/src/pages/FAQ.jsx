@@ -173,7 +173,7 @@ const FAQ = () => {
   return (
     <main className="faq-page">
 <SEO
-  title="Frequently Asked Questions | Indilens"
+  title="Frequently Asked Questions | Indilens Web Group"
   description="Find answers to frequently asked questions about Indilens services, web development, software solutions, digital marketing and project processes."
   canonical="/faq"
 />

@@ -4,7 +4,7 @@ const Disclaimer = () => {
   return (
     <main className="legal-page">
 <SEO
-  title="Disclaimer | Indilens"
+  title="Disclaimer | Indilens Web Group"
   description="Read the Indilens website disclaimer covering information, services, third-party content and limitations of liability."
   canonical="/disclaimer"
 />

@@ -24,7 +24,7 @@ const Home = () => {
 
     
       <SEO
-        title="Indilens | Web Development, Software & Digital Solutions"
+        title="Indilens Web Group | Web Development, Software & Digital Solutions"
         description="Indilens provides modern web development, custom software, digital solutions, SEO and digital marketing services for ambitious businesses."
         canonical="/"
       />

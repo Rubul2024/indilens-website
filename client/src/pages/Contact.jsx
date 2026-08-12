@@ -80,7 +80,7 @@ const Contact = () => {
   return (
     <main className="contact-page">
       <SEO
-  title="Contact Indilens | Start Your Digital Project"
+  title="Contact Indilens Web Group | Start Your Digital Project"
   description="Contact Indilens to discuss your website, software, digital marketing or technology project. Let's build a modern digital solution for your business."
   canonical="/contact"
 />

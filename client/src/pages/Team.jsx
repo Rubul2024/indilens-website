@@ -141,7 +141,7 @@ const Team = () => {
   return (
     <main className="team-page">
 <SEO
-  title="Our Team | Indilens"
+  title="Our Team | Indilens Web Group"
   description="Meet the Indilens team of developers, designers, digital professionals and technology specialists focused on building modern digital solutions."
   canonical="/team"
 />

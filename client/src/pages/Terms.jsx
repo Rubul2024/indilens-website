@@ -5,7 +5,7 @@ const Terms = () => {
     <main className="legal-page">
 
       <SEO
-  title="Terms & Conditions | Indilens"
+  title="Terms & Conditions | Indilens Web Group"
   description="Read the Terms and Conditions governing the use of the Indilens website, services and digital platforms."
   canonical="/terms"
 />

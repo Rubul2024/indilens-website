@@ -106,7 +106,7 @@ const Portfolio = () => {
   return (
     <main className="portfolio-page">
 <SEO
-  title="Our Portfolio | Web & Software Projects | Indilens"
+  title="Our Portfolio | Web & Software Projects | Indilens Web Group"
   description="Explore the Indilens portfolio featuring websites, software solutions, digital projects and technology work created for businesses and organizations."
   canonical="/portfolio"
 />
