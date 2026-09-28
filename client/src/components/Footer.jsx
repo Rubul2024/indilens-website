@@ -19,19 +19,6 @@ const Footer = () => {
 
   return (
     <footer className="site-footer">
-
-{/* ========================================
-    TECH GRID BACKGROUND
-======================================== */}
-
-<div className="footer-grid-bg">
-
-  <div className="grid-overlay"></div>
-
-  <div className="grid-glow"></div>
-
-</div>
-      
       <div className="container">
 
         {/* ========================================
