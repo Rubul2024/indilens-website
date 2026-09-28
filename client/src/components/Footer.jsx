@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
 
 import "./Footer.css";
+import NewsletterForm from "./NewsletterForm";
+
+// Add profile URLs here to show a "Follow Us" column instead of contact details.
+// Links without a URL are hidden, so the footer never shows dead links.
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", url: "" },
+  { label: "Facebook", url: "" },
+  { label: "Instagram", url: "" },
+  { label: "YouTube", url: "" },
+];
+
+const socialLinks = SOCIAL_LINKS.filter((social) => social.url);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -128,24 +140,22 @@ const Footer = () => {
           ======================================== */}
 
           <div className="footer-column footer-social-column">
-            <h3>Follow Us</h3>
+            <h3>{socialLinks.length ? "Follow Us" : "Get in Touch"}</h3>
 
             <div className="footer-social-links">
-              <a href="#" aria-label="LinkedIn">
-                LinkedIn
-              </a>
-
-              <a href="#" aria-label="Facebook">
-                Facebook
-              </a>
-
-              <a href="#" aria-label="Instagram">
-                Instagram
-              </a>
-
-              <a href="#" aria-label="YouTube">
-                YouTube
-              </a>
+              {socialLinks.length ? (
+                socialLinks.map((social) => (
+                  <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer">
+                    {social.label}
+                  </a>
+                ))
+              ) : (
+                <>
+                  <a href="mailto:marketing@indilens.in">marketing@indilens.in</a>
+                  <a href="tel:+919954639509">+91 99546 39509</a>
+                  <span className="footer-address">Barpeta Road, Assam 781315</span>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -161,91 +171,7 @@ const Footer = () => {
             <h3>Get useful digital insights in your inbox.</h3>
           </div>
 
-          <form
-  className="footer-newsletter-form"
-  onSubmit={async (event) => {
-
-    // Stop page refresh
-    event.preventDefault();
-
-    // Get email value
-    const email = event.target.email.value.trim();
-
-    // Check email
-    if (!email) {
-      alert("Please enter your email address.");
-      return;
-    }
-
-    try {
-
-      // Send email to backend
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/newsletter`,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            email: email,
-          }),
-        }
-      );
-
-      // Get backend response
-      const data = await response.json();
-
-      // Check response
-      if (response.ok) {
-
-        alert(
-          data.message ||
-          "Subscribed successfully!"
-        );
-
-        // Clear input
-        event.target.reset();
-
-      } else {
-
-        alert(
-          data.message ||
-          "Subscription failed. Please try again."
-        );
-
-      }
-
-    } catch (error) {
-
-      console.error(
-        "Newsletter Error:",
-        error
-      );
-
-      alert(
-        "Unable to connect to server. Please try again."
-      );
-
-    }
-
-  }}
->
-  <input
-    type="email"
-    name="email"
-    placeholder="Enter your email address"
-    aria-label="Email address"
-    required
-  />
-
-  <button type="submit">
-    Subscribe
-    <span>→</span>
-  </button>
-</form>
+          <NewsletterForm className="footer-newsletter-form" showArrow tone="dark" />
         </div>
 
         {/* ========================================

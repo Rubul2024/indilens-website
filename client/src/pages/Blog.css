@@ -805,3 +805,73 @@
     padding: 25px;
   }
 }
+
+/* ========================================
+   CMS ENHANCEMENTS
+======================================== */
+
+/* Whole card is clickable via the title link */
+.blog-card {
+  position: relative;
+}
+
+.blog-card-link {
+  color: inherit;
+}
+
+.blog-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.blog-card:focus-within {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+.blog-card-link:hover {
+  color: var(--primary);
+}
+
+/* Cover image sits under the category label */
+.blog-cover-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.blog-card-visual > span,
+.featured-blog-visual > span {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-card-visual:has(.blog-cover-image) > strong,
+.featured-blog-visual:has(.blog-cover-image) > strong {
+  display: none;
+}
+
+.featured-blog-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading placeholders */
+.blog-card-skeleton {
+  min-height: 420px;
+  background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 50%, #eef2f7 75%);
+  background-size: 200% 100%;
+  animation: blog-shimmer 1.2s infinite;
+}
+
+@keyframes blog-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

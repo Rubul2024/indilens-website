@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
+import usePublicData from "../hooks/usePublicData";
+import { mergeUnique, padNumber } from "../utils/content";
 
 import "./Services.css";
 
 const Services = () => {
-  const services = [
+  const builtInServices = [
     {
       number: "01",
       title: "Web Development",
@@ -55,6 +57,18 @@ const Services = () => {
       tags: ["Custom Solutions", "API Integration", "Automation"],
     },
   ];
+
+  // Services published from the admin panel appear first
+  const { data: cmsServices } = usePublicData("/api/services", []);
+
+  const services = mergeUnique(
+    (cmsServices || []).map((service) => ({
+      title: service.title,
+      description: service.excerpt,
+      tags: [service.category].filter(Boolean),
+    })),
+    builtInServices
+  ).map((service, index) => ({ ...service, number: padNumber(index) }));
 
   const process = [
     {

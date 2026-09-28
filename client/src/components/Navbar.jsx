@@ -1,253 +1,160 @@
 import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+
+const NAV_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/portfolio", label: "Portfolio" },
+  { to: "/team", label: "Team" },
+  { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
+];
+
+// Extra destinations that only fit in the mobile menu
+const MOBILE_EXTRA_LINKS = [
+  { to: "/group-companies", label: "Group Companies" },
+  { to: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const [menuPath, setMenuPath] = useState(pathname);
+
+  // Close the menu whenever the route changes (including back/forward)
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setMenuOpen(false);
+  }
 
   /* ========================================
      HANDLE SCROLL
   ======================================== */
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 30);
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   /* ========================================
-     CLOSE MOBILE MENU
-  ======================================== */
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
-  /* ========================================
-     PREVENT BODY SCROLL
-     WHEN MOBILE MENU IS OPEN
+     MOBILE MENU: SCROLL LOCK, ESCAPE, RESIZE
   ======================================== */
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    const onResize = () => {
+      if (window.innerWidth > 900) setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
     };
   }, [menuOpen]);
 
-  return (
-    <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-      <div className="container navbar-container">
-        {/* ========================================
-            LOGO
-        ======================================== */}
+  const closeMenu = () => setMenuOpen(false);
 
-        <Link to="/" className="navbar-logo" onClick={closeMenu}>
+  const linkClass = (base) => ({ isActive }) => (isActive ? `${base} active` : base);
+
+  return (
+    <header className={`navbar ${scrolled || menuOpen ? "navbar-scrolled" : ""}`}>
+      <div className="container navbar-container">
+        {/* LOGO */}
+
+        <Link to="/" className="navbar-logo" onClick={closeMenu} aria-label="Indilens home">
           <img
             src="/images/indilens-logo.png"
             alt="Indilens"
             className="navbar-logo-image"
+            width="150"
+            height="48"
           />
         </Link>
 
-        {/* ========================================
-            DESKTOP NAVIGATION
-        ======================================== */}
+        {/* DESKTOP NAVIGATION */}
 
-        <nav className="desktop-nav">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            About
-          </NavLink>
-
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Services
-          </NavLink>
-
-          <NavLink
-            to="/portfolio"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Portfolio
-          </NavLink>
-
-          <NavLink
-            to="/team"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Team
-          </NavLink>
-
-          <NavLink
-            to="/blog"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Blog
-          </NavLink>
-
-          <NavLink
-            to="/faq"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            FAQ
-          </NavLink>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {NAV_LINKS.map((link) => (
+            <NavLink key={link.to} to={link.to} end={link.to === "/"} className={linkClass("nav-link")}>
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* ========================================
-            DESKTOP CTA
-        ======================================== */}
+        {/* DESKTOP CTA */}
 
         <Link to="/contact" className="navbar-cta">
           Let's Talk
-          <span>→</span>
+          <span aria-hidden="true">→</span>
         </Link>
 
-        {/* ========================================
-            MOBILE MENU BUTTON
-        ======================================== */}
+        {/* MOBILE MENU BUTTON */}
 
         <button
+          type="button"
           className={`mobile-menu-button ${menuOpen ? "menu-button-open" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <span></span>
-
           <span></span>
-
           <span></span>
         </button>
       </div>
 
-      {/* ========================================
-          MOBILE NAVIGATION
-      ======================================== */}
+      {/* MOBILE NAVIGATION */}
 
-      <div className={`mobile-menu ${menuOpen ? "mobile-menu-open" : ""}`}>
-        <div className="mobile-menu-inner">
-          <NavLink
-            to="/"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            About
-          </NavLink>
-
-          <NavLink
-            to="/services"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            Services
-          </NavLink>
-
-          <NavLink
-            to="/portfolio"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            Portfolio
-          </NavLink>
-
-          <NavLink
-            to="/team"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            Team
-          </NavLink>
-
-          <NavLink
-            to="/blog"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            Blog
-          </NavLink>
-
-          <NavLink
-            to="/faq"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              isActive ? "mobile-nav-link active" : "mobile-nav-link"
-            }
-          >
-            FAQ
-          </NavLink>
-
-          {/* ========================================
-              MOBILE CTA
-          ======================================== */}
+      <div
+        id="mobile-menu"
+        className={`mobile-menu ${menuOpen ? "mobile-menu-open" : ""}`}
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
+      >
+        <nav className="mobile-menu-inner" aria-label="Mobile navigation">
+          {[...NAV_LINKS, ...MOBILE_EXTRA_LINKS].map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === "/"}
+              onClick={closeMenu}
+              className={linkClass("mobile-nav-link")}
+            >
+              {link.label}
+              <span aria-hidden="true">→</span>
+            </NavLink>
+          ))}
 
           <Link to="/contact" className="mobile-menu-cta" onClick={closeMenu}>
             Let's Talk
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </Link>
-        </div>
+
+          <div className="mobile-menu-contact">
+            <a href="mailto:marketing@indilens.in">marketing@indilens.in</a>
+            <a href="tel:+919954639509">+91 99546 39509</a>
+          </div>
+        </nav>
       </div>
     </header>
   );

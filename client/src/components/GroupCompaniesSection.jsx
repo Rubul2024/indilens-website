@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 import "./GroupCompaniesSection.css";
 
-const GroupCompaniesSection = () => {
+// `as="h1"` when the section is the main content of its page
+const GroupCompaniesSection = ({ as: Heading = "h2" }) => {
   const companies = [
     {
       number: "01",
@@ -84,10 +85,10 @@ const GroupCompaniesSection = () => {
           <div>
             <span className="group-companies-eyebrow">THE INDILENS GROUP</span>
 
-            <h2 className="group-companies-title">
+            <Heading className="group-companies-title">
               One group.
               <span>Multiple possibilities.</span>
-            </h2>
+            </Heading>
           </div>
 
           <div className="group-companies-intro">
@@ -149,7 +150,8 @@ const GroupCompaniesSection = () => {
                 className="group-company-link"
               >
                 Explore Company
-                <span>↗</span>
+                <span aria-hidden="true">↗</span>
+                <span className="sr-only"> {company.title} (opens in a new tab)</span>
               </a>
             </article>
           ))}

@@ -11,7 +11,7 @@ const GroupCompanies = () => {
 
     <main className="group-companies-page">
 
-      <GroupCompaniesSection />
+      <GroupCompaniesSection as="h1" />
 
       <SEO
   title="Group Companies | Indilens Web Group"

@@ -603,3 +603,17 @@ overflow: hidden;
     }
 
 }
+.footer-social-links a {
+  overflow-wrap: anywhere;
+}
+
+.footer-address {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Legal links wrap cleanly on small screens */
+.footer-legal-links {
+  flex-wrap: wrap;
+}

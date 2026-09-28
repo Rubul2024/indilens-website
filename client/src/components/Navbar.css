@@ -2,114 +2,84 @@
    INDILENS MODERN NAVBAR
 ======================================== */
 
-
-/* ========================================
-   NAVBAR
-======================================== */
-
 .navbar {
-  position: fixed;
+  --navbar-height: 78px;
 
+  position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
-
   z-index: 1000;
-
-  background: rgba(255, 255, 255, 0.75);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
   border-bottom: 1px solid transparent;
-
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/*
+  The frosted background lives on a pseudo-element: putting
+  backdrop-filter on .navbar itself would make it the containing
+  block for the fixed mobile menu and break its positioning.
+*/
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease;
+}
 
 /* ========================================
    SCROLLED NAVBAR
 ======================================== */
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-
-  border-bottom: 1px solid var(--border);
-
-  box-shadow:
-    0 8px 30px rgba(15, 23, 42, 0.06);
+  border-bottom-color: var(--border);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
 }
 
+.navbar-scrolled::before {
+  background: rgba(255, 255, 255, 0.96);
+}
 
 /* ========================================
    NAVBAR CONTAINER
 ======================================== */
 
 .navbar-container {
-  min-height: 78px;
-
+  min-height: var(--navbar-height);
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 40px;
 }
 
-
 /* ========================================
-   ORIGINAL COMPANY LOGO
+   LOGO
 ======================================== */
 
 .navbar-logo {
   display: inline-flex;
-
   align-items: center;
-
   flex-shrink: 0;
-
-  text-decoration: none;
-
   line-height: 0;
+  border-radius: 6px;
 }
-
-
-/* ========================================
-   LOGO IMAGE
-======================================== */
 
 .navbar-logo-image {
   display: block;
-
   width: 150px;
-
   height: auto;
-
   max-height: 48px;
-
   object-fit: contain;
-
-  transition:
-    transform 0.25s ease,
-    opacity 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
-
-
-/* ========================================
-   LOGO HOVER
-======================================== */
 
 .navbar-logo:hover .navbar-logo-image {
   transform: translateY(-1px);
-
   opacity: 0.95;
 }
-
 
 /* ========================================
    DESKTOP NAVIGATION
@@ -117,78 +87,44 @@
 
 .desktop-nav {
   display: flex;
-
   align-items: center;
-
   gap: 28px;
-
   margin-left: auto;
 }
 
-
-/* ========================================
-   NAVIGATION LINK
-======================================== */
-
 .nav-link {
   position: relative;
-
   padding: 28px 0;
-
   color: var(--text-secondary);
-
   font-size: 17px;
-
   font-weight: 600;
-
-  text-decoration: none;
-
   transition: color 0.3s ease;
 }
 
-
-/* ========================================
-   NAVIGATION HOVER
-======================================== */
-
-.nav-link:hover {
-  color: var(--primary);
-}
-
-
-/* ========================================
-   ACTIVE NAVIGATION
-======================================== */
-
+.nav-link:hover,
 .nav-link.active {
   color: var(--primary);
 }
 
-
-/* ========================================
-   ACTIVE DOT
-======================================== */
-
 .nav-link.active::after {
   content: "";
-
   position: absolute;
-
   left: 50%;
-
   bottom: 18px;
-
   width: 5px;
-
   height: 5px;
-
   border-radius: 50%;
-
   background: var(--primary);
-
   transform: translateX(-50%);
 }
 
+.nav-link:focus-visible,
+.navbar-cta:focus-visible,
+.navbar-logo:focus-visible,
+.mobile-menu-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 4px;
+}
 
 /* ========================================
    DESKTOP CTA
@@ -196,65 +132,31 @@
 
 .navbar-cta {
   display: inline-flex;
-
   align-items: center;
-
   gap: 10px;
-
   padding: 12px 20px;
-
   border-radius: 999px;
-
   background: var(--primary);
-
   color: var(--white);
-
   font-size: 15px;
-
   font-weight: 700;
-
-  text-decoration: none;
-
   white-space: nowrap;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
-
-
-/* ========================================
-   CTA ARROW
-======================================== */
 
 .navbar-cta span {
   font-size: 17px;
-
   transition: transform 0.3s ease;
 }
 
-
-/* ========================================
-   CTA HOVER
-======================================== */
-
 .navbar-cta:hover {
   transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 25px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
 }
-
-
-/* ========================================
-   CTA ARROW HOVER
-======================================== */
 
 .navbar-cta:hover span {
   transform: translateX(4px);
 }
-
 
 /* ========================================
    MOBILE MENU BUTTON
@@ -262,53 +164,26 @@
 
 .mobile-menu-button {
   display: none;
-
   width: 44px;
-
   height: 44px;
-
   padding: 0;
-
-  border: none;
-
-  border-radius: 10px;
-
-  background: var(--bg-light);
-
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
   cursor: pointer;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 5px;
 }
 
-
-/* ========================================
-   HAMBURGER LINES
-======================================== */
-
 .mobile-menu-button span {
   width: 20px;
-
   height: 2px;
-
   border-radius: 10px;
-
   background: var(--text-primary);
-
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-
-/* ========================================
-   HAMBURGER → X
-======================================== */
 
 .menu-button-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -322,22 +197,19 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-
 /* ========================================
-   MOBILE MENU
+   MOBILE MENU (hidden on desktop)
 ======================================== */
 
 .mobile-menu {
   display: none;
 }
 
-
 /* ========================================
    TABLET / SMALL DESKTOP
 ======================================== */
 
-@media (max-width: 1050px) {
-
+@media (max-width: 1100px) {
   .desktop-nav {
     gap: 20px;
   }
@@ -355,238 +227,142 @@
   }
 }
 
-
 /* ========================================
    MOBILE NAVIGATION
 ======================================== */
 
 @media (max-width: 900px) {
-
-  /* Hide desktop navigation */
+  .navbar {
+    --navbar-height: 70px;
+  }
 
   .desktop-nav,
   .navbar-cta {
     display: none;
   }
 
-
-  /* Show hamburger */
-
   .mobile-menu-button {
     display: flex;
   }
 
-
-  /* Mobile menu */
+  .navbar-logo-image {
+    width: 128px;
+    max-height: 42px;
+  }
 
   .mobile-menu {
     position: fixed;
-
-    top: 78px;
-
+    top: var(--navbar-height);
     left: 0;
-
-    width: 100%;
-
-    height: calc(100vh - 78px);
-
+    right: 0;
+    bottom: 0;
     display: block;
-
-    background: rgba(255, 255, 255, 0.98);
-
-    backdrop-filter: blur(20px);
-
-    -webkit-backdrop-filter: blur(20px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(-20px);
-
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease,
-      transform 0.3s ease;
-
+    background: var(--white);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
   }
-
-
-  /* Open mobile menu */
 
   .mobile-menu-open {
     opacity: 1;
-
     visibility: visible;
-
     transform: translateY(0);
   }
 
-
-  /* Mobile menu inner */
-
   .mobile-menu-inner {
     display: flex;
-
     flex-direction: column;
-
-    gap: 5px;
-
-    padding: 30px 20px 50px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 12px 20px calc(32px + env(safe-area-inset-bottom, 0px));
   }
-
-
-  /* Mobile navigation link */
 
   .mobile-nav-link {
-    padding: 16px 0;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
     color: var(--text-primary);
-
-    font-size: 17px;
-
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
     font-weight: 700;
-
-    letter-spacing: -0.5px;
-
-    text-decoration: none;
-
+    letter-spacing: -0.3px;
     border-bottom: 1px solid var(--border);
-
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
   }
 
-
-  /* Mobile link hover */
+  .mobile-nav-link span {
+    color: var(--text-light);
+    font-size: 18px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
 
   .mobile-nav-link:hover,
   .mobile-nav-link.active {
     color: var(--primary);
   }
 
-
-  /* Mobile CTA */
+  .mobile-nav-link.active span,
+  .mobile-nav-link:hover span {
+    color: var(--primary);
+    transform: translateX(4px);
+  }
 
   .mobile-menu-cta {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 10px;
-
-    margin-top: 25px;
-
-    padding: 16px 25px;
-
+    min-height: 54px;
+    margin-top: 28px;
     border-radius: 999px;
-
     background: var(--primary);
-
     color: var(--white);
-
-    font-size: 15px;
-
+    font-size: 16px;
     font-weight: 700;
-
-    text-decoration: none;
-
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
   }
 
-
-  /* Mobile CTA hover */
-
-  .mobile-menu-cta:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-      0 10px 25px rgba(37, 99, 235, 0.2);
+  .mobile-menu-contact {
+    display: grid;
+    gap: 4px;
+    margin-top: 24px;
+    text-align: center;
   }
 
+  .mobile-menu-contact a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+  }
 
-  /* Mobile logo */
-
-  .navbar-logo-image {
-    width: 140px;
-
-    max-height: 44px;
+  .mobile-menu-contact a:hover {
+    color: var(--primary);
   }
 }
-
-
-/* ========================================
-   SMALL MOBILE
-======================================== */
-
-@media (max-width: 500px) {
-
-  .navbar-container {
-    min-height: 70px;
-  }
-
-
-  /* Smaller logo */
-
-  .navbar-logo-image {
-    width: 125px;
-
-    max-height: 40px;
-  }
-
-
-  /* Smaller menu button */
-
-  .mobile-menu-button {
-    width: 42px;
-
-    height: 42px;
-  }
-
-
-  /* Mobile menu */
-
-  .mobile-menu {
-    top: 70px;
-
-    height: calc(100vh - 70px);
-  }
-
-
-  /* Mobile links */
-
-  .mobile-nav-link {
-    font-size: 20px;
-  }
-
-
-  /* Mobile menu padding */
-
-  .mobile-menu-inner {
-    padding: 25px 18px 45px;
-  }
-}
-
-
-/* ========================================
-   EXTRA SMALL DEVICES
-======================================== */
 
 @media (max-width: 360px) {
-
   .navbar-logo-image {
-    width: 115px;
-
+    width: 112px;
     max-height: 36px;
   }
 
-  .mobile-menu-button {
-    width: 40px;
+  .mobile-nav-link {
+    font-size: 18px;
+    min-height: 52px;
+  }
+}
 
-    height: 40px;
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu-button span {
+    transition: none;
   }
 }

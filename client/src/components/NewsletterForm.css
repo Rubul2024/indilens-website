@@ -1,0 +1,37 @@
+.newsletter-form-wrap {
+  width: 100%;
+}
+
+.newsletter-form-wrap button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.newsletter-status {
+  min-height: 1.4em;
+  margin: 10px 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.newsletter-status:empty {
+  min-height: 0;
+  margin: 0;
+}
+
+.newsletter-form-wrap--dark .newsletter-status--success {
+  color: #4ade80;
+}
+
+.newsletter-form-wrap--dark .newsletter-status--error {
+  color: #fca5a5;
+}
+
+.newsletter-form-wrap--light .newsletter-status--success {
+  color: #15803d;
+}
+
+.newsletter-form-wrap--light .newsletter-status--error {
+  color: #dc2626;
+}

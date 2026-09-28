@@ -852,3 +852,130 @@
     transform: scale(0.9);
   }
 }
+
+/* ========================================
+   MOBILE REFINEMENTS
+======================================== */
+
+.hero-trust {
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .hero-section {
+    padding: 104px 0 40px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .hero-primary-button,
+  .hero-secondary-button {
+    min-height: 52px;
+    font-size: 15px;
+  }
+
+  /* Give the secondary action a visible button shape on touch screens */
+  .hero-secondary-button {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-trust {
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .hero-container {
+    gap: 40px;
+  }
+
+  /* Keep the floating stats clear of the dashboard title */
+  .hero-visual {
+    min-height: 0;
+    padding: 56px 0 60px;
+  }
+
+  .hero-project-card {
+    top: 0;
+    left: auto;
+    right: 12px;
+  }
+
+  .hero-experience-card {
+    bottom: 0;
+    right: auto;
+    left: 12px;
+  }
+
+  .hero-floating-card {
+    transform: none;
+  }
+
+  .hero-main-card {
+    min-height: 0;
+    transform: none;
+  }
+
+  .hero-chart {
+    height: 150px;
+  }
+
+  /* Decorative "scroll to explore" strip adds length without value on phones */
+  .hero-bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .hero-title {
+    font-size: clamp(36px, 10.5vw, 42px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-floating-card {
+    transform: none;
+  }
+
+  .hero-card-header h3 {
+    font-size: 22px;
+  }
+}
+
+/* ========================================
+   SPACING FIXES (all sizes)
+======================================== */
+
+/* Scale letter-spacing with the font so words never collide */
+.hero-section .hero-title {
+  letter-spacing: -0.045em;
+}
+
+/* Keep the "Projects" badge clear of the dashboard title */
+@media (min-width: 701px) {
+  .hero-project-card {
+    top: 24px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 701px) {
+  .hero-project-card {
+    left: 0;
+  }
+
+  .hero-experience-card {
+    right: 0;
+  }
+}

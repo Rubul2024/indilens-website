@@ -2,6 +2,8 @@ import { useState } from "react";
 import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
+import usePublicData from "../hooks/usePublicData";
+import { mergeUnique } from "../utils/content";
 
 import "./FAQ.css";
 
@@ -20,20 +22,13 @@ const FAQ = () => {
      FAQ CATEGORIES
   ======================================== */
 
-  const categories = [
-    "All",
-    "General",
-    "Services",
-    "Process",
-    "Technology",
-    "Support",
-  ];
+  const baseCategories = ["General", "Services", "Process", "Technology", "Support"];
 
   /* ========================================
      FAQ DATA
   ======================================== */
 
-  const faqs = [
+  const builtInFAQs = [
     {
       id: 1,
       category: "General",
@@ -148,6 +143,37 @@ const FAQ = () => {
   ];
 
   /* ========================================
+     CMS FAQS (published from the admin panel
+     appear first)
+  ======================================== */
+
+  const { data: cmsFAQs } = usePublicData("/api/faq", []);
+
+  const faqs = mergeUnique(
+    (cmsFAQs || []).map((faq) => ({
+      id: faq._id,
+      category: faq.category || "General",
+      question: faq.question,
+      answer: faq.answer,
+    })),
+    builtInFAQs,
+    "question"
+  );
+
+  const categories = ["All", ...new Set([...baseCategories, ...faqs.map((faq) => faq.category)])];
+
+  // FAQ rich results for search engines
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
+  /* ========================================
      TOGGLE FAQ
   ======================================== */
 
@@ -176,6 +202,7 @@ const FAQ = () => {
   title="Frequently Asked Questions | Indilens Web Group"
   description="Find answers to frequently asked questions about Indilens services, web development, software solutions, digital marketing and project processes."
   canonical="/faq"
+  schema={faqSchema}
 />
 
       {/* ========================================
@@ -218,10 +245,11 @@ const FAQ = () => {
           ======================================== */}
 
           <div className="faq-search">
-            <span>🔍</span>
+            <span aria-hidden="true">🔍</span>
 
             <input
-              type="text"
+              type="search"
+              aria-label="Search frequently asked questions"
               placeholder="Search your question..."
               value={searchTerm}
               onChange={(event) => {
@@ -270,19 +298,22 @@ const FAQ = () => {
                   {/* QUESTION */}
 
                   <button
+                    type="button"
                     className="faq-question"
                     onClick={() => toggleFAQ(faq.id)}
+                    aria-expanded={openFAQ === faq.id}
+                    aria-controls={`faq-answer-${faq.id}`}
                   >
                     <span>{faq.question}</span>
 
-                    <span className="faq-icon">
+                    <span className="faq-icon" aria-hidden="true">
                       {openFAQ === faq.id ? "−" : "+"}
                     </span>
                   </button>
 
                   {/* ANSWER */}
 
-                  <div className="faq-answer">
+                  <div className="faq-answer" id={`faq-answer-${faq.id}`} role="region">
                     <div className="faq-answer-inner">
                       <p>{faq.answer}</p>
                     </div>

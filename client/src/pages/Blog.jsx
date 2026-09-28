@@ -1,9 +1,30 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
+import NewsletterForm from "../components/NewsletterForm";
+import usePublicData from "../hooks/usePublicData";
+import { formatPostDate, readingTime } from "../utils/content";
 
 import "./Blog.css";
+
+// Cover image with graceful fallback to the numbered artwork
+const PostImage = ({ src }) => {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) return null;
+
+  return (
+    <img
+      className="blog-cover-image"
+      src={src}
+      alt=""
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+};
 
 const Blog = () => {
   /* ========================================
@@ -18,19 +39,12 @@ const Blog = () => {
      BLOG CATEGORIES
   ======================================== */
 
-  const categories = [
-    "All",
-    "Web Development",
-    "Design",
-    "Technology",
-    "Business",
-  ];
 
   /* ========================================
      BLOG POSTS
   ======================================== */
 
-  const posts = [
+  const fallbackPosts = [
     {
       id: 1,
       title: "How Modern Websites Help Businesses Grow",
@@ -105,6 +119,33 @@ const Blog = () => {
   ];
 
   /* ========================================
+     CMS POSTS (fall back to the built-in list
+     until articles are published from admin)
+  ======================================== */
+
+  const { data: cmsPosts, loading } = usePublicData("/api/blog", []);
+
+  const posts =
+    cmsPosts && cmsPosts.length
+      ? cmsPosts.map((post, index) => ({
+          id: post._id,
+          slug: post.slug,
+          title: post.title,
+          category: post.category || "General",
+          date: formatPostDate(post.publishedAt || post.createdAt),
+          readTime: readingTime(post.content),
+          description: post.excerpt,
+          image: post.featuredImage,
+          initials: String(index + 1).padStart(2, "0"),
+          featured: index === 0,
+        }))
+      : loading
+        ? []
+        : fallbackPosts;
+
+  const categories = ["All", ...new Set(posts.map((post) => post.category))];
+
+  /* ========================================
      FILTER POSTS
   ======================================== */
 
@@ -160,38 +201,49 @@ const Blog = () => {
           FEATURED ARTICLE
       ======================================== */}
 
-      <section className="featured-blog section">
-        <div className="container">
-          <div className="featured-blog-card">
-            <div className="featured-blog-visual">
-              <span>Featured Article</span>
+      {featuredPost && (
+        <section className="featured-blog section">
+          <div className="container">
+            <div className="featured-blog-card">
+              <div className="featured-blog-visual">
+                <PostImage src={featuredPost.image} />
 
-              <strong>{featuredPost.initials}</strong>
-            </div>
+                <span>Featured Article</span>
 
-            <div className="featured-blog-content">
-              <div className="blog-meta">
-                <span>{featuredPost.category}</span>
-
-                <span>{featuredPost.date}</span>
+                <strong>{featuredPost.initials}</strong>
               </div>
 
-              <h2>{featuredPost.title}</h2>
+              <div className="featured-blog-content">
+                <div className="blog-meta">
+                  <span>{featuredPost.category}</span>
 
-              <p>{featuredPost.description}</p>
+                  <span>{featuredPost.date}</span>
+                </div>
 
-              <div className="featured-blog-footer">
-                <span>{featuredPost.readTime}</span>
+                <h2>{featuredPost.title}</h2>
 
-                <Button to="/contact">
-                  Discuss Your Project
-                  <span>→</span>
-                </Button>
+                <p>{featuredPost.description}</p>
+
+                <div className="featured-blog-footer">
+                  <span>{featuredPost.readTime}</span>
+
+                  {featuredPost.slug ? (
+                    <Button to={`/blog/${featuredPost.slug}`}>
+                      Read Article
+                      <span>→</span>
+                    </Button>
+                  ) : (
+                    <Button to="/contact">
+                      Discuss Your Project
+                      <span>→</span>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ========================================
           BLOG LIST
@@ -246,13 +298,21 @@ const Blog = () => {
               ARTICLE GRID
           ======================================== */}
 
-          {filteredPosts.length > 0 ? (
+          {loading && posts.length === 0 ? (
+            <div className="blog-grid" aria-busy="true" aria-label="Loading articles">
+              {[1, 2, 3].map((item) => (
+                <div className="blog-card blog-card-skeleton" key={item} />
+              ))}
+            </div>
+          ) : filteredPosts.length > 0 ? (
             <div className="blog-grid">
               {filteredPosts.map((post) => (
                 <article className="blog-card" key={post.id}>
                   {/* ARTICLE VISUAL */}
 
                   <div className="blog-card-visual">
+                    <PostImage src={post.image} />
+
                     <span>{post.category}</span>
 
                     <strong>{post.initials}</strong>
@@ -267,14 +327,24 @@ const Blog = () => {
                       <span>{post.readTime}</span>
                     </div>
 
-                    <h3>{post.title}</h3>
+                    <h3>
+                      {post.slug ? (
+                        <Link to={`/blog/${post.slug}`} className="blog-card-link">
+                          {post.title}
+                        </Link>
+                      ) : (
+                        post.title
+                      )}
+                    </h3>
 
                     <p>{post.description}</p>
 
-                    <button className="blog-read-more">
-                      Read Article
-                      <span>→</span>
-                    </button>
+                    {post.slug && (
+                      <span className="blog-read-more" aria-hidden="true">
+                        Read Article
+                        <span>→</span>
+                      </span>
+                    )}
                   </div>
                 </article>
               ))}
@@ -312,10 +382,6 @@ const Blog = () => {
           NEWSLETTER
       ======================================== */}
 
-  {/* ========================================
-    NEWSLETTER
-======================================== */}
-
 <section className="blog-newsletter">
 
   <div className="container">
@@ -344,119 +410,7 @@ const Blog = () => {
           NEWSLETTER FORM
       ======================================== */}
 
-      <form
-        className="newsletter-form"
-        onSubmit={async (event) => {
-
-          event.preventDefault();
-
-          const emailInput =
-            event.target.elements.email;
-
-          const email =
-            emailInput.value.trim();
-
-
-          // ========================================
-          // CHECK EMAIL
-          // ========================================
-
-          if (!email) {
-            alert("Please enter your email address.");
-            return;
-          }
-
-
-          try {
-
-            // ========================================
-            // SEND EMAIL TO BACKEND
-            // ========================================
-
-            const response = await fetch(
-              `${import.meta.env.VITE_API_URL}/api/newsletter`,
-              {
-                method: "POST",
-
-                headers: {
-                  "Content-Type":
-                    "application/json",
-                },
-
-                body: JSON.stringify({
-                  email: email,
-                }),
-              }
-            );
-
-
-            const data =
-              await response.json();
-
-
-            // ========================================
-            // SUCCESS
-            // ========================================
-
-            if (response.ok) {
-
-              alert(
-                "Successfully subscribed to our newsletter!"
-              );
-
-              emailInput.value = "";
-
-            }
-
-
-            // ========================================
-            // BACKEND ERROR
-            // ========================================
-
-            else {
-
-              alert(
-                data.message ||
-                "Subscription failed. Please try again."
-              );
-
-            }
-
-          }
-
-
-          // ========================================
-          // NETWORK ERROR
-          // ========================================
-
-          catch (error) {
-
-            console.error(
-              "Newsletter Error:",
-              error
-            );
-
-            alert(
-              "Unable to connect to the server. Please try again later."
-            );
-
-          }
-
-        }}
-      >
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email address"
-          required
-        />
-
-        <button type="submit">
-          Subscribe
-        </button>
-
-      </form>
+      <NewsletterForm className="newsletter-form" />
 
     </div>
 

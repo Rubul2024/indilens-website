@@ -2,15 +2,40 @@ import { useState } from "react";
 import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
+import usePublicData from "../hooks/usePublicData";
+import { mergeUnique, padNumber } from "../utils/content";
 
 import "./Portfolio.css";
+
+// Project cover with a graceful fallback to the numbered artwork
+const ProjectVisual = ({ project, number }) => {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <div className="portfolio-card-image">
+      {project.image && !failed ? (
+        <img
+          className="portfolio-cover-image"
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="project-placeholder">
+          <span>{project.category}</span>
+
+          <strong>{number}</strong>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "Websites", "Web Apps", "E-commerce", "UI/UX"];
-
-  const projects = [
+  const builtInProjects = [
     {
       id: 1,
       title: "Business Growth Platform",
@@ -71,6 +96,25 @@ const Portfolio = () => {
       tags: ["Node.js", "MongoDB", "React"],
     },
   ];
+
+  // Projects published from the admin panel appear first
+  const { data: cmsProjects } = usePublicData("/api/portfolio", []);
+
+  const projects = mergeUnique(
+    (cmsProjects || []).map((project) => ({
+      id: project._id,
+      title: project.title,
+      category: project.category || "Websites",
+      type: project.clientName || project.category || "Project",
+      description: project.excerpt,
+      tags: project.technologies || [],
+      image: project.featuredImage,
+      url: project.liveUrl,
+    })),
+    builtInProjects
+  );
+
+  const categories = ["All", ...new Set(projects.map((project) => project.category))];
 
   const filteredProjects =
     activeCategory === "All"
@@ -183,13 +227,10 @@ const Portfolio = () => {
               <article className="portfolio-card" key={project.id}>
                 {/* PROJECT VISUAL */}
 
-                <div className="portfolio-card-image">
-                  <div className="project-placeholder">
-                    <span>{project.category}</span>
-
-                    <strong>{project.id.toString().padStart(2, "0")}</strong>
-                  </div>
-                </div>
+                <ProjectVisual
+                  project={project}
+                  number={padNumber(projects.indexOf(project))}
+                />
 
                 {/* PROJECT CONTENT */}
 
@@ -197,10 +238,23 @@ const Portfolio = () => {
                   <div className="portfolio-card-meta">
                     <span>{project.type}</span>
 
-                    <span>↗</span>
+                    <span aria-hidden="true">↗</span>
                   </div>
 
-                  <h3>{project.title}</h3>
+                  <h3>
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portfolio-card-link"
+                      >
+                        {project.title}
+                      </a>
+                    ) : (
+                      project.title
+                    )}
+                  </h3>
 
                   <p>{project.description}</p>
 
@@ -240,13 +294,13 @@ const Portfolio = () => {
             </div>
 
             <div className="portfolio-stat">
-              <strong>30+</strong>
+              <strong>20+</strong>
 
               <span>Happy Clients</span>
             </div>
 
             <div className="portfolio-stat">
-              <strong>5+</strong>
+              <strong>10+</strong>
 
               <span>Years Experience</span>
             </div>

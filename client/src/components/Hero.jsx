@@ -50,7 +50,7 @@ const Hero = () => {
           <div className="hero-actions">
             <Link to="/contact" className="hero-primary-button">
               Start a Project
-              <span>→</span>
+              <span aria-hidden="true">→</span>
             </Link>
 
             <Link to="/portfolio" className="hero-secondary-button">
@@ -73,7 +73,7 @@ const Hero = () => {
             HERO VISUAL
         ======================================== */}
 
-        <div className="hero-visual">
+        <div className="hero-visual" aria-hidden="true">
           {/* Main Card */}
 
           <div className="hero-main-card">

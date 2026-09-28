@@ -1,14 +1,32 @@
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
 import SEO from "../components/SEO";
+import usePublicData from "../hooks/usePublicData";
+import { padNumber } from "../utils/content";
 import "./Team.css";
+
+const toInitials = (name = "") =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join("");
+
+// Photo when available, initials otherwise
+const MemberAvatar = ({ member, className }) =>
+  member.image ? (
+    <img className={`${className} member-photo`} src={member.image} alt={member.name} loading="lazy" />
+  ) : (
+    <div className={className}>{member.initials}</div>
+  );
 
 const Team = () => {
   /* ========================================
      LEADERSHIP TEAM
   ======================================== */
 
-  const leadership = [
+  const defaultLeadership = [
     {
       id: 1,
       name: "Founder & Director",
@@ -32,7 +50,7 @@ const Team = () => {
      CORE TEAM
   ======================================== */
 
-  const teamMembers = [
+  const defaultTeamMembers = [
     {
       id: 1,
       name: "Frontend Developer",
@@ -69,6 +87,31 @@ const Team = () => {
       initials: "PM",
     },
   ];
+
+  /* ========================================
+     CMS TEAM
+     Real people published from the admin panel
+     replace the role placeholders above:
+     featured members appear under Leadership.
+  ======================================== */
+
+  const { data: cmsTeam } = usePublicData("/api/team", []);
+
+  const cmsMembers = (cmsTeam || []).map((member) => ({
+    id: member._id,
+    name: member.name,
+    role: member.role,
+    description: member.shortBio || member.department,
+    initials: toInitials(member.name),
+    image: member.profileImage,
+    featured: member.isFeatured,
+  }));
+
+  const cmsLeaders = cmsMembers.filter((member) => member.featured);
+  const cmsPeople = cmsMembers.filter((member) => !member.featured);
+
+  const leadership = cmsLeaders.length ? cmsLeaders : defaultLeadership;
+  const teamMembers = cmsPeople.length ? cmsPeople : defaultTeamMembers;
 
   /* ========================================
      CULTURE VALUES
@@ -226,7 +269,7 @@ const Team = () => {
             {leadership.map((member) => (
               <article className="leadership-card" key={member.id}>
                 <div className="member-visual">
-                  <div className="member-initials">{member.initials}</div>
+                  <MemberAvatar member={member} className="member-initials" />
                 </div>
 
                 <div className="member-content">
@@ -255,12 +298,12 @@ const Team = () => {
           />
 
           <div className="team-grid">
-            {teamMembers.map((member) => (
+            {teamMembers.map((member, index) => (
               <article className="team-card" key={member.id}>
                 <div className="team-card-visual">
-                  <div className="team-card-initials">{member.initials}</div>
+                  <MemberAvatar member={member} className="team-card-initials" />
 
-                  <span className="team-card-number">0{member.id}</span>
+                  <span className="team-card-number">{padNumber(index)}</span>
                 </div>
 
                 <div className="team-card-content">

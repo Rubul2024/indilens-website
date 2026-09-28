@@ -18,6 +18,8 @@ const Contact = () => {
 
   const [status, setStatus] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   // ========================================
@@ -69,7 +71,11 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
-      console.error(error);
+      setErrorMessage(
+        error instanceof TypeError
+          ? "Unable to connect right now. Please try again, or email us at marketing@indilens.in."
+          : error.message
+      );
 
       setStatus("error");
     } finally {
@@ -121,7 +127,7 @@ const Contact = () => {
 
             <div className="contact-info-item">
 
-              <div className="contact-icon">
+              <div className="contact-icon" aria-hidden="true">
                 ✉
               </div>
 
@@ -144,7 +150,7 @@ const Contact = () => {
 
             <div className="contact-info-item">
 
-              <div className="contact-icon">
+              <div className="contact-icon" aria-hidden="true">
                 📞
               </div>
 
@@ -167,7 +173,7 @@ const Contact = () => {
 
             <div className="contact-info-item">
 
-              <div className="contact-icon">
+              <div className="contact-icon" aria-hidden="true">
                 ⏱
               </div>
 
@@ -188,7 +194,7 @@ const Contact = () => {
 
             <div className="contact-info-item">
 
-              <div className="contact-icon">
+              <div className="contact-icon" aria-hidden="true">
                 📍
               </div>
 
@@ -225,29 +231,21 @@ const Contact = () => {
               will contact you shortly.
             </p>
 
-            {/* SUCCESS */}
+            {/* STATUS */}
 
-            {status === "success" && (
+            <div aria-live="polite">
+              {status === "success" && (
+                <div className="form-success" role="status">
+                  Thank you! Your message has been sent. We'll get back to you within 24 business hours.
+                </div>
+              )}
 
-              <div className="form-success">
-
-                Thank you! Your message has been sent successfully.
-
-              </div>
-
-            )}
-
-            {/* ERROR */}
-
-            {status === "error" && (
-
-              <div className="form-error">
-
-                Something went wrong. Please try again.
-
-              </div>
-
-            )}
+              {status === "error" && (
+                <div className="form-error" role="alert">
+                  {errorMessage || "Something went wrong. Please try again."}
+                </div>
+              )}
+            </div>
 
             <form onSubmit={handleSubmit}>
 
@@ -259,18 +257,18 @@ const Contact = () => {
 
                 <div className="form-group">
 
-                  <label>
-
+                  <label htmlFor="contact-name">
                     Your Name
-
-                    <span className="required">*</span>
-
+                    <span className="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
                     placeholder="John Doe"
+                    autoComplete="name"
+                    maxLength={100}
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -280,18 +278,19 @@ const Contact = () => {
 
                 <div className="form-group">
 
-                  <label>
-
+                  <label htmlFor="contact-email">
                     Email Address
-
-                    <span className="required">*</span>
-
+                    <span className="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
                     placeholder="john@example.com"
+                    autoComplete="email"
+                    inputMode="email"
+                    maxLength={150}
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -309,34 +308,41 @@ const Contact = () => {
 
                 <div className="form-group">
 
-                  <label>
+                  <label htmlFor="contact-phone">
                     Phone Number
+                    <span className="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
-                    type="text"
+                    id="contact-phone"
+                    type="tel"
                     name="phone"
                     placeholder="+91 XXXXX XXXXX"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    pattern="[0-9+()\-\s]{7,20}"
+                    title="Enter a valid phone number"
+                    maxLength={20}
                     value={formData.phone}
                     onChange={handleChange}
+                    required
                   />
 
                 </div>
 
                 <div className="form-group">
 
-                  <label>
-
+                  <label htmlFor="contact-subject">
                     Subject
-
-                    <span className="required">*</span>
-
+                    <span className="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
+                    id="contact-subject"
                     type="text"
                     name="subject"
                     placeholder="Project Discussion"
+                    maxLength={200}
                     value={formData.subject}
                     onChange={handleChange}
                     required
@@ -352,17 +358,16 @@ const Contact = () => {
 
               <div className="form-group">
 
-                <label>
-
+                <label htmlFor="contact-message">
                   Your Message
-
-                  <span className="required">*</span>
-
+                  <span className="required" aria-hidden="true">*</span>
                 </label>
 
                 <textarea
+                  id="contact-message"
                   name="message"
                   placeholder="Tell us about your project..."
+                  maxLength={5000}
                   value={formData.message}
                   onChange={handleChange}
                   rows="7"
