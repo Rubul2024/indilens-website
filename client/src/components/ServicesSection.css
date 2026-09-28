@@ -70,11 +70,11 @@
    INTRO
 ======================================== */
 
-.services-intro {
+.services-section .services-intro {
   max-width: 400px;
 }
 
-.services-intro p {
+.services-section .services-intro p {
   margin: 0;
 
   color: var(--text-secondary);
@@ -126,7 +126,7 @@
    SERVICES GRID
 ======================================== */
 
-.services-grid {
+.services-section .services-grid {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
@@ -138,7 +138,7 @@
    SERVICE CARD
 ======================================== */
 
-.service-card {
+.services-section .service-card {
   position: relative;
 
   min-height: 430px;
@@ -165,7 +165,7 @@
     border-color 0.4s ease;
 }
 
-.service-card:hover {
+.services-section .service-card:hover {
   transform: translateY(-8px);
 
   border-color: rgba(37, 99, 235, 0.3);
@@ -177,7 +177,7 @@
    CARD TOP
 ======================================== */
 
-.service-card-top {
+.services-section .service-card-top {
   display: flex;
 
   align-items: center;
@@ -185,7 +185,7 @@
   justify-content: space-between;
 }
 
-.service-number {
+.services-section .service-number {
   color: var(--primary);
 
   font-size: 13px;
@@ -241,7 +241,7 @@
     transform 0.3s ease;
 }
 
-.service-card:hover .service-icon {
+.services-section .service-card:hover .service-icon {
   background: var(--primary);
 
   transform: rotate(8deg);
@@ -251,11 +251,11 @@
    CARD CONTENT
 ======================================== */
 
-.service-card-content {
+.services-section .service-card-content {
   margin-top: 30px;
 }
 
-.service-card-content h3 {
+.services-section .service-card-content h3 {
   max-width: 300px;
 
   margin: 0;
@@ -271,7 +271,7 @@
   letter-spacing: -0.8px;
 }
 
-.service-card-content p {
+.services-section .service-card-content p {
   margin: 18px 0 0;
 
   color: var(--text-secondary);
@@ -309,7 +309,7 @@
   letter-spacing: 1px;
 }
 
-.service-arrow {
+.services-section .service-arrow {
   color: var(--text-primary);
 
   font-size: 20px;
@@ -319,7 +319,7 @@
     color 0.3s ease;
 }
 
-.service-card:hover .service-arrow {
+.services-section .service-card:hover .service-arrow {
   color: var(--primary);
 
   transform: translateX(6px);
@@ -342,11 +342,11 @@
     align-items: start;
   }
 
-  .services-intro {
+  .services-section .services-intro {
     max-width: 600px;
   }
 
-  .services-grid {
+  .services-section .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -370,23 +370,23 @@
     letter-spacing: -2px;
   }
 
-  .services-intro p {
+  .services-section .services-intro p {
     font-size: 14px;
   }
 
-  .services-grid {
+  .services-section .services-grid {
     grid-template-columns: 1fr;
 
     gap: 15px;
   }
 
-  .service-card {
+  .services-section .service-card {
     min-height: 390px;
 
     padding: 25px;
   }
 
-  .service-card-content h3 {
+  .services-section .service-card-content h3 {
     font-size: 22px;
   }
 }

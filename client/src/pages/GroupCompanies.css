@@ -15,7 +15,7 @@
    PAGE TOP SPACING
 ======================================== */
 
-.group-companies-page
+.group-companies-page .group-companies-page
 .group-companies-section {
   padding-top:
     160px;
@@ -31,7 +31,7 @@
   600px
 ) {
 
-  .group-companies-page
+  .group-companies-page .group-companies-page
   .group-companies-section {
     padding-top:
       120px;

@@ -126,7 +126,7 @@
    PROJECT LIST
 ======================================== */
 
-.portfolio-projects {
+.portfolio-section .portfolio-projects {
   display: flex;
 
   flex-direction: column;

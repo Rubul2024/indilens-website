@@ -254,7 +254,7 @@
   cursor: pointer;
 }
 
-.faq-icon {
+.faq-page .faq-icon {
   flex-shrink: 0;
 
   width: 32px;
@@ -280,7 +280,7 @@
   transition: transform 0.3s ease;
 }
 
-.faq-item.open .faq-icon {
+.faq-page .faq-item.open .faq-icon {
   transform: rotate(180deg);
 
   background: var(--primary);
@@ -294,7 +294,7 @@
    FAQ ANSWER
 ======================================== */
 
-.faq-answer {
+.faq-page .faq-answer {
   display: grid;
 
   grid-template-rows: 0fr;
@@ -302,7 +302,7 @@
   transition: grid-template-rows 0.35s ease;
 }
 
-.faq-item.open .faq-answer {
+.faq-page .faq-item.open .faq-answer {
   grid-template-rows: 1fr;
 }
 
@@ -310,7 +310,7 @@
   overflow: hidden;
 }
 
-.faq-answer p {
+.faq-page .faq-answer p {
   max-width: 750px;
 
   margin: 0;
@@ -521,7 +521,7 @@
     font-size: 16px;
   }
 
-  .faq-answer p {
+  .faq-page .faq-answer p {
     padding: 0 45px 25px 10px;
   }
 
@@ -555,7 +555,7 @@
     max-width: 85%;
   }
 
-  .faq-icon {
+  .faq-page .faq-icon {
     width: 28px;
 
     height: 28px;

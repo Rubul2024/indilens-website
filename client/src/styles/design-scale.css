@@ -1,0 +1,523 @@
+/* ==========================================================
+   INDILENS DESIGN SCALE
+   ----------------------------------------------------------
+   One consistent type scale, section rhythm and card sizing
+   for the whole public site. Loaded after every component
+   stylesheet; selectors are prefixed with "html body" so they
+   always take precedence over the original component rules.
+========================================================== */
+
+:root {
+  /* Type scale (fluid: phone -> desktop) */
+  --fs-display: clamp(36px, 4.4vw, 60px);   /* homepage headline */
+  --fs-h1: clamp(34px, 3.8vw, 54px);        /* page headlines */
+  --fs-h2: clamp(28px, 2.9vw, 42px);        /* section titles */
+  --fs-cta: clamp(28px, 3vw, 42px);         /* call-to-action titles */
+  --fs-h3-lg: clamp(24px, 2.2vw, 30px);     /* feature card titles */
+  --fs-h3: clamp(20px, 1.6vw, 22px);        /* card titles */
+  --fs-lead: clamp(16px, 1.25vw, 18px);     /* intro paragraphs */
+  --fs-stat: clamp(28px, 2.6vw, 36px);      /* stat numbers */
+
+  --heading-weight: 700;
+  --heading-tracking: -0.025em;
+
+  /* Rhythm */
+  --section-space: clamp(56px, 7vw, 96px);
+  --card-pad: clamp(22px, 2.4vw, 32px);
+  --card-pad-lg: clamp(26px, 3vw, 44px);
+}
+
+/* ==========================================================
+   HEADINGS
+========================================================== */
+
+/* Homepage hero headline */
+html body .hero-section .hero-title {
+  max-width: 640px;
+  font-size: var(--fs-display);
+  font-weight: var(--heading-weight);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+/* Page hero headlines */
+html body .about-hero h1,
+html body .services-hero h1,
+html body .portfolio-hero h1,
+html body .team-hero h1,
+html body .blog-hero h1,
+html body .faq-hero h1,
+html body .legal-hero h1,
+html body .contact-info h1 {
+  font-size: var(--fs-h1);
+  font-weight: var(--heading-weight);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+/* Section titles */
+html body .section-title,
+html body .about-title,
+html body .services-title,
+html body .industries-title,
+html body .portfolio-title,
+html body .why-choose-title,
+html body .group-companies-title,
+html body .trusted-header h2,
+html body .team-benefits-content h2,
+html body .newsletter-content h2,
+html body .faq-contact-content h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--heading-weight);
+  line-height: 1.15;
+  letter-spacing: var(--heading-tracking);
+}
+
+/* Call-to-action titles */
+html body .about-cta h2,
+html body .services-cta h2,
+html body .portfolio-cta h2,
+html body .team-cta h2,
+html body .blog-cta h2,
+html body .faq-cta h2,
+html body .why-choose-cta h3 {
+  font-size: var(--fs-cta);
+  font-weight: var(--heading-weight);
+  line-height: 1.15;
+  letter-spacing: var(--heading-tracking);
+}
+
+/* Feature card titles */
+html body .portfolio-content h3,
+html body .featured-blog-content h2,
+html body .about-card-center h3,
+html body .about-intro-card h3,
+html body .services-intro-card h3,
+html body .contact-form-card h2 {
+  font-size: var(--fs-h3-lg);
+  font-weight: var(--heading-weight);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Card titles */
+html body .service-card-content h3,
+html body .service-card h3,
+html body .industry-content h3,
+html body .why-choose-content h3,
+html body .group-company-content h3,
+html body .portfolio-card h3,
+html body .portfolio-process-card h3,
+html body .mission-card h3,
+html body .approach-card h3,
+html body .member-content h3,
+html body .team-card-content h3,
+html body .blog-card-content h3,
+html body .legal-content h2 {
+  font-size: var(--fs-h3);
+  font-weight: var(--heading-weight);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+html body .footer-logo {
+  font-size: clamp(24px, 2.4vw, 30px);
+}
+
+html body .footer-newsletter-content h3 {
+  font-size: clamp(22px, 2.2vw, 28px);
+}
+
+/* Intro / lead paragraphs */
+html body .hero-description,
+html body .about-hero p,
+html body .services-hero p,
+html body .portfolio-hero p,
+html body .team-hero p,
+html body .blog-hero p,
+html body .faq-hero p,
+html body .contact-description {
+  font-size: var(--fs-lead);
+  line-height: 1.7;
+}
+
+/* Stat numbers */
+html body .about-stat strong,
+html body .portfolio-stat strong {
+  font-size: var(--fs-stat);
+}
+
+/* Decorative oversized numbers and initials */
+html body .industry-bg-number {
+  font-size: 110px;
+}
+
+html body .portfolio-large-number {
+  font-size: 170px;
+}
+
+html body .featured-blog-visual strong {
+  font-size: 72px;
+}
+
+html body .blog-card-visual strong {
+  font-size: 52px;
+}
+
+html body .project-placeholder strong {
+  font-size: 56px;
+}
+
+html body .member-initials {
+  font-size: 52px;
+}
+
+html body .team-card-initials {
+  font-size: 46px;
+}
+
+/* ==========================================================
+   SECTION RHYTHM
+========================================================== */
+
+html body main > section:not(:first-child),
+html body .section {
+  padding-top: var(--section-space);
+  padding-bottom: var(--section-space);
+}
+
+html body .section-header {
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+/* Page heroes: content-sized instead of a fixed tall block */
+html body .about-hero,
+html body .services-hero,
+html body .portfolio-hero,
+html body .team-hero,
+html body .blog-hero,
+html body .faq-hero {
+  min-height: 0;
+  padding: clamp(120px, 12vw, 160px) 0 clamp(48px, 6vw, 80px);
+}
+
+html body .legal-hero {
+  padding: clamp(120px, 12vw, 150px) 0 clamp(48px, 5vw, 72px);
+}
+
+/* Homepage hero */
+html body .hero-section {
+  min-height: 0;
+  padding-top: clamp(104px, 11vw, 140px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+}
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+/* Homepage hero dashboard */
+@media (min-width: 701px) {
+  html body .hero-visual {
+    min-height: 500px;
+  }
+}
+
+html body .hero-main-card {
+  max-width: 480px;
+  min-height: 0;
+  padding: var(--card-pad);
+}
+
+/* Service cards */
+html body .service-card {
+  min-height: 0;
+  padding: var(--card-pad);
+}
+
+html body .service-icon {
+  width: 52px;
+  height: 52px;
+  font-size: 20px;
+}
+
+/* Group company cards */
+html body .group-company-card {
+  min-height: 0;
+  padding: var(--card-pad);
+}
+
+/* Homepage featured projects */
+html body .portfolio-project {
+  min-height: 0;
+}
+
+html body .portfolio-visual {
+  min-height: clamp(240px, 30vw, 420px);
+}
+
+html body .portfolio-content {
+  padding: var(--card-pad-lg);
+}
+
+/* About cards */
+html body .about-visual {
+  min-height: clamp(340px, 36vw, 460px);
+}
+
+html body .about-main-card {
+  min-height: clamp(300px, 30vw, 380px);
+}
+
+/* List-style items */
+html body .why-choose-item,
+html body .industry-item {
+  min-height: 0;
+}
+
+/* Large content cards */
+html body .why-choose-cta,
+html body .about-intro-card,
+html body .services-intro-card,
+html body .mission-card,
+html body .contact-form-card,
+html body .faq-contact-card,
+html body .featured-blog-content,
+html body .newsletter-card {
+  min-height: 0;
+  padding: var(--card-pad-lg);
+}
+
+html body .approach-card,
+html body .member-content {
+  padding: var(--card-pad);
+}
+
+/* Visual areas */
+html body .featured-blog-visual {
+  min-height: clamp(240px, 28vw, 380px);
+}
+
+html body .blog-card-visual {
+  height: 200px;
+}
+
+html body .member-visual {
+  min-height: clamp(220px, 24vw, 300px);
+}
+
+/* Empty states */
+html body .blog-empty,
+html body .faq-empty,
+html body .portfolio-empty {
+  padding: 56px 20px;
+}
+
+/* ==========================================================
+   PHONES
+========================================================== */
+
+@media (max-width: 700px) {
+  html body .hero-visual {
+    min-height: 0;
+  }
+
+  html body .portfolio-large-number {
+    font-size: 120px;
+  }
+
+  html body .industry-bg-number {
+    font-size: 80px;
+  }
+
+  html body .featured-blog-visual strong {
+    font-size: 56px;
+  }
+
+  html body .blog-card-visual {
+    height: 180px;
+  }
+}
+
+/* ==========================================================
+   HERO DASHBOARD: badges sit on the card corners at every
+   size instead of covering the card's text
+========================================================== */
+
+html body .hero-visual {
+  min-height: 0;
+  padding: 56px 0 60px;
+}
+
+html body .hero-visual .hero-project-card {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+}
+
+html body .hero-visual .hero-experience-card {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-width: 700px) {
+  html body .hero-visual .hero-project-card {
+    left: auto;
+    right: 8px;
+  }
+
+  html body .hero-visual .hero-experience-card {
+    right: auto;
+    left: 8px;
+  }
+}
+
+/* ==========================================================
+   CARD BODY TEXT: consistent, readable size
+========================================================== */
+
+html body .service-card-content p,
+html body .service-card p,
+html body .group-company-content p,
+html body .portfolio-content p,
+html body .portfolio-card p,
+html body .blog-card-content p,
+html body .mission-card p,
+html body .approach-card p,
+html body .member-content p,
+html body .team-card-content p,
+html body .portfolio-process-card p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Section intro paragraphs beside titles */
+html body .services-intro p,
+html body .industries-intro p,
+html body .portfolio-intro p,
+html body .why-choose-intro p,
+html body .group-companies-intro p,
+html body .section-description {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ==========================================================
+   PAGE HERO CONTENT: the section padding provides the space
+========================================================== */
+
+html body .about-hero-content,
+html body .services-hero-content,
+html body .portfolio-hero-content,
+html body .team-hero-content,
+html body .blog-hero-content,
+html body .faq-hero-content,
+html body .legal-hero-content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+html body .about-hero h1,
+html body .services-hero h1,
+html body .portfolio-hero h1,
+html body .team-hero h1,
+html body .blog-hero h1,
+html body .faq-hero h1,
+html body .legal-hero h1 {
+  margin-bottom: 20px;
+}
+
+/* ==========================================================
+   SERVICE CARDS (scoped selectors in both the homepage
+   section and the Services page need matching specificity)
+========================================================== */
+
+html body .services-section .service-card,
+html body .services-page .service-card {
+  min-height: 0;
+  padding: var(--card-pad);
+}
+
+html body .services-section .service-card-content h3,
+html body .services-page .service-card h3,
+html body .services-page .service-card-content h3 {
+  font-size: var(--fs-h3);
+  font-weight: var(--heading-weight);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+html body .services-section .service-card-content p,
+html body .services-page .service-card p,
+html body .services-page .service-card-content p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+html body .services-section .services-intro p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+html body .services-page .section-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--heading-weight);
+  line-height: 1.15;
+  letter-spacing: var(--heading-tracking);
+}
+
+html body .services-page .section-description {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ==========================================================
+   CARD IMAGE AREAS: shorter media keeps cards compact
+========================================================== */
+
+html body .portfolio-card-image {
+  height: clamp(190px, 16vw, 230px);
+  padding: 16px;
+}
+
+html body .project-placeholder::before {
+  width: 180px;
+  height: 180px;
+}
+
+html body .team-card-visual {
+  height: clamp(180px, 15vw, 210px);
+}
+
+html body .blog-card-visual {
+  height: clamp(170px, 14vw, 200px);
+}
+
+html body .blog-card-visual::before {
+  width: 150px;
+  height: 150px;
+}
+
+/* Group Companies page: its section title is the page headline */
+html body .group-companies-page .group-companies-title {
+  font-size: var(--fs-h1);
+}
+
+/* Even card heights: long excerpts are trimmed to three lines */
+html body .blog-card-content p,
+html body .portfolio-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  html body .featured-blog-visual {
+    min-height: 200px;
+  }
+}
