@@ -644,3 +644,95 @@ html body .portfolio-section .portfolio-content p,
 html body .portfolio-section .portfolio-technologies {
   margin-top: 0;
 }
+
+/* ==========================================================
+   GROUP COMPANIES: compact, standard-size cards
+========================================================== */
+
+html body .group-companies-header {
+  margin-bottom: clamp(32px, 4vw, 48px);
+  gap: 40px;
+}
+
+html body .group-companies-list {
+  gap: 20px;
+}
+
+html body .group-company-card {
+  min-height: 0;
+  padding: 24px 26px;
+  border-radius: 16px;
+}
+
+html body .group-company-card:hover {
+  transform: translateY(-3px);
+}
+
+html body .group-company-top {
+  padding-bottom: 14px;
+}
+
+html body .group-company-domain {
+  font-size: 13px;
+}
+
+html body .group-company-content {
+  padding: 16px 0 14px;
+}
+
+html body .group-company-content h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+html body .group-company-content p {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+html body .group-company-services {
+  gap: 6px;
+  margin-top: 0;
+  padding-bottom: 18px;
+}
+
+html body .group-company-service {
+  padding: 5px 11px;
+  font-size: 12px;
+}
+
+html body .group-company-link {
+  display: flex;
+  min-height: 0;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 13px;
+}
+
+html body .group-company-link > span:first-of-type {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+html body .group-companies-footer {
+  margin-top: 36px;
+  padding-top: 22px;
+}
+
+@media (max-width: 1000px) {
+  html body .group-companies-header {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  html body .group-company-card {
+    padding: 20px;
+  }
+
+  html body .group-company-content h3 {
+    font-size: 19px;
+  }
+}
