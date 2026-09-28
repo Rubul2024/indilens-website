@@ -162,3 +162,44 @@
     margin-bottom: 4px;
   }
 }
+
+/* ========================================
+   FOOTER LOGO
+   The logo artwork has a light background, so it sits on a
+   white badge to look intentional on the dark footer.
+======================================== */
+
+.site-footer .footer-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+
+.site-footer .footer-logo-badge:hover {
+  transform: translateY(-2px);
+}
+
+.site-footer .footer-logo-badge img {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+
+/* The badge lives on its own line above the company name */
+.site-footer .footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  body .site-footer a.footer-logo-badge {
+    min-height: 0;
+  }
+}

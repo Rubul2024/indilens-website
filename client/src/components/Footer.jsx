@@ -53,6 +53,16 @@ const Footer = () => {
           {/* BRAND */}
 
           <div className="footer-brand">
+            <Link to="/" className="footer-logo-badge" aria-label="Indilens home">
+              <img
+                src="/images/indilens-logo.png"
+                alt="Indilens"
+                width="132"
+                height="51"
+                loading="lazy"
+              />
+            </Link>
+
             <Link to="/" className="footer-logo">
               Indilens Web Solutions
             </Link>
