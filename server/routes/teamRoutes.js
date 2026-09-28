@@ -1,87 +1,44 @@
 const express = require("express");
 
-// ==================================================
-// IMPORT TEAM CONTROLLER
-// ==================================================
+const Team = require("../models/Team");
 
 const {
   getPublishedTeam,
-
   createTeamMember,
-
   updateTeamMember,
-
   deleteTeamMember,
 } = require("../controllers/teamController");
 
-// ==================================================
-// IMPORT ADMIN AUTH MIDDLEWARE
-// ==================================================
+const {
+  validateObjectId,
+  listAll,
+  getById,
+} = require("../controllers/adminResourceController");
 
 const { protect } = require("../middleware/authMiddleware");
-
-// ==================================================
-// CREATE ROUTER
-// ==================================================
 
 const router = express.Router();
 
 // ==================================================
+// ADMIN - ALL RECORDS (drafts included) + BY ID
+// Must be registered before the public "/:slug" route
+// ==================================================
+
+router.get("/admin/all", protect, listAll(Team, { displayOrder: 1, createdAt: -1 }));
+router.get("/admin/:id", protect, validateObjectId, getById(Team));
+
+// ==================================================
 // PUBLIC
-// GET ALL PUBLISHED TEAM MEMBERS
-// GET /api/team
 // ==================================================
 
-router.get(
-  "/",
-
-  getPublishedTeam,
-);
+router.get("/", getPublishedTeam);
 
 // ==================================================
-// ADMIN
-// CREATE TEAM MEMBER
-// POST /api/team
+// ADMIN - WRITE
 // ==================================================
 
-router.post(
-  "/",
-
-  protect,
-
-  createTeamMember,
-);
-
-// ==================================================
-// ADMIN
-// UPDATE TEAM MEMBER
-// PUT /api/team/:id
-// ==================================================
-
-router.put(
-  "/:id",
-
-  protect,
-
-  updateTeamMember,
-);
-
-// ==================================================
-// ADMIN
-// DELETE TEAM MEMBER
-// DELETE /api/team/:id
-// ==================================================
-
-router.delete(
-  "/:id",
-
-  protect,
-
-  deleteTeamMember,
-);
-
-// ==================================================
-// EXPORT ROUTER
-// ==================================================
+router.post("/", protect, createTeamMember);
+router.put("/:id", protect, validateObjectId, updateTeamMember);
+router.delete("/:id", protect, validateObjectId, deleteTeamMember);
 
 module.exports = router;

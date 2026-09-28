@@ -1,95 +1,48 @@
 const express = require("express");
 
-// ==================================================
-// IMPORT PORTFOLIO CONTROLLER
-// ==================================================
+const Portfolio = require("../models/Portfolio");
 
 const {
   getPublishedPortfolios,
-
   getPortfolioBySlug,
-
   createPortfolio,
-
   updatePortfolio,
-
   deletePortfolio,
 } = require("../controllers/portfolioController");
 
-// ==================================================
-// IMPORT ADMIN AUTH MIDDLEWARE
-// ==================================================
+const {
+  validateObjectId,
+  listAll,
+  getById,
+} = require("../controllers/adminResourceController");
 
 const { protect } = require("../middleware/authMiddleware");
-
-// ==================================================
-// CREATE ROUTER
-// ==================================================
 
 const router = express.Router();
 
 // ==================================================
-// PUBLIC
-// GET ALL PUBLISHED PORTFOLIOS
-// GET /api/portfolio
+// ADMIN - ALL RECORDS (drafts included) + BY ID
+// Must be registered before the public "/:slug" route
 // ==================================================
 
-router.get(
-  "/",
-
-  getPublishedPortfolios,
-);
+router.get("/admin/all", protect, listAll(Portfolio, { createdAt: -1 }));
+router.get("/admin/:id", protect, validateObjectId, getById(Portfolio));
 
 // ==================================================
 // PUBLIC
-// GET SINGLE PORTFOLIO BY SLUG
-// GET /api/portfolio/:slug
 // ==================================================
 
-router.get(
-  "/:slug",
-
-  getPortfolioBySlug,
-);
+router.get("/", getPublishedPortfolios);
+router.get("/:slug", getPortfolioBySlug);
 
 // ==================================================
-// ADMIN
-// CREATE PORTFOLIO
-// POST /api/portfolio
+// ADMIN - WRITE
 // ==================================================
 
+router.post("/", protect, createPortfolio);
+// Legacy path kept for older clients
 router.post("/create", protect, createPortfolio);
-
-// ==================================================
-// ADMIN
-// UPDATE PORTFOLIO
-// PUT /api/portfolio/:id
-// ==================================================
-
-router.put(
-  "/:id",
-
-  protect,
-
-  updatePortfolio,
-);
-
-// ==================================================
-// ADMIN
-// DELETE PORTFOLIO
-// DELETE /api/portfolio/:id
-// ==================================================
-
-router.delete(
-  "/:id",
-
-  protect,
-
-  deletePortfolio,
-);
-
-// ==================================================
-// EXPORT ROUTER
-// ==================================================
+router.put("/:id", protect, validateObjectId, updatePortfolio);
+router.delete("/:id", protect, validateObjectId, deletePortfolio);
 
 module.exports = router;

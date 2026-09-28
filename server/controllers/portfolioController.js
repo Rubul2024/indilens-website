@@ -425,7 +425,7 @@ const updatePortfolio = async (
       slug !== undefined
     ) {
 
-      portfolio.slug =
+      const cleanSlug =
         slug
           .trim()
           .toLowerCase()
@@ -433,6 +433,31 @@ const updatePortfolio = async (
             /\s+/g,
             "-"
           );
+
+
+      const duplicatePortfolio =
+        await Portfolio.findOne({
+          slug: cleanSlug,
+          _id: { $ne: portfolio._id },
+        });
+
+
+      if (duplicatePortfolio) {
+
+        return res.status(409).json({
+
+          success: false,
+
+          message:
+            "Another portfolio project already uses this slug.",
+
+        });
+
+      }
+
+
+      portfolio.slug =
+        cleanSlug;
 
     }
 

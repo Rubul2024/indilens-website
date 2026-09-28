@@ -16,8 +16,19 @@ const createContact = async (req, res) => {
       message,
     } = req.body;
 
+    const asText = (value, max) =>
+      typeof value === "string" ? value.trim().slice(0, max) : "";
+
+    const clean = {
+      name: asText(name, 100),
+      email: asText(email, 150).toLowerCase(),
+      phone: asText(phone, 30),
+      subject: asText(subject, 200),
+      message: asText(message, 5000),
+    };
+
     // Validate required fields
-    if (!name || !email || !phone) {
+    if (!clean.name || !clean.email || !clean.phone) {
       return res.status(400).json({
         success: false,
         message:
@@ -25,20 +36,20 @@ const createContact = async (req, res) => {
       });
     }
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean.email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter a valid email address.",
+      });
+    }
+
     // Create contact message
-    const contact = await Contact.create({
-      name,
-      email,
-      phone,
-      subject,
-      message,
-    });
+    await Contact.create(clean);
 
     return res.status(201).json({
       success: true,
       message:
         "Message sent successfully!",
-      data: contact,
     });
 
   } catch (error) {
@@ -150,6 +161,13 @@ const updateContact = async (req, res) => {
       status,
     } = req.body;
 
+    if (!["new", "read", "replied"].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Status must be new, read or replied.",
+      });
+    }
+
     const contact =
       await Contact.findByIdAndUpdate(
         req.params.id,
@@ -157,7 +175,7 @@ const updateContact = async (req, res) => {
           status,
         },
         {
-          new: true,
+          returnDocument: "after",
           runValidators: true,
         }
       );

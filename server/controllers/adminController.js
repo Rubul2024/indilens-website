@@ -3,225 +3,213 @@ const jwt = require("jsonwebtoken");
 
 const Admin = require("../models/Admin");
 
-// ======================================================
-// REGISTER ADMIN
-// ======================================================
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const registerAdmin = async (req, res) => {
-  try {
-    if (process.env.ALLOW_ADMIN_REGISTRATION !== "true") {
-      return res.status(403).json({
-        success: false,
-        message: "Admin registration is disabled.",
-      });
-    }
+// Used to keep login timing constant when the email is unknown
+const DUMMY_HASH = bcrypt.hashSync("indilens-timing-guard", 10);
 
-    const { name, email, password } = req.body;
+const signToken = (admin) =>
+  jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || "1d",
+  });
 
-    if (!name || !email || !password) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required.",
-      });
-    }
-
-    const existingAdmin = await Admin.findOne({ email });
-
-    if (existingAdmin) {
-      return res.status(400).json({
-        success: false,
-        message: "Admin already exists.",
-      });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const admin = await Admin.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Admin created successfully.",
-      data: admin,
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
-
+const validatePasswordStrength = (password) => {
+  if (password.length < 8) {
+    return "Password must be at least 8 characters.";
   }
+
+  if (!/[A-Za-z]/.test(password) || !/\d/.test(password)) {
+    return "Password must contain at least one letter and one number.";
+  }
+
+  return null;
 };
 
 // ======================================================
 // LOGIN ADMIN
+// POST /api/admin/login
 // ======================================================
 
 const loginAdmin = async (req, res) => {
-
   try {
+    const { email, password } = req.body || {};
 
-    const { email, password } = req.body;
-
-    const admin = await Admin.findOne({ email });
-
-    if (!admin) {
-      return res.status(401).json({
+    if (typeof email !== "string" || typeof password !== "string" || !email || !password) {
+      return res.status(400).json({
         success: false,
-        message: "Invalid Email or Password",
+        message: "Email and password are required.",
       });
     }
 
-    const match = await bcrypt.compare(password, admin.password);
-
-    if (!match) {
-      return res.status(401).json({
+    if (!process.env.JWT_SECRET) {
+      console.error("JWT_SECRET is not configured.");
+      return res.status(500).json({
         success: false,
-        message: "Invalid Email or Password",
+        message: "Authentication is not configured on the server.",
       });
     }
 
-    const token = jwt.sign(
-      {
-        id: admin._id,
-        role: "admin",
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "7d",
-      }
-    );
+    const admin = await Admin.findOne({ email: email.trim().toLowerCase() });
+
+    const match = await bcrypt.compare(password, admin ? admin.password : DUMMY_HASH);
+
+    if (!admin || !match) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password.",
+      });
+    }
+
+    if (!admin.isActive) {
+      return res.status(403).json({
+        success: false,
+        message: "This admin account is inactive.",
+      });
+    }
+
+    admin.lastLoginAt = new Date();
+    await admin.save();
 
     res.json({
       success: true,
-      token,
+      token: signToken(admin),
       admin,
     });
-
   } catch (error) {
-
-    console.error(error);
+    console.error("Admin Login Error:", error);
 
     res.status(500).json({
       success: false,
-      message: "Server Error",
+      message: "Unable to login right now. Please try again.",
     });
-
   }
-
 };
 
 // ======================================================
 // GET PROFILE
+// GET /api/admin/profile
 // ======================================================
 
 const getAdminProfile = async (req, res) => {
-
-  try {
-
-    const admin = await Admin.findById(req.admin._id).select("-password");
-
-    res.json({
-      success: true,
-      data: admin,
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
-
-  }
-
+  res.json({
+    success: true,
+    data: req.admin,
+  });
 };
 
 // ======================================================
-// UPDATE PASSWORD
+// UPDATE PROFILE
+// PUT /api/admin/profile
 // ======================================================
 
-const updatePassword = async (req, res) => {
-
+const updateAdminProfile = async (req, res) => {
   try {
+    const { name, email } = req.body || {};
+    const admin = req.admin;
 
-    const { currentPassword, newPassword } = req.body;
-
-    if (!currentPassword || !newPassword) {
-
-      return res.status(400).json({
-        success: false,
-        message: "Both passwords are required.",
-      });
-
+    if (name !== undefined) {
+      if (typeof name !== "string" || !name.trim()) {
+        return res.status(400).json({ success: false, message: "Name is required." });
+      }
+      admin.name = name.trim();
     }
 
-    const admin = await Admin.findById(req.admin._id);
+    if (email !== undefined) {
+      const cleanEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
-    if (!admin) {
+      if (!EMAIL_REGEX.test(cleanEmail)) {
+        return res.status(400).json({ success: false, message: "Please enter a valid email address." });
+      }
 
-      return res.status(404).json({
-        success: false,
-        message: "Admin not found.",
-      });
+      const taken = await Admin.findOne({ email: cleanEmail, _id: { $ne: admin._id } });
 
+      if (taken) {
+        return res.status(409).json({ success: false, message: "This email is already in use." });
+      }
+
+      admin.email = cleanEmail;
     }
-
-    const match = await bcrypt.compare(
-      currentPassword,
-      admin.password
-    );
-
-    if (!match) {
-
-      return res.status(400).json({
-        success: false,
-        message: "Current password is incorrect.",
-      });
-
-    }
-
-    admin.password = await bcrypt.hash(newPassword, 10);
 
     await admin.save();
 
     res.json({
       success: true,
-      message: "Password updated successfully.",
+      message: "Profile updated successfully.",
+      data: admin,
     });
-
   } catch (error) {
-
-    console.error(error);
+    console.error("Update Admin Profile Error:", error);
 
     res.status(500).json({
       success: false,
-      message: "Server Error",
+      message: "Unable to update profile.",
     });
-
   }
-
 };
 
 // ======================================================
+// UPDATE PASSWORD
+// PUT /api/admin/password
+// ======================================================
+
+const updatePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body || {};
+
+    if (typeof currentPassword !== "string" || typeof newPassword !== "string" || !currentPassword || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Current and new passwords are required.",
+      });
+    }
+
+    const strengthError = validatePasswordStrength(newPassword);
+
+    if (strengthError) {
+      return res.status(400).json({ success: false, message: strengthError });
+    }
+
+    const admin = req.admin;
+
+    const match = await bcrypt.compare(currentPassword, admin.password);
+
+    if (!match) {
+      return res.status(400).json({
+        success: false,
+        message: "Current password is incorrect.",
+      });
+    }
+
+    if (await bcrypt.compare(newPassword, admin.password)) {
+      return res.status(400).json({
+        success: false,
+        message: "New password must be different from the current password.",
+      });
+    }
+
+    admin.password = await bcrypt.hash(newPassword, 12);
+    // Back-date by a second so the fresh token below stays valid
+    admin.passwordChangedAt = new Date(Date.now() - 1000);
+    await admin.save();
+
+    res.json({
+      success: true,
+      message: "Password updated successfully.",
+      token: signToken(admin),
+    });
+  } catch (error) {
+    console.error("Update Password Error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Unable to update password.",
+    });
+  }
+};
 
 module.exports = {
-
-  registerAdmin,
-
   loginAdmin,
-
   getAdminProfile,
-
+  updateAdminProfile,
   updatePassword,
-
 };

@@ -1,101 +1,46 @@
 const express = require("express");
 
-// ==================================================
-// IMPORT BLOG CONTROLLER
-// ==================================================
+const Blog = require("../models/Blog");
 
 const {
   getPublishedBlogs,
-
   getBlogBySlug,
-
   createBlog,
-
   updateBlog,
-
   deleteBlog,
 } = require("../controllers/blogController");
 
-// ==================================================
-// IMPORT ADMIN AUTH MIDDLEWARE
-// ==================================================
+const {
+  validateObjectId,
+  listAll,
+  getById,
+} = require("../controllers/adminResourceController");
 
 const { protect } = require("../middleware/authMiddleware");
-
-// ==================================================
-// CREATE ROUTER
-// ==================================================
 
 const router = express.Router();
 
 // ==================================================
-// PUBLIC
-// GET ALL PUBLISHED BLOGS
-// GET /api/blog
+// ADMIN - ALL RECORDS (drafts included) + BY ID
+// Must be registered before the public "/:slug" route
 // ==================================================
 
-router.get(
-  "/",
-
-  getPublishedBlogs,
-);
+router.get("/admin/all", protect, listAll(Blog, { createdAt: -1 }));
+router.get("/admin/:id", protect, validateObjectId, getById(Blog));
 
 // ==================================================
 // PUBLIC
-// GET SINGLE BLOG BY SLUG
-// GET /api/blog/:slug
 // ==================================================
 
-router.get(
-  "/:slug",
-
-  getBlogBySlug,
-);
+router.get("/", getPublishedBlogs);
+router.get("/:slug", getBlogBySlug);
 
 // ==================================================
-// ADMIN
-// CREATE BLOG
-// POST /api/blog
+// ADMIN - WRITE
 // ==================================================
 
-router.post(
-  "/",
-
-  protect,
-
-  createBlog,
-);
-
-// ==================================================
-// ADMIN
-// UPDATE BLOG
-// PUT /api/blog/:id
-// ==================================================
-
-router.put(
-  "/:id",
-
-  protect,
-
-  updateBlog,
-);
-
-// ==================================================
-// ADMIN
-// DELETE BLOG
-// DELETE /api/blog/:id
-// ==================================================
-
-router.delete(
-  "/:id",
-
-  protect,
-
-  deleteBlog,
-);
-
-// ==================================================
-// EXPORT ROUTER
-// ==================================================
+router.post("/", protect, createBlog);
+router.put("/:id", protect, validateObjectId, updateBlog);
+router.delete("/:id", protect, validateObjectId, deleteBlog);
 
 module.exports = router;

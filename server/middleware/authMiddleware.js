@@ -1,135 +1,73 @@
-
 const jwt = require("jsonwebtoken");
 
 const Admin = require("../models/Admin");
-
 
 // ==========================================
 // ADMIN AUTHENTICATION MIDDLEWARE
 // ==========================================
 
+const unauthorized = (res, message) =>
+  res.status(401).json({ success: false, message });
+
 const protect = async (req, res, next) => {
-
   try {
+    const authHeader = req.headers.authorization || "";
 
-    // ========================================
-    // GET AUTHORIZATION HEADER
-    // ========================================
-
-    const authHeader =
-      req.headers.authorization;
-
-
-    // ========================================
-    // CHECK AUTHORIZATION HEADER
-    // ========================================
-
-    if (
-      !authHeader ||
-      !authHeader.startsWith("Bearer ")
-    ) {
-
-      return res.status(401).json({
-        success: false,
-        message:
-          "Not authorized. Please login as admin.",
-      });
-
+    if (!authHeader.startsWith("Bearer ")) {
+      return unauthorized(res, "Not authorized. Please login as admin.");
     }
 
+    if (!process.env.JWT_SECRET) {
+      console.error("JWT_SECRET is not configured.");
+      return res.status(500).json({
+        success: false,
+        message: "Authentication is not configured on the server.",
+      });
+    }
 
-    // ========================================
-    // EXTRACT JWT TOKEN
-    // ========================================
+    const token = authHeader.slice(7).trim();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const token =
-      authHeader.split(" ")[1];
-
-
-    // ========================================
-    // VERIFY JWT TOKEN
-    // ========================================
-
-    const decoded =
-      jwt.verify(
-        token,
-        process.env.JWT_SECRET
-      );
-
-
-    // ========================================
-    // FIND ADMIN
-    // ========================================
-
-    const admin =
-      await Admin.findById(
-        decoded.id
-      ).select(
-        "-password"
-      );
-
-
-    // ========================================
-    // CHECK ADMIN EXISTS
-    // ========================================
+    const admin = await Admin.findById(decoded.id);
 
     if (!admin) {
-
-      return res.status(401).json({
-        success: false,
-        message:
-          "Admin account not found.",
-      });
-
+      return unauthorized(res, "Admin account not found.");
     }
-
-
-    // ========================================
-    // CHECK ADMIN ACTIVE STATUS
-    // ========================================
 
     if (!admin.isActive) {
-
       return res.status(403).json({
         success: false,
-        message:
-          "Admin account is inactive.",
+        message: "Admin account is inactive.",
       });
-
     }
 
-
-    // ========================================
-    // ATTACH ADMIN TO REQUEST
-    // ========================================
+    // Reject tokens issued before the last password change
+    if (
+      admin.passwordChangedAt &&
+      decoded.iat * 1000 < admin.passwordChangedAt.getTime()
+    ) {
+      return unauthorized(res, "Session expired. Please login again.");
+    }
 
     req.admin = admin;
-
-
-    // ========================================
-    // MOVE TO NEXT FUNCTION
-    // ========================================
-
     next();
-
   } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return unauthorized(res, "Session expired. Please login again.");
+    }
 
-    console.error(
-      "Authentication Error:",
-      error
-    );
+    if (error.name === "JsonWebTokenError" || error.name === "CastError") {
+      return unauthorized(res, "Invalid authentication token.");
+    }
 
+    console.error("Authentication Error:", error);
 
-    return res.status(401).json({
+    return res.status(500).json({
       success: false,
-      message:
-        "Invalid or expired token.",
+      message: "Authentication error.",
     });
-
   }
-
 };
-
 
 module.exports = {
   protect,

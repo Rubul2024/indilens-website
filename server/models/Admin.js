@@ -10,6 +10,7 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      maxlength: 80,
     },
 
     // ==========================================
@@ -25,7 +26,7 @@ const adminSchema = new mongoose.Schema(
     },
 
     // ==========================================
-    // ADMIN PASSWORD
+    // ADMIN PASSWORD (bcrypt hash)
     // ==========================================
 
     password: {
@@ -51,10 +52,40 @@ const adminSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+
+    // ==========================================
+    // SECURITY METADATA
+    // ==========================================
+
+    // Tokens issued before this moment are rejected
+    passwordChangedAt: {
+      type: Date,
+      default: null,
+    },
+
+    lastLoginAt: {
+      type: Date,
+      default: null,
+    },
+
+    // bcrypt hash of the ADMIN_PASSWORD env value last applied by ensureAdmin
+    seedHash: {
+      type: String,
+      default: "",
+      select: false,
+    },
   },
 
   {
     timestamps: true,
+    toJSON: {
+      transform: (doc, ret) => {
+        delete ret.password;
+        delete ret.seedHash;
+        delete ret.__v;
+        return ret;
+      },
+    },
   }
 );
 

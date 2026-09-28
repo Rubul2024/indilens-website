@@ -1,120 +1,44 @@
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 
-
-// Import Newsletter Controller
 const {
-
-    subscribeNewsletter,
-
-    getAllSubscribers,
-
-    getSubscriberById,
-
-    updateSubscriber,
-
-    deleteSubscriber
-
+  subscribeNewsletter,
+  getAllSubscribers,
+  getSubscriberById,
+  updateSubscriber,
+  deleteSubscriber,
 } = require("../controllers/newsletterController");
 
+const { validateObjectId } = require("../controllers/adminResourceController");
+const { protect } = require("../middleware/authMiddleware");
 
-// Import Admin Authentication Middleware
-const {
-    protect
-} = require("../middleware/authMiddleware");
-
-
-// Create Router
 const router = express.Router();
 
-
-
-// ==================================================
-// PUBLIC ROUTE
-// Anyone can subscribe to Newsletter
-// POST /api/newsletter
-// ==================================================
-
-router.post(
-
-    "/",
-
-    subscribeNewsletter
-
-);
-
-
+// Limit public sign-ups to curb spam
+const subscribeLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many requests. Please try again later.",
+  },
+});
 
 // ==================================================
-// ADMIN ROUTE
-// Get all Newsletter subscribers
-// GET /api/newsletter
+// PUBLIC
 // ==================================================
 
-router.get(
-
-    "/",
-
-    protect,
-
-    getAllSubscribers
-
-);
-
-
+router.post("/", subscribeLimiter, subscribeNewsletter);
 
 // ==================================================
-// ADMIN ROUTE
-// Get one Newsletter subscriber
-// GET /api/newsletter/:id
+// ADMIN
 // ==================================================
 
-router.get(
+router.get("/", protect, getAllSubscribers);
+router.get("/:id", protect, validateObjectId, getSubscriberById);
+router.put("/:id", protect, validateObjectId, updateSubscriber);
+router.delete("/:id", protect, validateObjectId, deleteSubscriber);
 
-    "/:id",
-
-    protect,
-
-    getSubscriberById
-
-);
-
-
-
-// ==================================================
-// ADMIN ROUTE
-// Update Newsletter subscriber
-// PUT /api/newsletter/:id
-// ==================================================
-
-router.put(
-
-    "/:id",
-
-    protect,
-
-    updateSubscriber
-
-);
-
-
-
-// ==================================================
-// ADMIN ROUTE
-// Delete Newsletter subscriber
-// DELETE /api/newsletter/:id
-// ==================================================
-
-router.delete(
-
-    "/:id",
-
-    protect,
-
-    deleteSubscriber
-
-);
-
-
-
-// Export Router
 module.exports = router;

@@ -1,101 +1,46 @@
 const express = require("express");
 
-// ==================================================
-// IMPORT SERVICE CONTROLLER
-// ==================================================
+const Service = require("../models/Service");
 
 const {
   getPublishedServices,
-
   getServiceBySlug,
-
   createService,
-
   updateService,
-
   deleteService,
 } = require("../controllers/serviceController");
 
-// ==================================================
-// IMPORT ADMIN AUTH MIDDLEWARE
-// ==================================================
+const {
+  validateObjectId,
+  listAll,
+  getById,
+} = require("../controllers/adminResourceController");
 
 const { protect } = require("../middleware/authMiddleware");
-
-// ==================================================
-// CREATE ROUTER
-// ==================================================
 
 const router = express.Router();
 
 // ==================================================
-// PUBLIC
-// GET ALL PUBLISHED SERVICES
-// GET /api/services
+// ADMIN - ALL RECORDS (drafts included) + BY ID
+// Must be registered before the public "/:slug" route
 // ==================================================
 
-router.get(
-  "/",
-
-  getPublishedServices,
-);
+router.get("/admin/all", protect, listAll(Service, { displayOrder: 1, createdAt: -1 }));
+router.get("/admin/:id", protect, validateObjectId, getById(Service));
 
 // ==================================================
 // PUBLIC
-// GET SINGLE SERVICE BY SLUG
-// GET /api/services/:slug
 // ==================================================
 
-router.get(
-  "/:slug",
-
-  getServiceBySlug,
-);
+router.get("/", getPublishedServices);
+router.get("/:slug", getServiceBySlug);
 
 // ==================================================
-// ADMIN
-// CREATE SERVICE
-// POST /api/services
+// ADMIN - WRITE
 // ==================================================
 
-router.post(
-  "/",
-
-  protect,
-
-  createService,
-);
-
-// ==================================================
-// ADMIN
-// UPDATE SERVICE
-// PUT /api/services/:id
-// ==================================================
-
-router.put(
-  "/:id",
-
-  protect,
-
-  updateService,
-);
-
-// ==================================================
-// ADMIN
-// DELETE SERVICE
-// DELETE /api/services/:id
-// ==================================================
-
-router.delete(
-  "/:id",
-
-  protect,
-
-  deleteService,
-);
-
-// ==================================================
-// EXPORT ROUTER
-// ==================================================
+router.post("/", protect, createService);
+router.put("/:id", protect, validateObjectId, updateService);
+router.delete("/:id", protect, validateObjectId, deleteService);
 
 module.exports = router;

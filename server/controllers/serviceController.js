@@ -261,7 +261,22 @@ const updateService = async (req, res) => {
     // ==================================================
 
     if (slug !== undefined) {
-      service.slug = slug.trim().toLowerCase().replace(/\s+/g, "-");
+      const cleanSlug = slug.trim().toLowerCase().replace(/\s+/g, "-");
+
+      const duplicateService = await Service.findOne({
+        slug: cleanSlug,
+        _id: { $ne: service._id },
+      });
+
+      if (duplicateService) {
+        return res.status(409).json({
+          success: false,
+
+          message: "Another service already uses this slug.",
+        });
+      }
+
+      service.slug = cleanSlug;
     }
 
     // ==================================================

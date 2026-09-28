@@ -1,46 +1,43 @@
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 
 const {
-  registerAdmin,
   loginAdmin,
   getAdminProfile,
+  updateAdminProfile,
   updatePassword,
 } = require("../controllers/adminController");
 
-const protectAdmin = require("../middleware/adminAuthMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
 // ========================================
-// ADMIN REGISTER
+// LOGIN RATE LIMIT
+// 10 failed attempts per IP every 15 minutes
 // ========================================
 
-router.post("/register", registerAdmin);
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  skipSuccessfulRequests: true,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many login attempts. Please try again in 15 minutes.",
+  },
+});
 
 // ========================================
-// ADMIN LOGIN
+// ROUTES
 // ========================================
 
-router.post("/login", loginAdmin);
+router.post("/login", loginLimiter, loginAdmin);
 
-// ========================================
-// ADMIN PROFILE
-// ========================================
+router.get("/profile", protect, getAdminProfile);
+router.put("/profile", protect, updateAdminProfile);
 
-router.get(
-  "/profile",
-  protectAdmin,
-  getAdminProfile
-);
-
-// ========================================
-// CHANGE PASSWORD
-// ========================================
-
-router.put(
-  "/password",
-  protectAdmin,
-  updatePassword
-);
+router.put("/password", protect, updatePassword);
 
 module.exports = router;

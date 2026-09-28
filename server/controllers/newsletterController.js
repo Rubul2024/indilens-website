@@ -15,7 +15,7 @@ const subscribeNewsletter = async (req, res) => {
 
 
         // Check if email is provided
-        if (!email) {
+        if (typeof email !== "string" || !email.trim()) {
 
             return res.status(400).json({
 
@@ -250,6 +250,18 @@ const updateSubscriber = async (req, res) => {
 
         // Get isActive from request body
         const { isActive } = req.body;
+
+        if (typeof isActive !== "boolean") {
+
+            return res.status(400).json({
+
+                success: false,
+
+                message: "isActive must be true or false."
+
+            });
+
+        }
 
 
         // Find subscriber
