@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
-import NewsletterForm from "../components/NewsletterForm";
 import usePublicData from "../hooks/usePublicData";
 import { formatPostDate, readingTime } from "../utils/content";
 
@@ -377,46 +376,6 @@ const Blog = () => {
           )}
         </div>
       </section>
-
-      {/* ========================================
-          NEWSLETTER
-      ======================================== */}
-
-<section className="blog-newsletter">
-
-  <div className="container">
-
-    <div className="newsletter-card">
-
-      <div className="newsletter-content">
-
-        <span className="section-label">
-          Stay Updated
-        </span>
-
-        <h2>
-          Get useful digital insights in your inbox.
-        </h2>
-
-        <p>
-          Subscribe to receive useful articles, technology insights and
-          updates from Indilens.
-        </p>
-
-      </div>
-
-
-      {/* ========================================
-          NEWSLETTER FORM
-      ======================================== */}
-
-      <NewsletterForm className="newsletter-form" />
-
-    </div>
-
-  </div>
-
-</section>
 
       {/* ========================================
           FINAL CTA
