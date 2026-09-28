@@ -521,3 +521,126 @@ html body .portfolio-card p {
     min-height: 200px;
   }
 }
+
+/* ==========================================================
+   HOMEPAGE "SELECTED WORK": compact 3-column card grid
+   (was three full-width stacked split cards)
+========================================================== */
+
+html body .portfolio-section .portfolio-projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+html body .portfolio-section .portfolio-project {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+html body .portfolio-section .portfolio-project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+}
+
+html body .portfolio-section .portfolio-visual {
+  position: relative;
+  min-height: 0;
+  height: 190px;
+  flex-shrink: 0;
+}
+
+html body .portfolio-section .portfolio-large-number {
+  font-size: 120px;
+}
+
+html body .portfolio-section .portfolio-visual-shape {
+  width: 64px;
+  height: 64px;
+  font-size: 20px;
+}
+
+html body .portfolio-section .portfolio-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+  background: var(--white);
+}
+
+html body .portfolio-section .portfolio-project-top {
+  margin-bottom: 14px;
+}
+
+html body .portfolio-section .portfolio-content h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+html body .portfolio-section .portfolio-content p {
+  margin-bottom: 18px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+html body .portfolio-section .portfolio-technologies {
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+html body .portfolio-section .portfolio-technologies span {
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+/* Link sits at the bottom so all three cards align */
+html body .portfolio-section .portfolio-project-link {
+  margin-top: auto;
+}
+
+/* Three columns while they fit; below that one centred column
+   (a 2-column grid would leave the third card orphaned) */
+@media (max-width: 1100px) {
+  html body .portfolio-section .portfolio-projects {
+    gap: 18px;
+  }
+
+  html body .portfolio-section .portfolio-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  html body .portfolio-section .portfolio-projects {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  html body .portfolio-section .portfolio-projects {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  html body .portfolio-section .portfolio-visual {
+    height: 170px;
+  }
+
+  html body .portfolio-section .portfolio-content {
+    padding: 20px;
+  }
+}
+
+html body .portfolio-section .portfolio-content p,
+html body .portfolio-section .portfolio-technologies {
+  margin-top: 0;
+}
