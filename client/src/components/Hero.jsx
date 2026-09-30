@@ -144,7 +144,7 @@ const Hero = () => {
             <div>
               <span>Projects</span>
 
-              <strong>50+</strong>
+              <strong>1000+</strong>
             </div>
           </div>
 
@@ -158,7 +158,7 @@ const Hero = () => {
             <div>
               <span>Experience</span>
 
-              <strong>10+ Years</strong>
+              <strong>20+ Years</strong>
             </div>
           </div>
         </div>

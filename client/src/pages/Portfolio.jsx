@@ -288,21 +288,21 @@ const Portfolio = () => {
         <div className="container">
           <div className="portfolio-stats-grid">
             <div className="portfolio-stat">
-              <strong>50+</strong>
+              <strong>1000+</strong>
 
-              <span>Digital Projects</span>
+              <span>Projects Delivered</span>
             </div>
 
             <div className="portfolio-stat">
-              <strong>20+</strong>
+              <strong>1000+</strong>
 
               <span>Happy Clients</span>
             </div>
 
             <div className="portfolio-stat">
-              <strong>10+</strong>
+              <strong>20+</strong>
 
-              <span>Years Experience</span>
+              <span>Years of Experience</span>
             </div>
 
             <div className="portfolio-stat">

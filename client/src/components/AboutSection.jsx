@@ -5,15 +5,15 @@ import "./AboutSection.css";
 const AboutSection = () => {
   const stats = [
     {
-      number: "10+",
+      number: "20+",
       label: "Years of Experience",
     },
     {
-      number: "50+",
+      number: "1000+",
       label: "Projects Delivered",
     },
     {
-      number: "20+",
+      number: "1000+",
       label: "Happy Clients",
     },
     {
